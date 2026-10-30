@@ -1,0 +1,66 @@
+{
+  "show": true,
+  "showOnAuctionsPage": true,
+  "eyebrow": "Sale highlights",
+  "title": "Recent results",
+  "priceLabel": "Sold for",
+  "items": [
+    {
+      "photo": {
+        "image": "/images/pages/highlights/items/0/photo/image.jpg",
+        "alt": "Sporting Painting",
+        "onWhite": false
+      },
+      "maker": "John Ferneley Senior (British, 1782-1860)",
+      "title": "The Finish of Run with the Quorn Hunt",
+      "price": "£32,000",
+      "sale": "The October Estates Auction, October 2026",
+      "link": "https://www.sloanestreetauctions.com/catalogue/lot/2a61eba4c37c02bb8e182ce8490c197c/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sal-lot-291/"
+    },
+    {
+      "photo": {
+        "image": "/images/pages/highlights/items/1/photo/image.png",
+        "onWhite": true
+      },
+      "title": "A rare Mughal gold-damascened steel crutch dagger Zafar Takieh or throne of victory.",
+      "price": "£25,000",
+      "sale": "The October Estates Auction, October 2026",
+      "link": "https://www.sloanestreetauctions.com/catalogue/lot/b346947c29baf89cbbc56724189efeaa/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sal-lot-139/"
+    },
+    {
+      "photo": {
+        "image": "/images/pages/highlights/items/2/photo/image.jpg",
+        "alt": "Sporting Painting",
+        "onWhite": true
+      },
+      "maker": "James Seymour (British, 1702-1752)",
+      "title": "A Hunt in Full Cry",
+      "price": "£30,000",
+      "sale": "The October Estates Auction, October 2026",
+      "link": "https://www.sloanestreetauctions.com/catalogue/lot/42b09d93a18a835732ce016a149b3daf/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sal-lot-287/"
+    },
+    {
+      "photo": {
+        "image": "/images/pages/highlights/items/3/photo/image.png",
+        "onWhite": true
+      },
+      "maker": "Piaget",
+      "title": "A very rare coral and 18ct yellow gold bracelet wristwatch",
+      "price": "£85,000",
+      "sale": "The September Auction, September 2026",
+      "link": "https://www.sloanestreetauctions.com/catalogue/lot/04e4ada8b5a24e8347f75315fd4726f1/f696df3e52c0cf46109d4cecaabb248f/the-september-auction-to-include-noble-estates-old-an-lot-112/"
+    },
+    {
+      "photo": {
+        "image": "/images/pages/highlights/items/4/photo/image.jpg",
+        "alt": "British Sporting",
+        "onWhite": false
+      },
+      "maker": "Thomas Spencer (British, 1700-1763)",
+      "title": "Victorious held by a groom",
+      "price": "£26,000",
+      "sale": "The October Estates Auction, October 2026",
+      "link": "https://www.sloanestreetauctions.com/catalogue/lot/930a2c3f53417871a22242881463865f/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sal-lot-285/"
+    }
+  ]
+}

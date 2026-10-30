@@ -1,0 +1,22 @@
+{
+  "seo": {
+    "title": "Request a Free Valuation",
+    "description": "Send photographs and a few details and a specialist will tell you whether your item suits one of our auctions."
+  },
+  "eyebrow": "Free valuation",
+  "title": "Request a valuation",
+  "intro": "Tell us about your item and add a few photographs. It takes about five minutes, and there is no charge.",
+  "nextStepsTitle": "What happens next",
+  "nextSteps": [
+    "A specialist reviews your photographs and description.",
+    "We reply to let you know whether the item suits one of our auctions, with a provisional estimate.",
+    "If you decide to sell, we arrange the next steps with you."
+  ],
+  "notesTitle": "Good to know",
+  "notes": [
+    "Estimates given from photographs are provisional and may change once a specialist has examined the item.",
+    "The property must belong to the person requesting the valuation, or to their registered agent.",
+    "We do not authenticate items, and give no warranty as to origin, provenance, condition, date, age, value or authenticity."
+  ],
+  "notesFooter": "Fees and the selling process are explained on [Sell With Us](/sell)."
+}

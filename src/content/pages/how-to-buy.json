@@ -1,0 +1,83 @@
+{
+  "seo": {
+    "title": "How to Buy",
+    "description": "Registering, bidding in the showroom, online, by telephone or absentee, paying and collecting."
+  },
+  "hero": {
+    "eyebrow": "How to buy",
+    "title": "A guide to buying at auction.",
+    "text": "Whether it is your first auction or your hundredth, here is a guide to registering, placing a bid and what happens after the sale.",
+    "primaryButton": "Browse upcoming auctions",
+    "secondaryButton": "How to register",
+    "photo": {
+      "alt": "A specialist handling a silver object, close up, in warm directional light"
+    }
+  },
+  "register": {
+    "show": true,
+    "title": "Register to bid",
+    "text": "Registration takes two steps. You need a paddle number before you can bid.",
+    "buttonLabel": "Sign in or create an account",
+    "steps": [
+      {
+        "title": "Create an account",
+        "body": "Sign up online and confirm your account using the email we send you. If it doesn’t arrive, check your spam folder."
+      },
+      {
+        "title": "Register for the sale",
+        "body": "Choose “Register to bid” on the auction you are interested in and sign in with your account."
+      },
+      {
+        "title": "Receive your paddle number",
+        "body": "Once your registration is approved, we email you a paddle number. You need it to bid. You can also register in person."
+      }
+    ]
+  },
+  "ways": {
+    "show": true,
+    "title": "Four ways to bid",
+    "items": [
+      {
+        "title": "In the saleroom",
+        "body": "Join us at our Chelsea saleroom and bid in person.",
+        "photo": {
+          "alt": "Bidders in the saleroom during a sale"
+        }
+      },
+      {
+        "title": "Online",
+        "body": "Bid in real time through our online bidding platform.",
+        "photo": {
+          "alt": "A lot being viewed on the online bidding platform"
+        }
+      },
+      {
+        "title": "By telephone",
+        "body": "A member of our team will call you during the sale and bid on your behalf.",
+        "photo": {
+          "alt": "A specialist taking a telephone bid"
+        }
+      },
+      {
+        "title": "Absentee bid",
+        "body": "Tell us the maximum amount you are willing to bid and we will bid on your behalf.",
+        "photo": {
+          "alt": "An absentee bid being written"
+        }
+      }
+    ],
+    "note": "To arrange a telephone or absentee bid, email {email} or call {phone}."
+  },
+  "payment": {
+    "show": true,
+    "title": "After the sale",
+    "text": "Payment is due by the end of the fourteenth calendar day after the auction. ",
+    "linkLabel": "View full buying terms"
+  },
+  "collection": {
+    "show": true,
+    "title": "Collection and shipping",
+    "text": "Items not collected, or arranged for shipping, within fourteen days incur storage charges. Please note, we do not offer in-house shipping, except for small items which will incur a fee. ",
+    "linkLabel": "Read our shipping policy"
+  }
+}

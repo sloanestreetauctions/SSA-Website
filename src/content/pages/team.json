@@ -1,0 +1,111 @@
+{
+  "seo": {
+    "title": "Meet the Team",
+    "description": "The team at Sloane Street Auctions"
+  },
+  "title": "Meet the team",
+  "intro": "Sloane Street Auctions was founded by Mr Daniel Hunt after spending over 30 years as a high-profile gallery owner and dealer, based at his galleries in Lower Sloane Street, London.\n\nDaniel's intimate knowledge of the upper tiers of the art and antique sectors throughout millennia, provides Sloane Street Auctions with unprecedented access to private collections worldwide and the best of access to specific expertise.",
+  "featured": {
+    "show": true,
+    "name": "Daniel Hunt",
+    "role": "Founder and CEO",
+    "email": "dhunt@sloanestreetauctions.com",
+    "photo": {
+      "image": "/images/pages/team/featured/photo/image.jpg",
+      "alt": "Daniel Hunt, leaning on a picture frame in front of a large landscape painting"
+    }
+  },
+  "members": [
+    {
+      "name": "Jasper Allen",
+      "role": "Non-executive Chairman",
+      "photo": {
+        "image": "/images/pages/team/members/0/photo/image.jpg",
+        "alt": "Portrait of Jasper Allen"
+      }
+    },
+    {
+      "name": "Samuel Yorke",
+      "role": "Managing Director",
+      "photo": {
+        "image": "/images/pages/team/members/1/photo/image.jpg",
+        "alt": "Portrait of Samuel Yorke"
+      }
+    },
+    {
+      "name": "Genevieve Hohenberg",
+      "role": "Head of European Operations and Sales | Auctioneer",
+      "photo": {
+        "image": "/images/pages/team/members/2/photo/image.jpg",
+        "alt": "Portrait of Genevieve Hohenberg"
+      }
+    },
+    {
+      "name": "Maud Johnson",
+      "role": "Head of 20th Century and Client Advisory",
+      "photo": {
+        "image": "/images/pages/team/members/3/photo/image.jpg",
+        "alt": "Portrait of Maud Johnson"
+      }
+    },
+    {
+      "name": "Stephen Giles",
+      "role": "Head of Jewellery",
+      "photo": {
+        "image": "/images/pages/team/members/4/photo/image.jpg",
+        "alt": "Portrait of Stephen Giles"
+      }
+    },
+    {
+      "name": "Phoebe Janes",
+      "role": "Head of Photography and Social Media",
+      "photo": {
+        "image": "/images/pages/team/members/5/photo/image.jpg",
+        "alt": "Portrait of Phoebe Janes"
+      }
+    },
+    {
+      "name": "Isobel Gilmour",
+      "role": "Head of House Sales and Catalogue Production",
+      "photo": {
+        "image": "/images/pages/team/members/6/photo/image.jpg",
+        "alt": "Portrait of Isobel Gilmour"
+      }
+    },
+    {
+      "name": "India Pim",
+      "role": "Accounts and Financial Client Advisor",
+      "email": "accounts@sloanestreetauctions.com",
+      "photo": {
+        "image": "/images/pages/team/members/7/photo/image.jpg",
+        "alt": "Portrait of India Pim"
+      }
+    },
+    {
+      "name": "Albert Courage",
+      "role": "Subterranean Director",
+      "photo": {
+        "image": "/images/pages/team/members/8/photo/image.jpg",
+        "alt": "Portrait of Albert Courage"
+      }
+    },
+    {
+      "name": "Sophia Lund",
+      "role": "Operations and Marketing Coordinator",
+      "photo": {
+        "image": "/images/pages/team/members/9/photo/image.jpg",
+        "alt": "Portrait of Sophia Lund"
+      }
+    },
+    {
+      "name": "Bianka Petrova",
+      "role": "Catalogue Assistant and Junior Cataloguer",
+      "photo": {
+        "image": "/images/pages/team/members/10/photo/image.jpg",
+        "alt": "Portrait of Bianka Petrova"
+      }
+    }
+  ],
+  "primaryButton": "Contact the team",
+  "secondaryButton": "Request a free valuation"
+}

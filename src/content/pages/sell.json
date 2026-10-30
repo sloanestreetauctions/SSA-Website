@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Sell With Us",
+    "description": "Free valuations, no seller’s commission and a 2% + VAT loss and damage waiver fee only if your item sells."
+  },
+  "hero": {
+    "eyebrow": "Sell with us",
+    "title": "Seller's Guide",
+    "text": "Whether you wish to sell a single object or the entire contents of a house, Sloane Street Auctions offers expertise and experience to help you realise the highest possible price.",
+    "primaryButton": "Request a free valuation",
+    "secondaryButton": "Book an appointment",
+    "photo": {
+      "alt": "A specialist examining an object or painting, close up, in warm low light"
+    }
+  },
+  "process": {
+    "show": true,
+    "title": "How selling works",
+    "steps": [
+      {
+        "title": "Free valuation",
+        "body": "We conduct free valuations, Monday to Friday. You can visit our Chelsea saleroom, arrange a home valuation, or complete a form by clicking 'Request a valuation'."
+      },
+      {
+        "title": "We confirm if it’s right for sale",
+        "body": "A specialist reviews your item and tells you whether it suits one of our auctions, with a provisional estimate."
+      },
+      {
+        "title": "Cataloguing and marketing",
+        "body": "Our specialists research, catalogue and photograph your item for our physical and digital catalogues."
+      },
+      {
+        "title": "Sold at auction",
+        "body": "Your item is offered in a suitable sale. If it sells, you will be paid 35 days after the sale. If it does not sell, please contact us to discuss your options."
+      }
+    ]
+  },
+  "showroom": {
+    "show": true,
+    "eyebrow": "Our showroom",
+    "title": "Visit us in Chelsea.",
+    "text": "You are welcome to bring items to our Chelsea saleroom for consignment. Alternatively, if you would like to arrange a home valuation, please call {phone}.",
+    "photo": {
+      "alt": "The showroom interior on Fulham Road"
+    }
+  },
+  "fees": {
+    "show": false,
+    "title": "Clear terms and no seller’s commission.",
+    "text": "On a successful sale, a 2% + VAT loss and damage waiver fee is deducted from the hammer price. Full terms are set out in our [Conditions of Sale](https://www.sloanestreetauctions.com/terms-and-conditions). We can also broker a private sale outside the auction calendar.",
+    "linkLabel": "Read our selling terms",
+    "photo": {
+      "image": "/images/pages/sell/fees/photo/image.jpg",
+      "alt": "Jewelled panther ring set with white stones, black enamel spots and green eyes",
+      "onWhite": true
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "seo": {
+    "title": "Contact",
+    "description": "Visit us at 158–164 Fulham Road, Chelsea, call 020 3915 8340 or email info@sloanestreetauctions.com."
+  },
+  "hero": {
+    "eyebrow": "Contact",
+    "title": "We would be delighted to hear from you.",
+    "text": "Visit us at our Chelsea saleroom, call during opening hours, or get in touch by email.",
+    "mapsLinkLabel": "Open in Google Maps",
+    "hoursTitle": "Opening hours",
+    "photo": {
+      "alt": "The showroom entrance on Fulham Road"
+    }
+  },
+  "map": {
+    "show": true,
+    "placeName": "Sloane Street\nAuctions",
+    "areaLabel": "Chelsea",
+    "buttonLabel": "Show map",
+    "directionsLabel": "Get directions",
+    "note": "Showing the map loads it from Google."
+  },
+  "enquiries": {
+    "show": true,
+    "title": "How can we help?",
+    "text": "Choose a subject and we’ll show you the quickest way to reach the right person.",
+    "question": "What is your enquiry about?",
+    "valuation": {
+      "label": "Selling or a valuation",
+      "description": "Send photographs and a few details using our valuation form and a specialist will reply.",
+      "buttonLabel": "Request a free valuation"
+    },
+    "buying": {
+      "label": "Buying and bidding",
+      "description": "Registration, telephone and absentee bids, or advice on a lot in a forthcoming sale.",
+      "buttonLabel": "Email the team",
+      "subject": "Bidding enquiry"
+    },
+    "conditionReport": {
+      "label": "A condition report",
+      "description": "Tell us the sale and lot number and we’ll send the report as soon as it’s ready.",
+      "descriptionWithLot": "We’ve added {lot} to the email for you. Just add your name and send.",
+      "buttonLabel": "Email a condition report request",
+      "subject": "Condition report request"
+    },
+    "accounts": {
+      "label": "An invoice or payment",
+      "description": "Questions about an invoice or payment after a sale.",
+      "buttonLabel": "Email accounts",
+      "subject": "Invoice enquiry"
+    },
+    "general": {
+      "label": "Something else",
+      "description": "Any other question. We’ll make sure it reaches the right person.",
+      "buttonLabel": "Email the team",
+      "subject": "Enquiry"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "/images/pages/about/visit/illustration/image.jpg": {
+    "height": 545,
+    "width": 960
+  },
+  "/images/pages/highlights/items/0/photo/image.jpg": {
+    "height": 3330,
+    "width": 4000
+  },
+  "/images/pages/highlights/items/1/photo/image.png": {
+    "width": 2048,
+    "height": 548
+  },
+  "/images/pages/highlights/items/2/photo/image.jpg": {
+    "height": 2857,
+    "width": 4000
+  },
+  "/images/pages/highlights/items/3/photo/image.png": {
+    "width": 2048,
+    "height": 1407
+  },
+  "/images/pages/highlights/items/4/photo/image.jpg": {
+    "height": 3286,
+    "width": 4000
+  },
+  "/images/pages/home/hero/photo/image.jpg": {
+    "height": 941,
+    "width": 1672
+  },
+  "/images/pages/sell/fees/photo/image.jpg": {
+    "height": 2008,
+    "width": 2576
+  },
+  "/images/pages/team/featured/photo/image.jpg": {
+    "height": 567,
+    "width": 1008
+  },
+  "/images/pages/team/members/0/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/1/photo/image.jpg": {
+    "height": 3750,
+    "width": 3000
+  },
+  "/images/pages/team/members/10/photo/image.jpg": {
+    "height": 4000,
+    "width": 2969
+  },
+  "/images/pages/team/members/2/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/3/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/4/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/5/photo/image.jpg": {
+    "height": 4000,
+    "width": 2761
+  },
+  "/images/pages/team/members/6/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/7/photo/image.jpg": {
+    "height": 4000,
+    "width": 3200
+  },
+  "/images/pages/team/members/8/photo/image.jpg": {
+    "height": 4000,
+    "width": 2967
+  },
+  "/images/pages/team/members/9/photo/image.jpg": {
+    "height": 4000,
+    "width": 3035
+  }
+}

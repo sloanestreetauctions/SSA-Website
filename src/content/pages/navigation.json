@@ -1,0 +1,96 @@
+{
+  "header": {
+    "auctions": {
+      "label": "Auctions",
+      "description": "Upcoming sales, catalogues and past auctions"
+    },
+    "howToBuy": {
+      "label": "How to Buy",
+      "description": "Registering, bidding and paying"
+    },
+    "sell": {
+      "label": "Sell With Us",
+      "description": "How to consign to auction"
+    },
+    "stories": {
+      "label": "Stories",
+      "description": "Collecting guides and editorial"
+    },
+    "about": {
+      "label": "About",
+      "description": "Our history and team"
+    },
+    "contact": {
+      "label": "Contact",
+      "description": "Visit, call or write to us"
+    },
+    "valuationButton": "Request a valuation",
+    "signInLabel": "Sign in / Register"
+  },
+  "footerColumns": [
+    {
+      "heading": "Auctions",
+      "links": [
+        {
+          "label": "Upcoming auctions",
+          "href": "/auctions"
+        },
+        {
+          "label": "Past auctions",
+          "href": "/auctions#past"
+        },
+        {
+          "label": "How to buy",
+          "href": "/how-to-buy"
+        }
+      ]
+    },
+    {
+      "heading": "Selling",
+      "links": [
+        {
+          "label": "Sell with us",
+          "href": "/sell"
+        },
+        {
+          "label": "Request a free valuation",
+          "href": "/valuation"
+        },
+        {
+          "label": "Fees and terms",
+          "href": "/sell#fees-title"
+        }
+      ]
+    },
+    {
+      "heading": "About",
+      "links": [
+        {
+          "label": "Our story",
+          "href": "/about"
+        },
+        {
+          "label": "Meet the team",
+          "href": "/about/team"
+        },
+        {
+          "label": "Stories & insights",
+          "href": "/stories"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact"
+        }
+      ]
+    }
+  ],
+  "footerButton": "Request a valuation",
+  "footerNote": "Online registration and bidding through Easy Live Auction.",
+  "pages": {
+    "sell": true,
+    "howToBuy": true,
+    "about": true,
+    "team": true,
+    "stories": true
+  }
+}

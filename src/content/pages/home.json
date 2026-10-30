@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "showWords": true,
+    "title": "A little bit of everything",
+    "buttonLabel": "Explore our auctions",
+    "linkLabel": "Sell with us",
+    "photo": {
+      "image": "/images/pages/home/hero/photo/image.jpg",
+      "alt": "A dimly lit gallery room with a gilt-framed painting of a horse above a walnut chest, a classical bust and porcelain vases"
+    }
+  },
+  "upcoming": {
+    "show": true,
+    "title": "Upcoming auctions",
+    "viewAllLabel": "View all auctions",
+    "noUpcoming": "Our next sales will be announced here shortly."
+  },
+  "approach": {
+    "show": false,
+    "eyebrow": "Our approach",
+    "title": "A personal, discreet\nand expert service.",
+    "text": "From a single picture to the contents of a house: a free valuation, careful cataloguing, and marketing to buyers around the world, handled by our specialists from first enquiry to the sale itself.",
+    "linkLabel": "Sell with us"
+  },
+  "values": [
+    {
+      "icon": "valuation",
+      "title": "Free valuations",
+      "body": "We conduct free valuations, Monday to Friday. You can visit our Chelsea saleroom, arrange a home valuation, or complete a form by clicking 'Request a valuation'."
+    },
+    {
+      "icon": "terms",
+      "title": "No seller’s commission",
+      "body": "A 2% + VAT administration fee, deducted only if your item sells."
+    },
+    {
+      "icon": "reach",
+      "title": "Buyers worldwide",
+      "body": "Marketing to buyers around the world."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "seo": {
+    "title": "About Us",
+    "description": "Sloane Street Auctions: an independent auction house on Fulham Road, Chelsea, offering fine art, antiques and collectables."
+  },
+  "hero": {
+    "title": "About Sloane Street Auctions",
+    "text": "Sloane Street Auctions' primary objective is to work with both our buyers and sellers to provide the art market access to the rarest objects and art - from Classical Antiquities, Icons and Old Masters, right through to the YBAs and beyond.\n\nSloane Street Auctions takes great pleasure in dealing with people. We aim to provide a seamless and pleasant service, whether buying or selling. Our vision is to unearth the world's greatest treasures and to match them with the world's greatest collectors, whether an occasional buyer or a seasoned connoisseur. Sloane Street Auctions prides itself in providing the highest level of client service and discretion. ",
+    "linkLabel": "Meet the team",
+    "photo": {
+      "alt": "A classical bust or sculpture in warm directional light"
+    }
+  },
+  "interiorPhoto": {
+    "alt": "A wide view of the showroom interior, warm lamp light"
+  },
+  "statements": [
+    {
+      "title": "Our approach",
+      "body": "Free valuations, clear terms and a personal service at every stage, from first enquiry to the sale itself."
+    },
+    {
+      "title": "Our expertise",
+      "body": "Paintings, works on paper, furniture, sculpture, decorative arts and jewellery, catalogued and photographed by our specialists."
+    },
+    {
+      "title": "Our clients",
+      "body": "Private owners, collectors and estates, with buyers bidding in our Chelsea saleroom, online and by telephone."
+    }
+  ],
+  "visit": {
+    "show": true,
+    "title": "Visit us on Fulham Road",
+    "text": "158–164 Fulham Road, Chelsea, London SW10 9PR.",
+    "primaryButton": "Meet the team",
+    "secondaryButton": "Contact us",
+    "illustration": {
+      "image": "/images/pages/about/visit/illustration/image.jpg",
+      "alt": "Watercolour illustration of the Sloane Street Auctions showroom on Fulham Road, with navy awnings and planted window boxes",
+      "onWhite": true
+    }
+  }
+}

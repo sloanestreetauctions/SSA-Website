@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "Auctions"
+  },
+  "eyebrow": "Auctions",
+  "title": "Upcoming auctions",
+  "catalogueLinkLabel": "Browse all catalogues",
+  "noUpcoming": "There are no upcoming sales at the moment. New catalogues are published here as soon as they are ready.",
+  "past": {
+    "show": true,
+    "title": "Past auctions",
+    "text": "Catalogues and results from our previous sales."
+  },
+  "selling": {
+    "show": true,
+    "photo": {
+      "onWhite": false
+    },
+    "title": "Thinking of consigning?",
+    "text": "We conduct free valuations, Monday to Friday. You can visit our Chelsea saleroom, arrange a home valuation, or complete the form below.",
+    "buttonLabel": "Request a free valuation"
+  }
+}

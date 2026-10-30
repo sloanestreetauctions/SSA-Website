@@ -1,0 +1,19 @@
+{
+  "easyLive": {},
+  "deadlines": {
+    "label": "Consign by",
+    "showOnSell": true,
+    "sellText": "Now consigning for"
+  },
+  "sales": [
+    {
+      "title": "The Christmas Auction: To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "date": "2026-12-03",
+      "time": "10:30",
+      "consignmentDeadline": "2026-11-13",
+      "photo": {
+        "onWhite": false
+      }
+    }
+  ]
+}
