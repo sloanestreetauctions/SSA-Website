@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Scan every page and component for styles explicitly, so new files are always picked up,
+   whatever folder the project sits in on your computer. */
+@source "../";
 
 /* ==========================================================================
    SLOANE STREET AUCTIONS — DESIGN TOKENS
