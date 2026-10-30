@@ -488,6 +488,10 @@ export default config({
           primaryButton: button("Main button", "the valuation form"),
           secondaryButton: button("Second button", "“Visit us”"),
           photo: photo("sell", "Photograph"),
+          framed: fields.checkbox({
+            label: "Show the photograph in a gilt frame",
+            description: "A slim gold frame with an ivory mount, like a framed picture. Untick for the photograph on its own.",
+          }),
         },
         { label: "Opening" },
       ),
@@ -519,6 +523,10 @@ export default config({
           primaryButton: button("Main button", "Auctions"),
           secondaryButton: button("Second button", "“Register to bid”"),
           photo: photo("how-to-buy", "Photograph"),
+          framed: fields.checkbox({
+            label: "Show the photograph in a gilt frame",
+            description: "A slim gold frame with an ivory mount, like a framed picture. Untick for the photograph on its own.",
+          }),
         },
         { label: "Opening" },
       ),
