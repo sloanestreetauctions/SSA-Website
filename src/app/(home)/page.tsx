@@ -6,6 +6,7 @@ import { routes } from "@/lib/routes";
 import { home, isPageOn, isShown } from "@/content";
 import { versioned } from "@/lib/photo-version";
 import { BreakLines } from "@/components/ui/RichText";
+import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { Arrow } from "@/components/ui/Button";
@@ -136,6 +137,9 @@ export default async function HomePage() {
           )}
         </section>
       )}
+
+      {/* ======================================================= FEATURED LOTS */}
+      <FeaturedLots sales={upcoming} page="home" />
 
       {/* ===================================================== SALE HIGHLIGHTS */}
       <HighlightsReel page="home" />

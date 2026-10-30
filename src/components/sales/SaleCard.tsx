@@ -10,7 +10,19 @@ import type { Sale } from "@/lib/sales";
  * catalogue on the Easy Live auction site once that link has been added;
  * until then it says "Catalogue coming soon" and isn't a link.
  */
-export function SaleCard({ sale, size = "compact", priority = false }: { sale: Sale; size?: "compact" | "large"; priority?: boolean }) {
+export function SaleCard({
+  sale,
+  size = "compact",
+  priority = false,
+  headingLevel = 3,
+}: {
+  sale: Sale;
+  size?: "compact" | "large";
+  priority?: boolean;
+  /** 2 where the cards sit directly under the page heading. */
+  headingLevel?: 2 | 3;
+}) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const d = sale.date ? saleDateParts(sale.date) : null;
   const large = size === "large";
   const link = sale.catalogueLink;
@@ -51,7 +63,7 @@ export function SaleCard({ sale, size = "compact", priority = false }: { sale: S
             {sale.time && <> · {sale.time}</>}
           </p>
         )}
-        <h3
+        <Heading
           className={`mt-1.5 font-serif leading-[1.2] [font-variation-settings:'opsz'_36] ${large ? "text-[1.875rem]" : "text-[1.5rem]"}`}
         >
           {link ? (
@@ -61,7 +73,7 @@ export function SaleCard({ sale, size = "compact", priority = false }: { sale: S
           ) : (
             sale.title
           )}
-        </h3>
+        </Heading>
         {sale.description && <p className="mt-1.5 text-[1.1875rem] leading-snug text-ink-soft">{sale.description}</p>}
         {sale.consigning && sale.consignmentDeadline && (
           <p className="mt-3 inline-flex items-center gap-2 self-start border-l-2 border-gold pl-3 font-sans text-[0.9375rem] text-ink">

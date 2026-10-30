@@ -190,6 +190,22 @@ export default config({
         },
         { label: "Consignment deadlines" },
       ),
+      featured: fields.object(
+        {
+          show: fields.checkbox({
+            label: "Show featured lots",
+            description:
+              "Untick to hide featured lots everywhere (nothing is deleted). They also hide by themselves when no upcoming sale has any lots added.",
+            defaultValue: true,
+          }),
+          eyebrow: line("Small heading above featured lots", "e.g. From the sale. The sale’s name is shown underneath automatically."),
+          estimateLabel: line("Wording before each estimate", "e.g. Estimate"),
+          linkLabel: line("Wording of the link on each lot", "e.g. View and bid. Shown on lots that have a link."),
+          catalogueLabel: line("Wording of the link to the whole catalogue", "e.g. View the full catalogue. Shown once the sale’s catalogue link is added."),
+          showOnAuctionsPage: fields.checkbox({ label: "Also show on the Auctions page", defaultValue: true }),
+        },
+        { label: "Featured lots: on/off and wording", description: "The lots themselves are added to each sale below, under Sales." },
+      ),
       sales: fields.array(
         fields.object({
           title: requiredLine("Name of the sale", "e.g. Fine Art, Antiques & Collectables"),
@@ -207,6 +223,26 @@ export default config({
               "The sale’s page on your Easy Live auction site. Until it’s added, the sale shows “Catalogue coming soon”.",
           }),
           photo: objectPhoto("calendar", "Cover photograph", "A highlight from the sale."),
+          featuredLots: fields.array(
+            fields.object({
+              photo: objectPhoto("calendar", "Photograph", "Ideally an upright photo of the lot."),
+              lotNumber: line("Lot number", "e.g. 42"),
+              maker: line("Artist or maker", "e.g. John Wootton (1682–1764)"),
+              title: requiredLine("Title of the lot"),
+              estimate: line("Estimate", "As you’d like it shown, e.g. £3,000–5,000."),
+              link: fields.url({
+                label: "Link to the lot",
+                description: "The lot’s page on your Easy Live auction site, where people can bid.",
+              }),
+            }),
+            {
+              label: "Featured lots",
+              description:
+                "A handful of the best pieces in this sale (8–12 works well). Shown under the sale on the homepage and Auctions page until the sale has passed. Leave empty to show none. Drag to reorder.",
+              itemLabel: (props) =>
+                `${props.fields.lotNumber.value ? `Lot ${props.fields.lotNumber.value} · ` : ""}${props.fields.title.value || "New lot"}`,
+            },
+          ),
         }),
         {
           label: "Sales",

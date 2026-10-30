@@ -4,6 +4,7 @@ import { formatSaleDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
 import { getSales } from "@/lib/sales";
 import { auctionsPage as c, easyLive, hasPhoto, isShown } from "@/content";
+import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { ObjectPhoto } from "@/components/ui/PhotoToCome";
@@ -48,13 +49,18 @@ export default async function AuctionsPage() {
           <ul className="mt-10 grid gap-6 md:grid-cols-2">
             {upcoming.map((sale, i) => (
               <li key={`${sale.title}-${sale.date}-${i}`}>
-                <SaleCard sale={sale} size="large" priority={i < 2} />
+                <SaleCard sale={sale} size="large" priority={i < 2} headingLevel={2} />
               </li>
             ))}
           </ul>
         ) : (
           c.noUpcoming && <p className={`mt-10 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.noUpcoming}</p>
         )}
+      </div>
+
+      {/* ======================================================= FEATURED LOTS */}
+      <div className="mt-6">
+        <FeaturedLots sales={upcoming} page="auctions" />
       </div>
 
       {/* ===================================================== SALE HIGHLIGHTS */}

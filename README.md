@@ -47,6 +47,10 @@ Easy Live hosts catalogues, lots, accounts, registration, bidding and payment on
 - **Easy Live links** (top of the Auction calendar): your auction site's address and its sign-in page. Once filled in,
   the search button, "Browse all catalogues" and "Sign in or register to bid" appear automatically. Until then they
   are simply hidden — never shown as fake buttons.
+- **Featured lots** (inside each sale in the Auction calendar): a handful of the sale's best pieces — photo, lot
+  number, artist or maker, title, estimate and the link to the lot on Easy Live. They show as a scrolling row under
+  the upcoming sales on the homepage and Auctions page, and disappear by themselves once the sale has passed. Untick
+  "Show featured lots" (Auction calendar → Featured lots: on/off and wording) to hide them everywhere at any time.
 - Connecting the subdomain is a DNS setting at your domain provider, done by you or Easy Live (not by this project).
 
 ## The valuation form

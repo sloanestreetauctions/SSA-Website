@@ -89,6 +89,22 @@ const updates = [
     },
   },
   {
+    file: "auction-calendar.json",
+    description: "Auction calendar: featured lots for each sale (on/off and wording)",
+    apply(c) {
+      if (c.featured) return false;
+      c.featured = {
+        show: true,
+        eyebrow: "From the sale",
+        estimateLabel: "Estimate",
+        linkLabel: "View and bid",
+        catalogueLabel: "View the full catalogue",
+        showOnAuctionsPage: true,
+      };
+      return true;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -195,6 +211,7 @@ const newFiles = {
   "auction-calendar.json": {
     easyLive: {},
     deadlines: { label: "Consign by", showOnSell: true, sellText: "Now consigning for" },
+    featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
   },
   "sale-highlights.json": {
