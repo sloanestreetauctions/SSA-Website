@@ -11,6 +11,7 @@ export function HighlightsReel({ page }: { page: "home" | "auctions" }) {
   const h = highlights;
   if (!h.show || h.items.length === 0) return null;
   if (page === "auctions" && !h.showOnAuctionsPage) return null;
+  if (page === "home" && h.showOnHome === false) return null;
 
   const heading = (
     <>

@@ -7,6 +7,7 @@ import { home, isPageOn, isShown } from "@/content";
 import { versioned } from "@/lib/photo-version";
 import { BreakLines } from "@/components/ui/RichText";
 import { FeaturedLots } from "@/components/sales/FeaturedLots";
+import { CoversReel } from "@/components/sales/CoversReel";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { Arrow } from "@/components/ui/Button";
@@ -155,6 +156,9 @@ export default async function HomePage() {
 
       {/* ======================================================= FEATURED LOTS */}
       <FeaturedLots sales={upcoming} page="home" />
+
+      {/* =============================================== PAST CATALOGUE COVERS */}
+      <CoversReel page="home" />
 
       {/* ===================================================== SALE HIGHLIGHTS */}
       <HighlightsReel page="home" />

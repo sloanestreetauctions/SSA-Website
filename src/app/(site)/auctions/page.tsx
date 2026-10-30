@@ -5,6 +5,7 @@ import { routes } from "@/lib/routes";
 import { getSales } from "@/lib/sales";
 import { auctionsPage as c, easyLive, hasPhoto, isShown } from "@/content";
 import { FeaturedLots } from "@/components/sales/FeaturedLots";
+import { CoversReel } from "@/components/sales/CoversReel";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { ObjectPhoto } from "@/components/ui/PhotoToCome";
@@ -66,6 +67,7 @@ export default async function AuctionsPage() {
       {/* ===================================================== SALE HIGHLIGHTS */}
       <div className="mt-6">
         <HighlightsReel page="auctions" />
+        <CoversReel page="auctions" />
       </div>
 
       {/* ===================================================== PAST SALES */}

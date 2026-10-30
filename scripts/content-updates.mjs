@@ -221,6 +221,15 @@ const ONCE = [
       return true;
     },
   },
+  {
+    id: "2026-10-30-covers-replace-highlights-on-home",
+    file: "sale-highlights.json",
+    description: "Homepage: past catalogue covers take the place of the sale highlights (highlights kept; tick “Show on the homepage” to bring them back)",
+    apply(c) {
+      c.showOnHome = false;
+      return true;
+    },
+  },
 ];
 
 /** New content files that didn't exist before, created empty. */
@@ -248,6 +257,36 @@ const newFiles = {
     deadlines: { label: "Consign by", showOnSell: true, sellText: "Now consigning for" },
     featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
+  },
+  "catalogue-covers.json": {
+    show: true,
+    showOnHome: true,
+    showOnAuctionsPage: false,
+    eyebrow: "From our archive",
+    title: "Past catalogues",
+    intro: "",
+    items: [
+      {
+        cover: {
+          image: "/images/pages/covers/items/0/cover/image.jpg",
+          alt: "Catalogue cover for The September Fine Art Auction: a black and white photograph of a woman in a wide-brimmed black hat, on a blue ground with diamond drop earrings and a pearl bracelet",
+          onWhite: false,
+        },
+        title: "The September Fine Art Auction",
+        date: "Thursday 24 September 2026",
+        link: null,
+      },
+      {
+        cover: {
+          image: "/images/pages/covers/items/1/cover/image.jpg",
+          alt: "Catalogue cover for The Summer Auction: a painting of the Madonna and Child in an arched frame, set on an embroidered suzani textile with emerald drop earrings",
+          onWhite: false,
+        },
+        title: "The Summer Auction",
+        date: "Friday 10 July 2026",
+        link: null,
+      },
+    ],
   },
   "sale-highlights.json": {
     show: true,

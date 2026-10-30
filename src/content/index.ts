@@ -15,6 +15,7 @@ import type keystaticConfig from "../../keystatic.config";
 import aboutJson from "./pages/about.json";
 import calendarJson from "./pages/auction-calendar.json";
 import highlightsJson from "./pages/sale-highlights.json";
+import coversJson from "./pages/catalogue-covers.json";
 import auctionsJson from "./pages/auctions.json";
 import contactJson from "./pages/contact.json";
 import homeJson from "./pages/home.json";
@@ -38,6 +39,7 @@ const read = <K extends keyof Singletons>(json: unknown) => json as Content<K>;
 
 export const calendar = read<"calendar">(calendarJson);
 export const highlights = read<"highlights">(highlightsJson);
+export const covers = read<"covers">(coversJson);
 export const settings = read<"settings">(settingsJson);
 export const navigation = read<"navigation">(navigationJson);
 export const home = read<"home">(homeJson);

@@ -8,7 +8,18 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
  * buttons, disabled at either end, and the list stays a plain list for screen
  * readers.
  */
-export function Reel({ label, heading, children }: { label: string; heading?: ReactNode; children: ReactNode }) {
+export function Reel({
+  label,
+  heading,
+  children,
+  itemName = "lots",
+}: {
+  label: string;
+  heading?: ReactNode;
+  children: ReactNode;
+  /** For the arrow buttons, e.g. "Next lots". */
+  itemName?: string;
+}) {
   const track = useRef<HTMLUListElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -51,10 +62,10 @@ export function Reel({ label, heading, children }: { label: string; heading?: Re
         <div>{heading}</div>
         {scrollable && (
           <div className="flex gap-2">
-            <button type="button" className={button} onClick={() => step(-1)} disabled={atStart} aria-label="Previous lots">
+            <button type="button" className={button} onClick={() => step(-1)} disabled={atStart} aria-label={`Previous ${itemName}`}>
               <Chevron direction="left" />
             </button>
-            <button type="button" className={button} onClick={() => step(1)} disabled={atEnd} aria-label="Next lots">
+            <button type="button" className={button} onClick={() => step(1)} disabled={atEnd} aria-label={`Next ${itemName}`}>
               <Chevron direction="right" />
             </button>
           </div>

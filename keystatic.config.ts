@@ -155,7 +155,7 @@ export default config({
   ui: {
     brand: { name: "Sloane Street Auctions" },
     navigation: {
-      Auctions: ["calendar", "highlights"],
+      Auctions: ["calendar", "covers", "highlights"],
       Pages: ["home", "auctions", "sell", "howToBuy", "about", "team", "contact", "valuation", "stories", "notFound"],
       Policies: ["terms", "privacy", "shipping"],
       "Across the site": ["settings", "navigation"],
@@ -254,6 +254,40 @@ export default config({
       ),
     }),
 
+    /* ============================================ PAST CATALOGUE COVERS */
+    covers: singlePage("Past catalogue covers", "catalogue-covers", {
+      show: fields.checkbox({
+        label: "Show the catalogue covers",
+        description: "Shown once at least one cover has been added. Untick to hide it everywhere.",
+        defaultValue: true,
+      }),
+      showOnHome: fields.checkbox({ label: "Show on the homepage", defaultValue: true }),
+      showOnAuctionsPage: fields.checkbox({ label: "Also show on the Auctions page", defaultValue: false }),
+      eyebrow: line("Small heading", "e.g. From our archive"),
+      title: line("Heading", "e.g. Past catalogues"),
+      intro: paragraph("Text under the heading"),
+      items: fields.array(
+        fields.object({
+          cover: objectPhoto(
+            "covers",
+            "Cover",
+            "The front cover, straight on (e.g. exported from the catalogue file). Shown whole, never cropped.",
+          ),
+          title: requiredLine("Name of the sale", "e.g. The Summer Auction"),
+          date: line("Date", "As you’d like it shown, e.g. July 2026"),
+          link: fields.url({
+            label: "Link (optional)",
+            description: "For example the catalogue on your Easy Live auction site.",
+          }),
+        }),
+        {
+          label: "Covers",
+          description: "Newest first is usual. Drag to reorder; use the ⋯ menu to remove one.",
+          itemLabel: (props) => `${props.fields.title.value || "New cover"}${props.fields.date.value ? ` · ${props.fields.date.value}` : ""}`,
+        },
+      ),
+    }),
+
     /* ===================================================== SALE HIGHLIGHTS */
     highlights: singlePage("Sale highlights", "sale-highlights", {
       show: fields.checkbox({
@@ -261,6 +295,7 @@ export default config({
         description: "Shown once at least one lot has been added. Untick to hide it everywhere.",
         defaultValue: true,
       }),
+      showOnHome: fields.checkbox({ label: "Show on the homepage", defaultValue: true }),
       showOnAuctionsPage: fields.checkbox({ label: "Also show on the Auctions page", defaultValue: true }),
       eyebrow: line("Small heading", "e.g. Sale highlights"),
       title: line("Heading", "e.g. Recent results"),
