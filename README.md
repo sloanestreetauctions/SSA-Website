@@ -75,6 +75,12 @@ Sending is switched on by settings on the live host (never in the code), using R
 Resend asks you to verify the domain by adding a few DNS records; this doesn't affect your existing email. On your
 own computer sending stays off (`none`), so testing never sends real email; the form says so.
 
+## Keeping the site private before launch
+
+Add a setting called `SITE_PASSWORD` on the host (Vercel → Settings → Environment Variables), then redeploy. Every
+page, photo and the editor then ask for that password first (the browser's own sign-in box; any name). To open the
+site to the public at launch, delete the setting and redeploy. On your computer it does nothing.
+
 ## Mailing list (Mailchimp)
 
 A small panel invites visitors to join your Mailchimp mailing list. It appears once, after about 20 seconds or
