@@ -6,7 +6,6 @@ import { easyLive, hasPhoto, howToBuyPage, isShown, settings } from "@/content";
 import { routes } from "@/lib/routes";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
-import { GiltFrame } from "@/components/ui/GiltFrame";
 import { PhotoToCome } from "@/components/ui/PhotoToCome";
 import { RichText } from "@/components/ui/RichText";
 import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
@@ -35,16 +34,7 @@ export default function HowToBuyPage() {
       <SplitHeader
         columns="wide"
         breadcrumbs={<Breadcrumbs items={[{ label: hero.eyebrow || "How to buy" }]} />}
-        media={
-          hasPhoto(hero.photo) &&
-          (hero.framed ? (
-            <GiltFrame className={splitMedia}>
-              <PhotoToCome photo={hero.photo} priority className="h-full" />
-            </GiltFrame>
-          ) : (
-            <PhotoToCome photo={hero.photo} priority className={splitMedia} />
-          ))
-        }
+        media={hasPhoto(hero.photo) && <PhotoToCome photo={hero.photo} priority className={splitMedia} />}
       >
         {hero.eyebrow && <p className="type-eyebrow mb-5 text-ink-soft">{hero.eyebrow}</p>}
         <h1 className="font-serif text-[3.25rem] leading-none font-[350] tracking-[-0.02em] text-navy [font-variation-settings:'opsz'_72] md:text-[4.5rem] xl:text-[5.25rem]">

@@ -104,6 +104,15 @@ const updates = [
       return true;
     },
   },
+  ...["sell.json", "how-to-buy.json"].map((file) => ({
+    file,
+    description: `Removed the gilt frame option (${file.replace(".json", "")})`,
+    apply(c) {
+      if (!c.hero || !("framed" in c.hero)) return false;
+      delete c.hero.framed;
+      return true;
+    },
+  })),
   {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
