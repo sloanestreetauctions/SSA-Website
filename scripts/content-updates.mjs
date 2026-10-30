@@ -211,6 +211,16 @@ const ONCE = [
       return true;
     },
   },
+  {
+    id: "2026-10-30-hero-headline-off",
+    file: "home.json",
+    description: "Homepage: headline (“A little bit of everything”) hidden; tick “Show the headline and text” to bring it back",
+    apply(c) {
+      if (!c.hero) return false;
+      c.hero.showWords = false;
+      return true;
+    },
+  },
 ];
 
 /** New content files that didn't exist before, created empty. */
