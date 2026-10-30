@@ -277,6 +277,15 @@ const newFiles = {
     featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
   },
+  "mailing-list.json": {
+    show: true,
+    title: "Join our mailing list",
+    text: "Be the first to hear about upcoming sales, catalogues and viewing days.",
+    buttonLabel: "Sign up",
+    consent: "We’ll only email you about our sales and news, and you can unsubscribe at any time. See our [Privacy Policy](/privacy-policy).",
+    successText: "Thank you. Please check your inbox and click the link to confirm.",
+    delaySeconds: 20,
+  },
   "catalogue-covers.json": {
     show: true,
     showOnHome: true,

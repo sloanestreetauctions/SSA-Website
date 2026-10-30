@@ -158,7 +158,7 @@ export default config({
       Auctions: ["calendar", "covers", "highlights"],
       Pages: ["home", "auctions", "sell", "howToBuy", "about", "team", "contact", "valuation", "stories", "notFound"],
       Policies: ["terms", "privacy", "shipping"],
-      "Across the site": ["settings", "navigation"],
+      "Across the site": ["settings", "navigation", "mailingList"],
     },
   },
   singletons: {
@@ -334,6 +334,27 @@ export default config({
     terms: policyPage("Terms and Conditions", "terms-and-conditions"),
     privacy: policyPage("Privacy policy", "privacy-policy"),
     shipping: policyPage("Shipping policy", "shipping-policy"),
+
+    /* ======================================================== MAILING LIST */
+    mailingList: singlePage("Mailing list sign-up", "mailing-list", {
+      show: fields.checkbox({
+        label: "Show the mailing-list panel",
+        description:
+          "A small panel inviting visitors to join your Mailchimp mailing list. It appears once, after a short time on the site; closing it keeps it away for 90 days. On the live site it only appears once Mailchimp is connected.",
+        defaultValue: true,
+      }),
+      title: requiredLine("Heading", "e.g. Join our mailing list"),
+      text: paragraph("Text", "e.g. Be the first to hear about upcoming sales, catalogues and viewing days."),
+      buttonLabel: requiredLine("Button", "e.g. Sign up"),
+      consent: richParagraph("Small print under the form"),
+      successText: requiredLine("Thank-you message", "Shown after signing up. Mailchimp then emails them to confirm."),
+      delaySeconds: fields.integer({
+        label: "Seconds before it appears",
+        description: "It also appears if the visitor scrolls halfway down a page first.",
+        defaultValue: 20,
+        validation: { min: 3, max: 300 },
+      }),
+    }),
 
     /* ============================================================ SETTINGS */
     settings: singleton({

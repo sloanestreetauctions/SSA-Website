@@ -75,6 +75,22 @@ Sending is switched on by settings on the live host (never in the code), using R
 Resend asks you to verify the domain by adding a few DNS records; this doesn't affect your existing email. On your
 own computer sending stays off (`none`), so testing never sends real email; the form says so.
 
+## Mailing list (Mailchimp)
+
+A small panel invites visitors to join your Mailchimp mailing list. It appears once, after about 20 seconds or
+halfway down a page; closing it keeps it away for 90 days, and it never appears on the valuation form. New
+addresses are added as "pending", so Mailchimp emails them a link to confirm (double opt-in). Wording, timing and
+an on/off switch are in the editor under **Across the site → Mailing list sign-up**.
+
+On the live site the panel stays hidden until these two settings are added on the host (never in the code):
+
+| Setting | Where to find it in Mailchimp |
+| --- | --- |
+| `MAILCHIMP_API_KEY` | Profile → Extras → API keys → Create a key (it ends in something like `-us21`) |
+| `MAILCHIMP_AUDIENCE_ID` | Audience → Settings → Audience name and defaults → Audience ID |
+
+On your computer (`npm run dev`) it shows as a preview, with a note that nothing is sent.
+
 ## Photographs and file sizes
 
 Photos added in the editor can be any size. Before the preview or a build starts, `scripts/optimise-photos.mjs`
