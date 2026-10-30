@@ -26,6 +26,10 @@ export function SaleCard({
   const d = sale.date ? saleDateParts(sale.date) : null;
   const large = size === "large";
   const link = sale.catalogueLink;
+  const viewingLines = (sale.viewing ?? "")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean);
 
   return (
     <article className="group relative flex h-full flex-col border border-line bg-paper">
@@ -79,6 +83,22 @@ export function SaleCard({
           <p className="mt-3 inline-flex items-center gap-2 self-start border-l-2 border-gold pl-3 font-sans text-[0.9375rem] text-ink">
             {calendar.deadlines?.label || "Consign by"} {formatShortDate(sale.consignmentDeadline, sale.consignmentDeadline.slice(0, 4) !== sale.date?.slice(0, 4))}
           </p>
+        )}
+        {large && viewingLines.length > 0 && (
+          /* Closed by default so the card stays short; sits above the card's catalogue link so it can be opened. */
+          <details className="group/viewing relative z-10 mt-4 border-t border-line pt-3">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-sans text-[0.875rem] tracking-[0.12em] text-ink uppercase hover:text-navy [&::-webkit-details-marker]:hidden">
+              {calendar.viewingLabel || "Viewing times"}
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" className="transition-transform group-open/viewing:rotate-180 motion-reduce:transition-none">
+                <path d="M3 6l5 5 5-5" />
+              </svg>
+            </summary>
+            <ul className="mt-1 mb-1 space-y-0.5 text-[1.0625rem] leading-snug text-ink">
+              {viewingLines.map((line, i) => (
+                <li key={`${line}-${i}`}>{line}</li>
+              ))}
+            </ul>
+          </details>
         )}
         <p
           className={`mt-auto inline-flex items-center gap-3 pt-4 text-[1.1875rem] ${link ? "text-ink-soft group-hover:text-navy" : "text-ink-soft italic"}`}

@@ -190,6 +190,7 @@ export default config({
         },
         { label: "Consignment deadlines" },
       ),
+      viewingLabel: line("Wording of the viewing times drop-down", "e.g. Viewing times"),
       featured: fields.object(
         {
           show: fields.checkbox({
@@ -217,6 +218,10 @@ export default config({
               "Last date to consign items for this sale. Shown on the sale (and on Sell With Us) until it has passed. Leave empty to hide.",
           }),
           description: paragraph("Short description", "One or two lines, e.g. what is in the sale and how to bid."),
+          viewing: paragraph(
+            "Viewing times",
+            "One line per day, e.g. Monday 30 November, 10am – 5pm. Shown on the sale on the Auctions page.",
+          ),
           catalogueLink: fields.url({
             label: "Link to the catalogue",
             description:

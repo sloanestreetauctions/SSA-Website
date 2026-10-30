@@ -114,6 +114,15 @@ const updates = [
     },
   })),
   {
+    file: "auction-calendar.json",
+    description: "Auction calendar: viewing times for each sale",
+    apply(c) {
+      if ("viewingLabel" in c) return false;
+      c.viewingLabel = "Viewing times";
+      return true;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -264,6 +273,7 @@ const newFiles = {
   "auction-calendar.json": {
     easyLive: {},
     deadlines: { label: "Consign by", showOnSell: true, sellText: "Now consigning for" },
+    viewingLabel: "Viewing times",
     featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
   },
