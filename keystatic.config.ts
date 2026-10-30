@@ -403,6 +403,19 @@ export default config({
           buttonLabel: button("Button", "Auctions"),
           linkLabel: button("Link under the button", "Sell With Us (shown as a second button when the headline is off)"),
           photo: photo("home", "Background photograph", "A wide, atmospheric room photograph. Not a catalogue photo."),
+          photoPosition: fields.select({
+            label: "Which part of the photograph to keep",
+            description:
+              "On wide screens the photograph is trimmed to fit. Choose which part stays in view: “Bottom” trims the top, “Top” trims the bottom.",
+            options: [
+              { label: "Top", value: "top" },
+              { label: "Upper middle", value: "upper" },
+              { label: "Middle", value: "center" },
+              { label: "Lower middle", value: "lower" },
+              { label: "Bottom", value: "bottom" },
+            ],
+            defaultValue: "center",
+          }),
         },
         { label: "Opening (over the photograph)" },
       ),

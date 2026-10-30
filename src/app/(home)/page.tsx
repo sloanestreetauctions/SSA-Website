@@ -16,6 +16,15 @@ import { Arrow } from "@/components/ui/Button";
  * Sections and proportions (at 1440px wide) follow the reference:
  * hero 0–1136px · upcoming auctions · navy approach band · three value points · footer.
  */
+/** Which part of the opening photograph stays in view when it's trimmed to fit (set in the editor). */
+const HERO_POSITION: Record<string, string> = {
+  top: "object-[55%_0%]",
+  upper: "object-[55%_25%]",
+  center: "object-[55%_50%]",
+  lower: "object-[55%_75%]",
+  bottom: "object-[55%_100%]",
+};
+
 export default async function HomePage() {
   const upcoming = (await getSales()).upcoming.slice(0, 3);
   const { hero, upcoming: upcomingText, approach, values } = home;
@@ -28,9 +37,9 @@ export default async function HomePage() {
         aria-labelledby="hero-title"
         className={`theme-dark relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[56.28vw] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
       >
-        {/* The room photograph. On phones it fills the screen (cropped at the sides);
-            from laptop width the hero takes the photograph's own shape, so the
-            whole picture is shown, edge to edge, uncropped. */}
+        {/* The room photograph, filling the opening edge to edge. Where its shape
+            differs from the screen's it is trimmed; the editor's "Which part of
+            the photograph to keep" chooses what stays in view. */}
         {hero.photo.image && (
           <div className="absolute inset-0 -z-20">
             <Image
@@ -40,9 +49,16 @@ export default async function HomePage() {
               fill
               preload
               sizes="100vw"
-              className="object-cover object-[64%_center] lg:object-center"
+              className={`object-cover ${HERO_POSITION[hero.photoPosition ?? "center"] ?? HERO_POSITION.center}`}
             />
           </div>
+        )}
+        {/* A soft darker glow behind the logo, so it reads over pale or busy walls */}
+        {hero.photo.image && (
+          <div
+            aria-hidden="true"
+            className="absolute top-0 left-1/2 -z-10 h-56 w-[34rem] max-w-full -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.6),rgba(0,0,0,0.35)_45%,transparent_72%)] xl:h-72 xl:w-[44rem]"
+          />
         )}
         {hero.showWords ? (
           <>
@@ -51,12 +67,12 @@ export default async function HomePage() {
               aria-hidden="true"
               className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/55 to-black/25 lg:bg-gradient-to-r lg:from-black/75 lg:via-black/35 lg:via-45% lg:to-transparent lg:to-70%"
             />
-            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-48 bg-gradient-to-b from-black/55 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-black/75 via-black/45 to-transparent lg:h-64" />
           </>
         ) : (
           <>
             {/* Photograph only: a gentle shade at the top for the menu and at the bottom for the buttons */}
-            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-48 bg-gradient-to-b from-black/55 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-black/75 via-black/45 to-transparent lg:h-64" />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[38%] bg-gradient-to-t from-black/60 to-transparent" />
           </>
         )}
