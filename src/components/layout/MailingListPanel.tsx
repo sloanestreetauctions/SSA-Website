@@ -118,35 +118,35 @@ export function MailingListPanel({
       role="dialog"
       aria-modal="false"
       aria-labelledby={titleId}
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-paper shadow-[0_-12px_40px_-12px_rgba(10,15,30,0.35)] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[26rem] sm:border sm:shadow-[0_18px_50px_-14px_rgba(10,15,30,0.45)] motion-safe:animate-[ssa-rise_420ms_ease-out]"
+      className="theme-dark fixed inset-x-0 bottom-0 z-50 border-t-2 border-tan bg-navy-deep text-ivory shadow-[0_-12px_40px_-12px_rgba(5,10,20,0.5)] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[26rem] sm:border sm:border-t-2 sm:border-ivory/15 sm:border-t-tan sm:shadow-[0_18px_50px_-14px_rgba(5,10,20,0.6)] motion-safe:animate-[ssa-rise_420ms_ease-out]"
     >
       <div className="relative px-6 pt-6 pb-6 sm:px-8 sm:pt-8 sm:pb-7">
         <button
           type="button"
           onClick={close}
           aria-label="Close"
-          className="absolute top-2 right-2 inline-flex size-11 items-center justify-center text-ink-soft hover:text-navy"
+          className="absolute top-2 right-2 inline-flex size-11 items-center justify-center text-ivory/70 hover:text-ivory"
         >
           <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4">
             <path d="M3 3l10 10M13 3L3 13" />
           </svg>
         </button>
 
-        <h2 id={titleId} className="pr-8 font-serif text-[1.75rem] leading-tight text-navy [font-variation-settings:'opsz'_36]">
+        <h2 id={titleId} className="pr-8 font-serif text-[1.75rem] leading-tight text-ivory [font-variation-settings:'opsz'_36]">
           {content.title || "Join our mailing list"}
         </h2>
 
         {state === "done" ? (
-          <p role="status" className="mt-3 font-serif text-[1.1875rem] leading-snug text-ink [font-variation-settings:'opsz'_18]">
+          <p role="status" className="mt-3 font-serif text-[1.1875rem] leading-snug text-ivory [font-variation-settings:'opsz'_18]">
             {content.successText || "Thank you. Please check your inbox to confirm your subscription."}
           </p>
         ) : (
           <>
             {content.text && (
-              <p className="mt-2 font-serif text-[1.125rem] leading-snug text-ink-soft [font-variation-settings:'opsz'_18]">{content.text}</p>
+              <p className="mt-2 font-serif text-[1.125rem] leading-snug text-ivory/80 [font-variation-settings:'opsz'_18]">{content.text}</p>
             )}
             <form onSubmit={submit} noValidate className="mt-5">
-              <label htmlFor={`${titleId}-email`} className="block font-sans text-[0.875rem] text-ink">
+              <label htmlFor={`${titleId}-email`} className="block font-sans text-[0.875rem] text-ivory/90">
                 Email address
               </label>
               <div className="mt-1.5 flex flex-col gap-2 sm:flex-row">
@@ -159,12 +159,12 @@ export function MailingListPanel({
                   required
                   aria-invalid={state === "error" || undefined}
                   aria-describedby={message ? `${titleId}-msg` : undefined}
-                  className="min-h-12 w-full min-w-0 flex-1 border border-ink/30 bg-white px-3 font-sans text-[1rem] text-ink focus:border-navy focus:outline-2 focus:outline-offset-0 focus:outline-navy"
+                  className="min-h-12 w-full min-w-0 flex-1 border border-ivory/30 bg-white px-3 font-sans text-[1rem] text-ink focus:outline-2 focus:outline-offset-2 focus:outline-tan"
                 />
                 <button
                   type="submit"
                   disabled={state === "sending"}
-                  className="min-h-12 shrink-0 bg-navy-deep px-6 font-serif text-[1.0625rem] text-ivory hover:bg-navy-soft disabled:opacity-60"
+                  className="min-h-12 shrink-0 bg-tan px-6 font-serif text-[1.0625rem] text-navy-deep hover:bg-ivory disabled:opacity-60"
                 >
                   {state === "sending" ? "Sending…" : content.buttonLabel || "Sign up"}
                 </button>
@@ -176,13 +176,13 @@ export function MailingListPanel({
                 </label>
               </div>
               {message && (
-                <p id={`${titleId}-msg`} role="alert" className="mt-2 font-sans text-[0.875rem] text-[#9b2c2c]">
+                <p id={`${titleId}-msg`} role="alert" className="mt-2 font-sans text-[0.875rem] text-[#ffb4a8]">
                   {message}
                 </p>
               )}
-              {consent && <p className="mt-3 font-sans text-[0.8125rem] leading-relaxed text-ink-soft">{consent}</p>}
+              {consent && <p className="mt-3 font-sans text-[0.8125rem] leading-relaxed text-ivory/65">{consent}</p>}
               {preview && (
-                <p className="mt-3 border-l-2 border-gold pl-3 font-sans text-[0.8125rem] text-ink-soft">
+                <p className="mt-3 border-l-2 border-tan pl-3 font-sans text-[0.8125rem] text-ivory/70">
                   Preview on your computer: sign-ups aren’t sent until Mailchimp is connected. On the live site this panel stays hidden until then.
                 </p>
               )}

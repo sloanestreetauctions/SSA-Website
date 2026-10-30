@@ -23,7 +23,7 @@ export function SiteEnd() {
             successText: m.successText,
             delaySeconds: m.delaySeconds ?? 20,
           }}
-          consent={m.consent ? <RichText text={m.consent} linkClassName="underline underline-offset-2 hover:text-navy" /> : null}
+          consent={m.consent ? <RichText text={m.consent} linkClassName="underline underline-offset-2 hover:text-ivory" /> : null}
         />
       )}
     </>
