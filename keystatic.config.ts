@@ -392,10 +392,21 @@ export default config({
     home: singlePage("Homepage", "home", {
       hero: fields.object(
         {
-          showWords: fields.checkbox({
-            label: "Show the headline and text on the photograph",
+          style: fields.select({
+            label: "What to show at the top of the page",
             description:
-              "Untick to show the photograph on its own, with just the two buttons centred near the bottom. The headline is still read by Google and screen readers.",
+              "“Illustration” shows the illustration below whole, on white, with the headline and buttons underneath (also on phones). “Photograph” fills the top of the page with the background photograph, with the words over it.",
+            options: [
+              { label: "Illustration", value: "illustration" },
+              { label: "Photograph", value: "photo" },
+            ],
+            defaultValue: "photo",
+          }),
+          illustration: photo("home", "Illustration", "Shown whole, never cropped. Best on a plain white background."),
+          showWords: fields.checkbox({
+            label: "Show the headline and text",
+            description:
+              "Untick to show just the two buttons. The headline is still read by Google and screen readers.",
             defaultValue: true,
           }),
           title: requiredLine("Headline"),
@@ -417,7 +428,7 @@ export default config({
             defaultValue: "center",
           }),
         },
-        { label: "Opening (over the photograph)" },
+        { label: "Opening (top of the page)" },
       ),
       upcoming: section(
         "Upcoming auctions",

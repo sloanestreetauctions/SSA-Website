@@ -10,6 +10,9 @@ import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { Arrow } from "@/components/ui/Button";
+import photoSizes from "@/content/photo-sizes.json";
+
+const measured = photoSizes as Record<string, { width: number; height: number }>;
 
 /**
  * HOMEPAGE — built to the approved Direction C mockup.
@@ -29,87 +32,92 @@ export default async function HomePage() {
   const upcoming = (await getSales()).upcoming.slice(0, 3);
   const { hero, upcoming: upcomingText, approach, values } = home;
   const sellOn = isPageOn("/sell");
+  const illustration = hero.style === "illustration" && hero.illustration?.image ? hero.illustration.image : null;
 
   return (
     <>
       {/* ================================================================ HERO */}
-      <section
-        aria-labelledby="hero-title"
-        className={`theme-dark relative isolate flex min-h-[85svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[max(32rem,min(46vw,calc(100svh-8.5rem)))] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
-      >
-        {/* The room photograph, filling the opening edge to edge. Where its shape
-            differs from the screen's it is trimmed; the editor's "Which part of
-            the photograph to keep" chooses what stays in view. */}
-        {hero.photo.image && (
-          <div className="absolute inset-0 -z-20">
-            <Image
-              quality={90}
-              src={versioned(hero.photo.image)}
-              alt={hero.photo.alt ?? ""}
-              fill
-              preload
-              sizes="100vw"
-              className={`object-cover ${HERO_POSITION[hero.photoPosition ?? "center"] ?? HERO_POSITION.center}`}
-            />
-          </div>
-        )}
-        {hero.showWords ? (
-          <>
-            {/* Shade behind the words only, so the headline stays legible over the room */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/55 to-black/25 lg:bg-gradient-to-r lg:from-black/75 lg:via-black/35 lg:via-45% lg:to-transparent lg:to-70%"
-            />
-          </>
-        ) : (
-          <>
-            {/* Photograph only: a gentle shade at the bottom for the buttons */}
-            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[38%] bg-gradient-to-t from-black/60 to-transparent" />
-          </>
-        )}
-
-        {hero.showWords ? (
-          <div className="relative px-5 pt-24 pb-12 md:px-10 lg:ml-[7.7%] lg:w-[38%] lg:max-w-[34.5rem] lg:px-0 lg:py-14">
-            <h1
-              id="hero-title"
-              className="font-serif text-[3rem] leading-[0.98] font-[350] tracking-[-0.02em] [font-variation-settings:'opsz'_72] md:text-[4.25rem] xl:text-[4.875rem] xl:leading-[0.935] 2xl:text-[5.5rem]"
-            >
-              {hero.title}
-            </h1>
-            {hero.text && (
-              <p className="mt-6 max-w-[27rem] font-serif text-[1.375rem] leading-[1.4] text-ivory/90 [font-variation-settings:'opsz'_18] xl:mt-[2.4rem] xl:text-[1.6rem]">
-                {hero.text}
-              </p>
-            )}
-            <div className="mt-9 flex flex-col items-start gap-5 xl:mt-[2.6rem] 2xl:mt-[3.4rem]">
-              {hero.buttonLabel && (
-                <Link
-                  href={routes.auctions}
-                  className="group inline-flex min-h-16 items-center gap-4 border border-ivory/70 px-10 font-serif text-[1.1875rem] text-ivory transition-colors [font-variation-settings:'opsz'_18] hover:border-ivory hover:bg-ivory hover:text-navy"
-                >
-                  {hero.buttonLabel} <Arrow />
-                </Link>
-              )}
-              {hero.linkLabel && sellOn && (
-                <Link
-                  href="/sell"
-                  className="group inline-flex min-h-11 items-center gap-4 border-b border-ivory/50 font-serif text-[1.375rem] text-ivory [font-variation-settings:'opsz'_18] hover:border-ivory"
-                >
-                  {hero.linkLabel} <Arrow />
-                </Link>
-              )}
+      {illustration ? (
+        <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} />
+      ) : (
+        <section
+          aria-labelledby="hero-title"
+          className={`theme-dark relative isolate flex min-h-[85svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[max(32rem,min(46vw,calc(100svh-8.5rem)))] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
+        >
+          {/* The room photograph, filling the opening edge to edge. Where its shape
+              differs from the screen's it is trimmed; the editor's "Which part of
+              the photograph to keep" chooses what stays in view. */}
+          {hero.photo.image && (
+            <div className="absolute inset-0 -z-20">
+              <Image
+                quality={90}
+                src={versioned(hero.photo.image)}
+                alt={hero.photo.alt ?? ""}
+                fill
+                preload
+                sizes="100vw"
+                className={`object-cover ${HERO_POSITION[hero.photoPosition ?? "center"] ?? HERO_POSITION.center}`}
+              />
             </div>
-          </div>
-        ) : (
-          <div className="shell relative pt-24 pb-12 md:pb-14 lg:mt-auto lg:pb-[3.5vw]">
-            {/* The headline is still the page's main heading for Google and screen readers. */}
-            <h1 id="hero-title" className="sr-only">
-              {hero.title}
-            </h1>
-            <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} className="sm:justify-center" />
-          </div>
-        )}
-      </section>
+          )}
+          {hero.showWords ? (
+            <>
+              {/* Shade behind the words only, so the headline stays legible over the room */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/55 to-black/25 lg:bg-gradient-to-r lg:from-black/75 lg:via-black/35 lg:via-45% lg:to-transparent lg:to-70%"
+              />
+            </>
+          ) : (
+            <>
+              {/* Photograph only: a gentle shade at the bottom for the buttons */}
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[38%] bg-gradient-to-t from-black/60 to-transparent" />
+            </>
+          )}
+
+          {hero.showWords ? (
+            <div className="relative px-5 pt-24 pb-12 md:px-10 lg:ml-[7.7%] lg:w-[38%] lg:max-w-[34.5rem] lg:px-0 lg:py-14">
+              <h1
+                id="hero-title"
+                className="font-serif text-[3rem] leading-[0.98] font-[350] tracking-[-0.02em] [font-variation-settings:'opsz'_72] md:text-[4.25rem] xl:text-[4.875rem] xl:leading-[0.935] 2xl:text-[5.5rem]"
+              >
+                {hero.title}
+              </h1>
+              {hero.text && (
+                <p className="mt-6 max-w-[27rem] font-serif text-[1.375rem] leading-[1.4] text-ivory/90 [font-variation-settings:'opsz'_18] xl:mt-[2.4rem] xl:text-[1.6rem]">
+                  {hero.text}
+                </p>
+              )}
+              <div className="mt-9 flex flex-col items-start gap-5 xl:mt-[2.6rem] 2xl:mt-[3.4rem]">
+                {hero.buttonLabel && (
+                  <Link
+                    href={routes.auctions}
+                    className="group inline-flex min-h-16 items-center gap-4 border border-ivory/70 px-10 font-serif text-[1.1875rem] text-ivory transition-colors [font-variation-settings:'opsz'_18] hover:border-ivory hover:bg-ivory hover:text-navy"
+                  >
+                    {hero.buttonLabel} <Arrow />
+                  </Link>
+                )}
+                {hero.linkLabel && sellOn && (
+                  <Link
+                    href="/sell"
+                    className="group inline-flex min-h-11 items-center gap-4 border-b border-ivory/50 font-serif text-[1.375rem] text-ivory [font-variation-settings:'opsz'_18] hover:border-ivory"
+                  >
+                    {hero.linkLabel} <Arrow />
+                  </Link>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="shell relative pt-24 pb-12 md:pb-14 lg:mt-auto lg:pb-[3.5vw]">
+              {/* The headline is still the page's main heading for Google and screen readers. */}
+              <h1 id="hero-title" className="sr-only">
+                {hero.title}
+              </h1>
+              <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} className="sm:justify-center" />
+            </div>
+          )}
+        </section>
+      )}
 
       {/* =================================================== UPCOMING AUCTIONS */}
       {isShown(upcomingText) && (
@@ -198,23 +206,92 @@ export default async function HomePage() {
 /* ---------------------------------------------------------------- helpers */
 
 /** The two centred buttons used when the opening shows the photograph only (headline switched off). */
-function HeroButtons({ buttonLabel, linkLabel, className = "" }: { buttonLabel: string; linkLabel: string; className?: string }) {
+function HeroButtons({
+  buttonLabel,
+  linkLabel,
+  className = "",
+  tone = "dark",
+}: {
+  buttonLabel: string;
+  linkLabel: string;
+  className?: string;
+  /** "dark" over the photograph; "light" on white under the illustration. */
+  tone?: "dark" | "light";
+}) {
   if (!buttonLabel && !linkLabel) return null;
   const base =
     "group inline-flex min-h-16 items-center justify-center gap-4 px-9 font-serif text-[1.1875rem] transition-colors [font-variation-settings:'opsz'_18] xl:min-h-[4.25rem] xl:px-11 xl:text-[1.3125rem]";
   return (
     <div className={`flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 ${className}`}>
       {buttonLabel && (
-        <Link href={routes.auctions} className={`${base} bg-ivory text-navy hover:bg-stone`}>
+        <Link
+          href={routes.auctions}
+          className={`${base} ${tone === "dark" ? "bg-ivory text-navy hover:bg-stone" : "bg-navy-deep text-ivory hover:bg-navy-soft"}`}
+        >
           {buttonLabel} <Arrow />
         </Link>
       )}
       {linkLabel && (
-        <Link href="/sell" className={`${base} border border-ivory/80 text-ivory hover:border-ivory hover:bg-ivory hover:text-navy`}>
+        <Link
+          href="/sell"
+          className={`${base} ${tone === "dark" ? "border border-ivory/80 text-ivory hover:border-ivory hover:bg-ivory hover:text-navy" : "border border-ink/30 text-ink hover:border-navy"}`}
+        >
           {linkLabel} <Arrow />
         </Link>
       )}
     </div>
+  );
+}
+
+/**
+ * Opening with an illustration: the picture shown whole on white (never
+ * cropped, at any screen size), with the headline and buttons underneath.
+ * On laptops it is sized so the headline and buttons are visible without scrolling.
+ */
+function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; image: string; sellOn: boolean }) {
+  const size = measured[image] ?? { width: 4000, height: 1852 };
+  return (
+    <section aria-labelledby="hero-title" className="bg-white">
+      <div className="mx-auto max-w-[100rem] pt-4 md:px-10 md:pt-8 xl:px-16 2xl:px-20">
+        <Image
+          quality={90}
+          src={versioned(image)}
+          alt={hero.illustration?.alt ?? ""}
+          width={size.width}
+          height={size.height}
+          preload
+          sizes="(min-width: 1600px) 1500px, 100vw"
+          className="mx-auto h-auto w-full lg:w-auto lg:max-w-full lg:max-h-[max(24rem,calc(100svh-24rem))]"
+        />
+      </div>
+      <div className="shell flex flex-col items-center pt-6 pb-12 text-center md:pt-8 md:pb-14">
+        {hero.showWords ? (
+          <>
+            <h1
+              id="hero-title"
+              className="font-serif text-[2.5rem] leading-[1.02] font-[350] tracking-[-0.02em] text-navy [font-variation-settings:'opsz'_72] md:text-[3.25rem] xl:text-[3.75rem]"
+            >
+              {hero.title}
+            </h1>
+            {hero.text && (
+              <p className="mt-4 max-w-[36rem] font-serif text-[1.25rem] leading-[1.45] text-ink-soft [font-variation-settings:'opsz'_18] xl:text-[1.375rem]">
+                {hero.text}
+              </p>
+            )}
+          </>
+        ) : (
+          <h1 id="hero-title" className="sr-only">
+            {hero.title}
+          </h1>
+        )}
+        <HeroButtons
+          buttonLabel={hero.buttonLabel}
+          linkLabel={sellOn ? hero.linkLabel : ""}
+          tone="light"
+          className={`w-full sm:w-auto sm:justify-center ${hero.showWords ? "mt-7" : ""}`}
+        />
+      </div>
+    </section>
   );
 }
 

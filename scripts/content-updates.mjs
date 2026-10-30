@@ -195,6 +195,22 @@ const ONCE = [
       return true;
     },
   },
+  {
+    id: "2026-10-30-hero-shopfront-illustration",
+    file: "home.json",
+    description: "Homepage: the shopfront illustration at the top of the page (switch back to the photograph any time: Homepage → Opening)",
+    apply(c) {
+      if (!c.hero) return false;
+      c.hero.style = "illustration";
+      if (!c.hero.illustration?.image) {
+        c.hero.illustration = {
+          image: "/images/pages/home/illustration/image.jpg",
+          alt: "Watercolour illustration of the Sloane Street Auctions shopfront, with navy awnings and planters along the pavement",
+        };
+      }
+      return true;
+    },
+  },
 ];
 
 /** New content files that didn't exist before, created empty. */
