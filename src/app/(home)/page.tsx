@@ -113,7 +113,7 @@ export default async function HomePage() {
               <h1 id="hero-title" className="sr-only">
                 {hero.title}
               </h1>
-              <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} className="sm:justify-center" />
+              <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} />
             </div>
           )}
         </section>
@@ -222,7 +222,8 @@ function HeroButtons({
   const base =
     "group inline-flex min-h-16 items-center justify-center gap-4 px-9 font-serif text-[1.1875rem] transition-colors [font-variation-settings:'opsz'_18] xl:min-h-[4.25rem] xl:px-11 xl:text-[1.3125rem]";
   return (
-    <div className={`flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 ${className}`}>
+    /* Side by side from tablet width, both the same width, so the gap between them sits exactly in the middle. */
+    <div className={`flex flex-col gap-3 sm:mx-auto sm:grid sm:w-fit sm:auto-cols-fr sm:grid-flow-col sm:gap-4 ${className}`}>
       {buttonLabel && (
         <Link
           href={routes.auctions}
@@ -289,7 +290,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
           buttonLabel={hero.buttonLabel}
           linkLabel={sellOn ? hero.linkLabel : ""}
           tone="light"
-          className={`w-full sm:w-auto sm:justify-center ${hero.showWords ? "mt-7" : ""}`}
+          className={`w-full ${hero.showWords ? "mt-7" : ""}`}
         />
       </div>
     </section>
