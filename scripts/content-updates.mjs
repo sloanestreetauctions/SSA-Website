@@ -230,6 +230,15 @@ const ONCE = [
       return true;
     },
   },
+  {
+    id: "2026-10-30-stories-off",
+    file: "navigation.json",
+    description: "Stories & Insights switched off (tick it in Pages & menus to bring it back)",
+    apply(c) {
+      c.pages = { sell: true, howToBuy: true, about: true, team: true, ...(c.pages ?? {}), stories: false };
+      return true;
+    },
+  },
 ];
 
 /** New content files that didn't exist before, created empty. */
