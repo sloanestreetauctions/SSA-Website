@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The editor (Keystatic, GitHub mode) moves to 127.0.0.1 for GitHub sign-in on your computer;
+  // allow it to load the site's development files from there. Has no effect on the live site.
+  allowedDevOrigins: ["127.0.0.1"],
   // Cache Components: pages are prerendered where possible; data functions
   // opt in to caching with "use cache" (see src/lib/catalogue/index.ts).
   cacheComponents: true,
