@@ -35,7 +35,7 @@ export default async function HomePage() {
       {/* ================================================================ HERO */}
       <section
         aria-labelledby="hero-title"
-        className={`theme-dark relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[56.28vw] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
+        className={`theme-dark relative isolate flex min-h-[78svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[clamp(30rem,40vw,46rem)] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
       >
         {/* The room photograph, filling the opening edge to edge. Where its shape
             differs from the screen's it is trimmed; the editor's "Which part of
@@ -53,13 +53,6 @@ export default async function HomePage() {
             />
           </div>
         )}
-        {/* A soft darker glow behind the logo, so it reads over pale or busy walls */}
-        {hero.photo.image && (
-          <div
-            aria-hidden="true"
-            className="absolute top-0 left-1/2 -z-10 h-56 w-[34rem] max-w-full -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.6),rgba(0,0,0,0.35)_45%,transparent_72%)] xl:h-72 xl:w-[44rem]"
-          />
-        )}
         {hero.showWords ? (
           <>
             {/* Shade behind the words only, so the headline stays legible over the room */}
@@ -67,18 +60,16 @@ export default async function HomePage() {
               aria-hidden="true"
               className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/55 to-black/25 lg:bg-gradient-to-r lg:from-black/75 lg:via-black/35 lg:via-45% lg:to-transparent lg:to-70%"
             />
-            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-black/75 via-black/45 to-transparent lg:h-64" />
           </>
         ) : (
           <>
-            {/* Photograph only: a gentle shade at the top for the menu and at the bottom for the buttons */}
-            <div aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-56 bg-gradient-to-b from-black/75 via-black/45 to-transparent lg:h-64" />
+            {/* Photograph only: a gentle shade at the bottom for the buttons */}
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[38%] bg-gradient-to-t from-black/60 to-transparent" />
           </>
         )}
 
         {hero.showWords ? (
-          <div className="relative px-5 pt-40 pb-14 md:px-10 lg:ml-[7.7%] lg:w-[38%] lg:max-w-[34.5rem] lg:px-0 lg:pt-40 lg:pb-14 xl:pt-44">
+          <div className="relative px-5 pt-24 pb-12 md:px-10 lg:ml-[7.7%] lg:w-[38%] lg:max-w-[34.5rem] lg:px-0 lg:py-14">
             <h1
               id="hero-title"
               className="font-serif text-[3rem] leading-[0.98] font-[350] tracking-[-0.02em] [font-variation-settings:'opsz'_72] md:text-[4.25rem] xl:text-[4.875rem] xl:leading-[0.935] 2xl:text-[5.5rem]"
@@ -110,7 +101,7 @@ export default async function HomePage() {
             </div>
           </div>
         ) : (
-          <div className="shell relative pt-40 pb-12 md:pb-14 lg:mt-auto lg:pb-[4.5vw]">
+          <div className="shell relative pt-24 pb-12 md:pb-14 lg:mt-auto lg:pb-[3.5vw]">
             {/* The headline is still the page's main heading for Google and screen readers. */}
             <h1 id="hero-title" className="sr-only">
               {hero.title}
