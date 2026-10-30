@@ -1,30 +1,123 @@
 {
   "show": true,
   "showOnHome": true,
-  "showOnAuctionsPage": false,
+  "showOnAuctionsPage": true,
   "eyebrow": "From our archive",
-  "title": "Past catalogues",
-  "intro": "",
+  "title": "Past auction catalogues",
   "items": [
     {
       "cover": {
         "image": "/images/pages/covers/items/0/cover/image.jpg",
-        "alt": "Catalogue cover for The September Fine Art Auction: a black and white photograph of a woman in a wide-brimmed black hat, on a blue ground with diamond drop earrings and a pearl bracelet",
         "onWhite": false
       },
-      "title": "The September Fine Art Auction",
-      "date": "Thursday 24 September 2026",
-      "link": null
+      "title": "The October Estates Auction",
+      "date": "Thursday 22 October 2026"
     },
     {
       "cover": {
         "image": "/images/pages/covers/items/1/cover/image.jpg",
+        "alt": "Catalogue cover for The September Fine Art Auction: a black and white photograph of a woman in a wide-brimmed black hat, on a blue ground with diamond drop earrings and a pearl bracelet",
+        "onWhite": false
+      },
+      "title": "The September Fine Art Auction",
+      "date": "Thursday 24 September 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/2/cover/image.jpg",
         "alt": "Catalogue cover for The Summer Auction: a painting of the Madonna and Child in an arched frame, set on an embroidered suzani textile with emerald drop earrings",
         "onWhite": false
       },
       "title": "The Summer Auction",
-      "date": "Friday 10 July 2026",
-      "link": null
+      "date": "Friday 10 July 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/3/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The June Fine Art Auction",
+      "date": "Friday 19 June 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/4/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Early Summer Auction",
+      "date": "Thursday 21 May 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/5/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Spring Fine Art Auction",
+      "date": "Thursday 16 April 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/6/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The March Fine Art Auction",
+      "date": "Thursday 12 March 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/7/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Valentine's Fine Art Auction",
+      "date": "Thursday 5 February 2026"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/8/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Christmas Fine Art Auction",
+      "date": "Friday 5 December 2025"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/9/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Baroness Margaret Thatcher, Princely and Noble Estates Auction",
+      "date": "Wednesday 29 October 2025"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/10/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The September Fine Art Sale",
+      "date": "Friday 26 September 2025"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/11/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Summer Auction",
+      "date": "Friday 8 July 2025"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/12/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The June Fine Art Auction",
+      "date": "Thursday 12 June 2025"
+    },
+    {
+      "cover": {
+        "image": "/images/pages/covers/items/13/cover/image.jpg",
+        "onWhite": false
+      },
+      "title": "The Early Summer Auction",
+      "date": "Friday 2 May 2025"
     }
   ]
 }

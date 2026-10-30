@@ -1,7 +1,75 @@
 {
+  "/images/pages/about/hero/photo/image.JPG": {
+    "height": 1600,
+    "width": 1200
+  },
   "/images/pages/about/visit/illustration/image.jpg": {
-    "height": 545,
-    "width": 960
+    "height": 1852,
+    "width": 4000
+  },
+  "/images/pages/auctions/selling/photo/image.JPG": {
+    "height": 1200,
+    "width": 1600
+  },
+  "/images/pages/contact/hero/photo/image.JPG": {
+    "height": 1200,
+    "width": 1600
+  },
+  "/images/pages/covers/items/0/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/1/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/10/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/11/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/12/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/13/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/2/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/3/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/4/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/5/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/6/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/7/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/8/cover/image.jpg": {
+    "height": 742,
+    "width": 595
+  },
+  "/images/pages/covers/items/9/cover/image.jpg": {
+    "height": 771,
+    "width": 623
   },
   "/images/pages/highlights/items/0/photo/image.jpg": {
     "height": 3330,
@@ -23,13 +91,25 @@
     "height": 3286,
     "width": 4000
   },
+  "/images/pages/home/hero/illustration/image.jpg": {
+    "height": 1852,
+    "width": 4000
+  },
   "/images/pages/home/hero/photo/image.jpg": {
-    "height": 941,
-    "width": 1672
+    "height": 1852,
+    "width": 4000
+  },
+  "/images/pages/how-to-buy/hero/photo/image.JPG": {
+    "height": 1004,
+    "width": 1282
   },
   "/images/pages/sell/fees/photo/image.jpg": {
     "height": 2008,
     "width": 2576
+  },
+  "/images/pages/sell/hero/photo/image.jpg": {
+    "height": 2667,
+    "width": 3756
   },
   "/images/pages/team/featured/photo/image.jpg": {
     "height": 567,

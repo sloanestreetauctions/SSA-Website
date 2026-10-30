@@ -8,8 +8,8 @@
     "title": "A guide to buying at auction.",
     "text": "Whether it is your first auction or your hundredth, here is a guide to registering, placing a bid and what happens after the sale.",
     "primaryButton": "Browse upcoming auctions",
-    "secondaryButton": "How to register",
     "photo": {
+      "image": "/images/pages/how-to-buy/hero/photo/image.JPG",
       "alt": "A specialist handling a silver object, close up, in warm directional light"
     }
   },

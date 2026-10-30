@@ -5,15 +5,38 @@
     "showOnSell": true,
     "sellText": "Now consigning for"
   },
+  "viewingLabel": "Viewing times",
+  "featured": {
+    "show": true,
+    "eyebrow": "From the sale",
+    "estimateLabel": "Estimate",
+    "linkLabel": "View and bid",
+    "catalogueLabel": "View the full catalogue",
+    "showOnAuctionsPage": true
+  },
   "sales": [
     {
-      "title": "The Christmas Auction: To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "title": "The Christmas Auction",
       "date": "2026-12-03",
       "time": "10:30",
       "consignmentDeadline": "2026-11-13",
+      "description": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "viewing": "Friday 20 November | 9:30am - 6:00pm\nSaturday 21 November | 10:00am - 4:00pm\nSunday 22 November | 12:00pm - 4:00pm\nMonday 23 November | 9:30am - 6:00pm\nTuesday 24 November | 9:30am - 6:00pm\nWednesday 25 November | 9:30am - 6:00pm\nThursday 26 November | 9:30am - 8:00pm\nFriday 27 November | 9:30am - 6:00pm\nSaturday 28 November | 10:00am - 4:00pm\nSunday 29 November | 12:00pm - 4:00pm\nMonday 30 November | 9:30am - 6:00pm\nTuesday 1 December | 9:30am - 6:00pm\nWednesday 2 December | 9:30am - 6:00pm\nThursday 3 December | 9:30am - 10:30am",
       "photo": {
         "onWhite": false
-      }
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The February Fine Art Sale",
+      "date": "2027-02-04",
+      "time": "10:30",
+      "consignmentDeadline": "2027-01-15",
+      "description": " To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
     }
   ]
 }

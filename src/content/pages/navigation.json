@@ -91,6 +91,6 @@
     "howToBuy": true,
     "about": true,
     "team": true,
-    "stories": true
+    "stories": false
   }
 }

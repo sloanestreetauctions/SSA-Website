@@ -1,13 +1,20 @@
 {
   "hero": {
-    "showWords": true,
-    "title": "A little bit of everything",
+    "style": "illustration",
+    "illustration": {
+      "image": "/images/pages/home/hero/illustration/image.jpg",
+      "alt": "Watercolour illustration of the Sloane Street Auctions shopfront, with navy awnings and planters along the pavement"
+    },
+    "showWords": false,
+    "title": "3rd December",
+    "text": "The Christmas Sale",
     "buttonLabel": "Explore our auctions",
     "linkLabel": "Sell with us",
     "photo": {
       "image": "/images/pages/home/hero/photo/image.jpg",
       "alt": "A dimly lit gallery room with a gilt-framed painting of a horse above a walnut chest, a classical bust and porcelain vases"
-    }
+    },
+    "photoPosition": "lower"
   },
   "upcoming": {
     "show": true,

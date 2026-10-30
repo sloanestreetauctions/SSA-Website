@@ -5,11 +5,11 @@
   },
   "hero": {
     "eyebrow": "Sell with us",
-    "title": "Seller's Guide",
+    "title": "A guide to selling with us.",
     "text": "Whether you wish to sell a single object or the entire contents of a house, Sloane Street Auctions offers expertise and experience to help you realise the highest possible price.",
     "primaryButton": "Request a free valuation",
-    "secondaryButton": "Book an appointment",
     "photo": {
+      "image": "/images/pages/sell/hero/photo/image.jpg",
       "alt": "A specialist examining an object or painting, close up, in warm low light"
     }
   },
@@ -31,7 +31,7 @@
       },
       {
         "title": "Sold at auction",
-        "body": "Your item is offered in a suitable sale. If it sells, you will be paid 35 days after the sale. If it does not sell, please contact us to discuss your options."
+        "body": "Your item is offered in a suitable sale. If it sells, you will be paid the hammer price (minus 2% plus VAT loss and damage waiver fee) 35 days after the sale. If it does not sell, please contact us to discuss your options."
       }
     ]
   },
