@@ -35,7 +35,7 @@ export default async function HomePage() {
       {/* ================================================================ HERO */}
       <section
         aria-labelledby="hero-title"
-        className={`theme-dark relative isolate flex min-h-[85svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[clamp(32rem,46vw,52rem)] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
+        className={`theme-dark relative isolate flex min-h-[85svh] flex-col justify-end overflow-hidden bg-[#1e1b15] text-ivory lg:min-h-[max(32rem,min(46vw,calc(100svh-8.5rem)))] ${hero.showWords ? "lg:justify-center" : "lg:justify-end"}`}
       >
         {/* The room photograph, filling the opening edge to edge. Where its shape
             differs from the screen's it is trimmed; the editor's "Which part of
