@@ -12,7 +12,7 @@ export type HeaderTone = "dark" | "light";
 /**
  * Global header: navigation either side of the logo, which is always exactly
  * central, with "Request a valuation" (and the bidders' sign-in) on a slim
- * line above. On phones: "Menu" on the left, "Valuation" on the right.
+ * line above. On phones: "Menu" on the left, with the logo still exactly central.
  *
  *  - "dark":  transparent, over the homepage hero.
  *  - "light": solid deep navy, above the page on all other pages.
@@ -58,9 +58,9 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
       </div>
 
       {/* Main row: equal columns either side, so the logo is always exactly central. */}
-      <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 xl:gap-6 xl:px-16 xl:pt-1 xl:pb-7 2xl:px-20">
-        {/* Left */}
-        <div className="flex min-h-12 items-center xl:min-h-[4.5rem]">
+      <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 xl:gap-14 xl:px-16 xl:pt-1 xl:pb-7 2xl:gap-20 2xl:px-20">
+        {/* Left: on larger screens the links sit close to the logo rather than out at the edge */}
+        <div className="flex min-h-12 items-center xl:min-h-[4.5rem] xl:justify-end">
           <MobileMenu tone="dark" />
           <Suspense fallback={<NavGroupLinks group="left" pathname={null} tone="dark" />}>
             <NavGroup group="left" tone="dark" />
@@ -72,8 +72,8 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
           <LogoLockup preload className="w-[7.25rem] md:w-[8.5rem] xl:w-[11rem] 2xl:w-[12.5rem]" />
         </Link>
 
-        {/* Right */}
-        <div className="flex min-h-12 items-center justify-end gap-5 xl:min-h-[4.5rem]">
+        {/* Right: mirrors the left */}
+        <div className="flex min-h-12 items-center justify-end gap-5 xl:min-h-[4.5rem] xl:justify-start">
           <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
             <NavGroup group="right" tone="dark" />
           </Suspense>
@@ -86,14 +86,6 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
               <SearchIcon size={19} className="xl:size-[21px] 2xl:size-[23px]" />
             </a>
           )}
-          {/* Phones and tablets: the valuation link, mirroring "Menu" on the left. */}
-          <Link
-            href="/valuation"
-            aria-label={valuationButtonLabel}
-            className="-mr-2 inline-flex min-h-11 items-center px-2 text-ivory xl:hidden"
-          >
-            <span className="type-label">Valuation</span>
-          </Link>
         </div>
       </div>
     </header>
