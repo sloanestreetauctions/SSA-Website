@@ -269,7 +269,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
   const size = measured[image] ?? { width: 4000, height: 1852 };
   return (
     <section aria-labelledby="hero-title">
-      <div className="pt-4 md:pt-6">
+      <div className="mx-auto pt-4 md:w-[90%] md:pt-8">
         <Image
           quality={90}
           src={versioned(image)}
