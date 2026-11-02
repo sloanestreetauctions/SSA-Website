@@ -74,6 +74,22 @@ export const hasPhoto = (p: EditorialPhoto | null | undefined): p is EditorialPh
 
 /* ------------------------------------------------------------ derived values */
 
+/**
+ * The policy page links from "Address, phone, email & hours". Links to this
+ * website's own address are turned into links within the site, so they also
+ * work on the preview and never send visitors to the old site.
+ */
+const ownAddress = /^https?:\/\/(www\.)?sloanestreetauctions\.com(\/[^?#]*)?/i;
+const withinSite = (url: string) => {
+  const m = url.match(ownAddress);
+  return m ? (m[2] || "/").replace(/(.)\/$/, "$1") : url;
+};
+export const policyLinks = {
+  conditionsOfSale: withinSite(settings.links.conditionsOfSale),
+  privacy: withinSite(settings.links.privacy),
+  shipping: withinSite(settings.links.shipping),
+};
+
 export const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
 
 export const mapsQuery = settings.mapsQuery;
