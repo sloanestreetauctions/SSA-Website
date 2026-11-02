@@ -1,19 +1,6 @@
 {
-  "show": true,
+  "show": false,
   "title": "Follow us on Instagram",
   "linkLabel": "@sloanestreetauctions",
-  "posts": [
-    {
-      "photo": {
-        "image": "/images/pages/instagram/posts/0/photo/image.jpg"
-      },
-      "link": "https://www.instagram.com/p/DVIzOc_DAs3/?utm_source=ig_web_copy_link&srtk=NTc4MTIwNjQ2YQ=="
-    },
-    {
-      "photo": {
-        "image": "/images/pages/instagram/posts/1/photo/image.jpg"
-      },
-      "link": "https://www.instagram.com/p/DVIzOc_DAs3/?utm_source=ig_web_copy_link&srtk=NTc4MTIwNjQ2YQ=="
-    }
-  ]
+  "posts": []
 }
