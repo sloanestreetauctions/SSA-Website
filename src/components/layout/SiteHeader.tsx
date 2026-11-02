@@ -55,7 +55,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
           easyLive.signIn ? "xl:pt-1 xl:pb-7" : "xl:py-7"
         }`}
       >
-        <div className="flex min-h-12 items-center min-[860px]:justify-end xl:min-h-[4.5rem]">
+        <div className="@container flex min-h-12 min-w-0 items-center min-[860px]:justify-end xl:min-h-[4.5rem]">
           <MobileMenu tone="dark" />
           <Suspense fallback={<NavGroupLinks group="left" pathname={null} tone="dark" />}>
             <NavGroup group="left" tone="dark" />
@@ -67,7 +67,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
           <LogoLockup preload className="w-[7.25rem] md:w-[8.5rem] xl:w-[11rem] 2xl:w-[12rem]" />
         </Link>
 
-        <div className="flex min-h-12 items-center justify-end gap-6 xl:min-h-[4.5rem] min-[860px]:justify-start min-[1440px]:gap-8">
+        <div className="@container flex min-h-12 min-w-0 items-center justify-end gap-6 xl:min-h-[4.5rem] min-[860px]:justify-start">
           <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
             <NavGroup group="right" tone="dark" />
           </Suspense>
