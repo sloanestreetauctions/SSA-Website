@@ -197,6 +197,30 @@ const updates = [
     },
   },
   {
+    file: "navigation.json",
+    description: "Footer: “Past auctions” now goes to its own tab (/auctions/past)",
+    apply(c) {
+      let changed = false;
+      for (const col of c.footerColumns ?? []) for (const l of col.links ?? []) {
+        if (l.href === "/auctions#past") {
+          l.href = "/auctions/past";
+          changed = true;
+        }
+      }
+      return changed;
+    },
+  },
+  {
+    file: "contact.json",
+    description: "Contact: “Getting here” (Tube and buses) under the opening hours",
+    apply(c) {
+      if (!c.hero || "gettingHereTitle" in c.hero) return false;
+      c.hero.gettingHereTitle = "Getting here";
+      c.hero.gettingHere = "";
+      return true;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {

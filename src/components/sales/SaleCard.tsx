@@ -4,6 +4,7 @@ import { hasPhoto } from "@/content";
 import { formatShortDate, saleDateParts } from "@/lib/format";
 import { calendar } from "@/content";
 import type { Sale } from "@/lib/sales";
+import { googleCalendarUrl, saleEventId } from "@/lib/calendar-event";
 
 /**
  * One sale from the Auction calendar. The whole card links to the sale's
@@ -92,6 +93,30 @@ export function SaleCard({
           <p className="mt-3 inline-flex items-center gap-2 self-start border-l-2 border-gold pl-3 font-sans text-[0.9375rem] text-ink">
             {calendar.deadlines?.label || "Consign by"} {formatShortDate(sale.consignmentDeadline, sale.consignmentDeadline.slice(0, 4) !== sale.date?.slice(0, 4))}
           </p>
+        )}
+        {large && sale.date && (
+          /* Add to calendar: Google, or a file that Apple Calendar and Outlook open. Above the card's link so it can be clicked. */
+          <details className="group/cal relative z-30 mt-4 self-start">
+            <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2.5 border border-ink/25 px-4 font-sans text-[0.9375rem] text-ink hover:border-navy [&::-webkit-details-marker]:hidden">
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2">
+                <rect x="1.5" y="2.5" width="13" height="12" rx="1" />
+                <path d="M1.5 6h13M5 1v3M11 1v3" />
+              </svg>
+              Add to calendar
+            </summary>
+            <ul className="absolute left-0 z-20 mt-1 min-w-[15rem] border border-line bg-paper py-1 font-sans text-[0.9375rem] shadow-[0_12px_30px_-12px_rgba(10,15,30,0.35)]">
+              <li>
+                <a href={googleCalendarUrl(sale)} target="_blank" rel="noopener" className="flex min-h-11 items-center px-4 hover:bg-stone">
+                  Google Calendar<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a href={`/calendar/${saleEventId(sale)}.ics`} className="flex min-h-11 items-center px-4 hover:bg-stone">
+                  Apple Calendar or Outlook
+                </a>
+              </li>
+            </ul>
+          </details>
         )}
         {large && viewingLines.length > 0 && (
           /* Closed by default so the card stays short; sits above the card's catalogue link so it can be opened. */

@@ -8,7 +8,7 @@ import { LogoLockup } from "./Logo";
 /** Links to a part of a page (e.g. /sell#fees-title) disappear while that part is switched off in the editor. */
 function sectionIsShown(href: string) {
   if (href.includes("#fees-title")) return isShown(sellPage.fees);
-  if (href.includes("#past")) return isShown(auctionsPage.past);
+  if (href.includes("#past") || href.startsWith("/auctions/past")) return isShown(auctionsPage.past);
   return true;
 }
 

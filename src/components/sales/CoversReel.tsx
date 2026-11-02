@@ -8,7 +8,7 @@ import { Reel } from "./Reel";
  * links to its catalogue when a link has been added. Nothing is shown until
  * at least one cover has been added.
  */
-export function CoversReel({ page }: { page: "home" | "auctions" }) {
+export function CoversReel({ page }: { page: "home" | "auctions" | "past" }) {
   const c = covers;
   const items = (c.items ?? []).filter((item) => item.cover?.image);
   if (c.show === false || items.length === 0) return null;

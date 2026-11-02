@@ -89,6 +89,23 @@ export default function ContactPage() {
               ))}
             </dl>
           </div>
+
+          {c.hero.gettingHere && (
+            <div className="mt-8 max-w-[36rem] border-t border-line pt-6">
+              {c.hero.gettingHereTitle && (
+                <h2 className="mb-2 font-serif text-[1.75rem] [font-variation-settings:'opsz'_36]">{c.hero.gettingHereTitle}</h2>
+              )}
+              <ul className={`${serifText} space-y-1.5 text-[1.25rem] leading-snug text-ink-soft`}>
+                {c.hero.gettingHere
+                  .split("\n")
+                  .map((l) => l.trim())
+                  .filter(Boolean)
+                  .map((l, i) => (
+                    <li key={`${l}-${i}`}>{l}</li>
+                  ))}
+              </ul>
+            </div>
+          )}
       </SplitHeader>
 
       {isShown(c.map) && <ShowroomMap />}

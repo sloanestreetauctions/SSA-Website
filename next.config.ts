@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
       { source: "/departments", destination: "/auctions", permanent: false },
       { source: "/departments/:slug", destination: "/auctions", permanent: false },
       // Catalogues, lots and search now live on the Easy Live auction site.
-      { source: "/auctions/:slug+", destination: "/auctions", permanent: false },
+      { source: "/auctions/:slug((?!past$).+)", destination: "/auctions", permanent: false },
       { source: "/search", destination: "/auctions", permanent: false },
 
       // Addresses from the previous website, so Google results and bookmarks keep working.
@@ -28,7 +28,7 @@ const nextConfig: NextConfig = {
       { source: "/buying", destination: "/how-to-buy", permanent: true },
       { source: "/faqs", destination: "/how-to-buy", permanent: true },
       { source: "/collection---shipping", destination: "/how-to-buy", permanent: true },
-      { source: "/auction-results", destination: "/auctions#past", permanent: true },
+      { source: "/auction-results", destination: "/auctions/past", permanent: true },
       { source: "/news", destination: "/stories", permanent: true },
       { source: "/news/:path*", destination: "/stories", permanent: true },
       // /register, /login, /catalogue/… and /auction-registration/… forward to the Easy Live

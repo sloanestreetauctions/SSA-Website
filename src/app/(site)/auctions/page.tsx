@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { formatSaleDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
 import { getSales } from "@/lib/sales";
 import { auctionsPage as c, easyLive, hasPhoto, isShown } from "@/content";
@@ -8,6 +7,7 @@ import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { CoversReel } from "@/components/sales/CoversReel";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { SaleCard } from "@/components/sales/SaleCard";
+import { AuctionTabs } from "@/components/sales/AuctionTabs";
 import { ObjectPhoto } from "@/components/ui/PhotoToCome";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
@@ -21,7 +21,7 @@ export const metadata: Metadata = { title: c.seo.title, description: c.seo.descr
  * and bidding happen. Sales move from upcoming to past by date, automatically.
  */
 export default async function AuctionsPage() {
-  const { upcoming, past } = await getSales();
+  const { upcoming } = await getSales();
 
   return (
     <>
@@ -45,9 +45,11 @@ export default async function AuctionsPage() {
           )}
         </div>
 
+        <AuctionTabs current="upcoming" />
+
         {/* ============================================= FORTHCOMING SALES */}
         {upcoming.length ? (
-          <ul className="mt-10 grid gap-6 md:grid-cols-2">
+          <ul className="mt-8 grid gap-6 md:grid-cols-2">
             {upcoming.map((sale, i) => (
               <li key={`${sale.title}-${sale.date}-${i}`}>
                 <SaleCard sale={sale} size="large" priority={i < 2} headingLevel={2} />
@@ -55,7 +57,7 @@ export default async function AuctionsPage() {
             ))}
           </ul>
         ) : (
-          c.noUpcoming && <p className={`mt-10 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.noUpcoming}</p>
+          c.noUpcoming && <p className={`mt-8 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.noUpcoming}</p>
         )}
       </div>
 
@@ -69,45 +71,6 @@ export default async function AuctionsPage() {
         <HighlightsReel page="auctions" />
         <CoversReel page="auctions" />
       </div>
-
-      {/* ===================================================== PAST SALES */}
-      {isShown(c.past) && past.length > 0 && (
-        <section id="past" aria-label={c.past.title || "Past auctions"} className="shell mt-20 scroll-mt-8">
-          {c.past.title && (
-            <h2 className="font-serif text-[2.25rem] leading-tight font-[380] [font-variation-settings:'opsz'_60] md:text-[2.75rem]">
-              {c.past.title}
-            </h2>
-          )}
-          {c.past.text && <p className={`mt-2 ${serifText} text-[1.125rem] text-ink-soft`}>{c.past.text}</p>}
-          <ul className="mt-6 border-t border-line">
-            {past.map((sale, i) => {
-              const row = (
-                <>
-                  <span className="text-[1.0625rem] text-ink-soft">{sale.date && formatSaleDate(sale.date)}</span>
-                  <span className="text-[1.375rem]">{sale.title}</span>
-                  {sale.catalogueLink && (
-                    <span className="inline-flex items-center gap-3 text-[1.0625rem] text-ink-soft group-hover:text-ink">
-                      View catalogue <Arrow />
-                    </span>
-                  )}
-                </>
-              );
-              const cls = `group grid gap-1 py-5 ${serifText} sm:grid-cols-[16rem_1fr_auto] sm:items-baseline sm:gap-8`;
-              return (
-                <li key={`${sale.title}-${sale.date}-${i}`} className="border-b border-line">
-                  {sale.catalogueLink ? (
-                    <a href={sale.catalogueLink} className={cls}>
-                      {row}
-                    </a>
-                  ) : (
-                    <div className={cls}>{row}</div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </section>
-      )}
 
       {/* ===================================================== SELLING PANEL */}
       {isShown(c.selling) && (

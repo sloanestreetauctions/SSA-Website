@@ -472,7 +472,7 @@ export default config({
             links: fields.array(
               fields.object({
                 label: requiredLine("Wording"),
-                href: requiredLine("Goes to", "A page on this site, e.g. /sell or /auctions#past, or a full web address."),
+                href: requiredLine("Goes to", "A page on this site, e.g. /sell or /auctions/past, or a full web address."),
               }),
               { label: "Links", itemLabel: (props) => props.fields.label.value || "Link" },
             ),
@@ -574,7 +574,7 @@ export default config({
       intro: paragraph("1. Text under the headline"),
       catalogueLinkLabel: button("Link to all catalogues", "your Easy Live auction site (once its address is in the Auction calendar)"),
       noUpcoming: paragraph("2. Shown when no sales are coming up", "The sales themselves are added in the Auction calendar."),
-      past: section("3. Past auctions", {
+      past: section("3. Past auctions (its own tab: /auctions/past)", {
         title: line("Heading"),
         text: paragraph("Text"),
       }),
@@ -755,6 +755,11 @@ export default config({
           text: paragraph("Text"),
           mapsLinkLabel: button("Google Maps link", "Google Maps"),
           hoursTitle: line("Opening hours heading"),
+          gettingHereTitle: line("“Getting here” heading", "e.g. Getting here"),
+          gettingHere: paragraph(
+            "Getting here",
+            "One line per way of getting here, e.g. Nearest Underground: South Kensington (District, Circle and Piccadilly lines), then the bus routes. Shown under the opening hours.",
+          ),
           photo: photo("contact", "Photograph"),
         },
         { label: "1. Opening (top of the page)", description: "The address, phone numbers and opening hours themselves are edited in “Address, phone, email & hours”." },
