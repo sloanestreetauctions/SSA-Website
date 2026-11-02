@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/structured-data";
 import { hanken, newsreader } from "./fonts";
@@ -31,6 +32,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en-GB" className={`${newsreader.variable} ${hanken.variable}`}>
       <body className="flex min-h-dvh flex-col">
         {children}
+        {/* Visitor numbers (Vercel Web Analytics): no cookies, nothing personal stored. Switch on under Analytics in Vercel. */}
+        <Analytics />
       </body>
     </html>
   );
