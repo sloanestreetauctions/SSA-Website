@@ -9,12 +9,11 @@
     "title": "3rd December",
     "text": "The Christmas Sale",
     "buttonLabel": "Explore our auctions",
-    "linkLabel": "",
+    "valuationLabel": "Request a valuation",
     "photo": {
       "alt": "A dimly lit gallery room with a gilt-framed painting of a horse above a walnut chest, a classical bust and porcelain vases"
     },
-    "photoPosition": "lower",
-    "valuationLabel": "Request a valuation"
+    "photoPosition": "lower"
   },
   "upcoming": {
     "show": true,
@@ -29,6 +28,7 @@
     "text": "From a single picture to the contents of a house: a free valuation, careful cataloguing, and marketing to buyers around the world, handled by our specialists from first enquiry to the sale itself.",
     "linkLabel": "Sell with us"
   },
+  "valuesShow": true,
   "values": [
     {
       "icon": "valuation",
@@ -45,6 +45,5 @@
       "title": "Buyers worldwide",
       "body": "Marketing to buyers around the world."
     }
-  ],
-  "valuesShow": true
+  ]
 }
