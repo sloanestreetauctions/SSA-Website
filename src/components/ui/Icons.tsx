@@ -43,3 +43,11 @@ export function InstagramIcon({ className = "", size = 18 }: IconProps) {
     </svg>
   );
 }
+
+export function PhoneIcon({ className = "", size = 20 }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" width={size} height={size} className={className} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round">
+      <path d="M4.2 2.8h3l1.5 3.8-2 1.3a9.5 9.5 0 0 0 5.4 5.4l1.3-2 3.8 1.5v3c0 .8-.7 1.5-1.5 1.5A13.7 13.7 0 0 1 2.7 4.3c0-.8.7-1.5 1.5-1.5z" />
+    </svg>
+  );
+}
