@@ -11,12 +11,12 @@
     "hoursTitle": "Opening hours",
     "photo": {
       "image": "/images/pages/contact/hero/photo/image.JPG",
-      "alt": "The showroom entrance on Fulham Road"
+      "alt": "Gallery wall"
     }
   },
   "map": {
     "show": true,
-    "placeName": "Sloane Street\nAuctions",
+    "placeName": "Sloane StreetAuctions",
     "areaLabel": "Chelsea",
     "buttonLabel": "Show map",
     "directionsLabel": "Get directions",
