@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/Editorial";
-import { PhotoToCome } from "@/components/ui/PhotoToCome";
+import { ObjectPhoto, PhotoToCome } from "@/components/ui/PhotoToCome";
 import { RichText } from "@/components/ui/RichText";
 import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
 import { hasPhoto, isPageOn, isShown, paragraphs, privateSalesPage, settings, telHref } from "@/content";
@@ -29,7 +29,21 @@ export default function PrivateSalesPage() {
       <SplitHeader
         columns="wide"
         breadcrumbs={<Breadcrumbs items={[{ label: hero.eyebrow || hero.title }]} />}
-        media={hasPhoto(hero.photo) && <PhotoToCome photo={hero.photo} priority className={splitMedia} />}
+        media={
+          hasPhoto(hero.illustration) ? (
+            /* The shop illustration, shown whole, its white blended into the page (as on the homepage). */
+            <div className="flex h-full items-center lg:absolute lg:inset-0">
+              <ObjectPhoto
+                photo={{ ...hero.illustration, onWhite: true }}
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                frameClassName="w-full aspect-[16/9]"
+              />
+            </div>
+          ) : (
+            hasPhoto(hero.photo) && <PhotoToCome photo={hero.photo} priority className={splitMedia} />
+          )
+        }
       >
         {hero.eyebrow && hero.eyebrow !== hero.title && <p className="type-eyebrow mb-5 text-ink-soft">{hero.eyebrow}</p>}
         <h1 className="font-serif text-[3.25rem] leading-none font-[350] tracking-[-0.02em] text-navy [font-variation-settings:'opsz'_72] md:text-[4.5rem] xl:text-[5.25rem]">
@@ -49,6 +63,21 @@ export default function PrivateSalesPage() {
           <div className="mt-10 max-w-[38rem] border-t border-line pt-7">
             {contact.title && <h2 className="font-serif text-[1.75rem] leading-tight [font-variation-settings:'opsz'_36]">{contact.title}</h2>}
             {contact.text && <p className={`mt-2 ${serif} text-[1.1875rem] leading-snug text-ink-soft`}>{contact.text}</p>}
+            {contact.address && (
+              <address className={`mt-4 not-italic ${serif} text-[1.25rem] leading-snug text-ink`}>
+                {contact.address.split("\n").map((l, i) => (
+                  <span key={`${l}-${i}`} className="block">
+                    {l}
+                  </span>
+                ))}
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address.replace(/\n/g, ", "))}`}
+                  className={`mt-1 inline-block text-[1.0625rem] text-ink-soft ${inkLink}`}
+                >
+                  Open in Google Maps <span aria-hidden="true">→</span>
+                </a>
+              </address>
+            )}
             <ul className={`mt-4 space-y-1 ${serif} text-[1.25rem]`}>
               {contact.phone && (
                 <li>

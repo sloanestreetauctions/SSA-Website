@@ -181,6 +181,22 @@ const updates = [
     },
   })),
   {
+    file: "private-sales.json",
+    description: "Private Sales: address (69 Lower Sloane Street) and a space for a shop illustration",
+    apply(c) {
+      let changed = false;
+      if (c.contact && !("address" in c.contact)) {
+        c.contact.address = "69 Lower Sloane Street\nLondon";
+        changed = true;
+      }
+      if (c.hero && !("illustration" in c.hero)) {
+        c.hero.illustration = { image: null, alt: "", onWhite: true };
+        changed = true;
+      }
+      return changed;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -353,12 +369,14 @@ const newFiles = {
       eyebrow: "Private Sales",
       title: "Private Sales",
       text: "Our Private Sales department arranges sales by private agreement, outside the auction calendar. To discuss buying or selling privately, please get in touch.",
+      illustration: { image: null, alt: "", onWhite: true },
       photo: { image: null, alt: "" },
     },
     contact: {
       show: true,
       title: "Speak to Private Sales",
       text: "",
+      address: "69 Lower Sloane Street\nLondon",
       phone: "020 7259 0305",
       email: "",
       buttonLabel: "Email Private Sales",

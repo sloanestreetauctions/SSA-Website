@@ -669,6 +669,11 @@ export default config({
           eyebrow: line("Small heading"),
           title: requiredLine("Headline"),
           text: richParagraph("Text"),
+          illustration: objectPhoto(
+            "private-sales",
+            "Illustration of the shop",
+            "Shown whole beside the opening text, in the same style as the homepage illustration (its white background blends into the page). If you add one, it is shown instead of the photograph below.",
+          ),
           photo: photo("private-sales", "Photograph"),
         },
         { label: "1. Opening (top of the page)" },
@@ -676,6 +681,7 @@ export default config({
       contact: section("2. Contact box (under the opening text)", {
         title: line("Heading", "e.g. Speak to Private Sales"),
         text: paragraph("Text"),
+        address: paragraph("Address", "Shown on this page only, with a Google Maps link. One line per row, e.g. 69 Lower Sloane Street, then London and the postcode."),
         phone: line("Telephone", "The Private Sales number."),
         email: line("Email address", "Leave empty to use the main email address."),
         buttonLabel: button("Button", "an email to Private Sales"),
