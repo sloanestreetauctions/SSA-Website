@@ -1,8 +1,4 @@
 {
-  "seo": {
-    "title": "Contact",
-    "description": "Visit us at 158–164 Fulham Road, Chelsea, call 020 3915 8340 or email info@sloanestreetauctions.com."
-  },
   "hero": {
     "eyebrow": "Contact",
     "title": "We would be delighted to hear from you.",
@@ -16,7 +12,7 @@
   },
   "map": {
     "show": true,
-    "placeName": "Sloane StreetAuctions",
+    "placeName": "Sloane Street Auctions",
     "areaLabel": "Chelsea",
     "buttonLabel": "Show map",
     "directionsLabel": "Get directions",
@@ -57,5 +53,9 @@
       "buttonLabel": "Email the team",
       "subject": "Enquiry"
     }
+  },
+  "seo": {
+    "title": "Contact",
+    "description": "Visit us at 158–164 Fulham Road, Chelsea, call 020 3915 8340 or email info@sloanestreetauctions.com."
   }
 }
