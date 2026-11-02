@@ -269,7 +269,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
   const size = measured[image] ?? { width: 4000, height: 1852 };
   return (
     <section aria-labelledby="hero-title">
-      <div className="mx-auto max-w-[100rem] pt-4 md:px-10 md:pt-8 xl:px-16 2xl:px-20">
+      <div className="pt-4 md:pt-6">
         <Image
           quality={90}
           src={versioned(image)}
@@ -278,7 +278,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
           height={size.height}
           preload
           sizes="(min-width: 1600px) 1500px, 100vw"
-          className="mx-auto h-auto w-full mix-blend-multiply lg:w-auto lg:max-w-full lg:max-h-[max(26rem,calc(100svh-17rem))]"
+          className="mx-auto aspect-[2/1] h-auto w-full object-cover object-[60%_center] mix-blend-multiply sm:aspect-auto sm:object-contain lg:w-auto lg:max-w-full lg:max-h-[max(26rem,calc(100svh-17rem))]"
         />
       </div>
       <div className="shell flex flex-col items-center pt-6 pb-12 text-center md:pt-8 md:pb-14">
