@@ -35,7 +35,7 @@ export function MobileMenu({ tone = "light" }: { tone?: "dark" | "light" }) {
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className={`-ml-2 inline-flex min-h-11 items-center gap-2 px-2 xl:hidden ${tone === "dark" ? "text-ivory" : "text-ink"}`}
+        className={`-ml-2 inline-flex min-h-11 items-center gap-2 px-2 min-[860px]:hidden ${tone === "dark" ? "text-ivory" : "text-ink"}`}
       >
         <MenuIcon />
         <span className="type-label">Menu</span>
@@ -45,7 +45,7 @@ export function MobileMenu({ tone = "light" }: { tone?: "dark" | "light" }) {
         ref={dialogRef}
         onClose={close}
         aria-label="Site menu"
-        className="theme-dark m-0 h-dvh max-h-none w-full max-w-none bg-navy p-0 text-ivory backdrop:bg-navy-deep/60 xl:hidden"
+        className="theme-dark m-0 h-dvh max-h-none w-full max-w-none bg-navy p-0 text-ivory backdrop:bg-navy-deep/60 min-[860px]:hidden"
       >
         <div className="shell flex h-full flex-col">
           <div className="flex h-24 items-center justify-between border-b border-line-dark">

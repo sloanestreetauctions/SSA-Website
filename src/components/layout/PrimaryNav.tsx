@@ -33,8 +33,8 @@ export function NavGroupLinks({
   const on = tone === "dark" ? "text-ivory" : "text-ink";
   const off = tone === "dark" ? "text-ivory/75 hover:text-ivory" : "text-ink/70 hover:text-ink";
   return (
-    <nav aria-label={group === "left" ? "Main" : "About the house"} className="hidden xl:block">
-      <ul className="flex items-center gap-12 min-[1440px]:gap-14 2xl:gap-16">
+    <nav aria-label={group === "left" ? "Main" : "About the house"} className="hidden min-[860px]:block">
+      <ul className="flex items-center gap-5 lg:gap-8 xl:gap-12 min-[1440px]:gap-14 2xl:gap-16">
         {groups[group].map((item) => {
           const current = isCurrentSection(pathname, item.href);
           return (
@@ -42,7 +42,7 @@ export function NavGroupLinks({
               <Link
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className={`relative py-2 font-serif whitespace-nowrap [font-variation-settings:'opsz'_18] text-[1.125rem] transition-colors xl:text-[1.25rem] 2xl:text-[1.375rem] ${
+                className={`relative py-2 font-serif whitespace-nowrap [font-variation-settings:'opsz'_18] text-[0.9375rem] transition-colors lg:text-[1.0625rem] xl:text-[1.25rem] 2xl:text-[1.375rem] ${
                   current ? on : off
                 } after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-gold after:transition-transform after:duration-300 ${
                   current ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"

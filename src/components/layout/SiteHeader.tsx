@@ -51,11 +51,11 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
 
       {/* Equal columns either side, so the logo is always exactly central; the links spread evenly across each side. */}
       <div
-        className={`mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 xl:gap-16 xl:px-16 2xl:gap-20 ${
+        className={`mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 min-[860px]:gap-6 min-[860px]:px-6 lg:gap-10 lg:px-10 xl:gap-16 xl:px-16 2xl:gap-20 ${
           easyLive.signIn ? "xl:pt-1 xl:pb-7" : "xl:py-7"
         }`}
       >
-        <div className="flex min-h-12 items-center xl:min-h-[4.5rem] xl:justify-end">
+        <div className="flex min-h-12 items-center min-[860px]:justify-end xl:min-h-[4.5rem]">
           <MobileMenu tone="dark" />
           <Suspense fallback={<NavGroupLinks group="left" pathname={null} tone="dark" />}>
             <NavGroup group="left" tone="dark" />
@@ -67,7 +67,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
           <LogoLockup preload className="w-[7.25rem] md:w-[8.5rem] xl:w-[11rem] 2xl:w-[12rem]" />
         </Link>
 
-        <div className="flex min-h-12 items-center justify-end gap-6 xl:min-h-[4.5rem] xl:justify-start min-[1440px]:gap-8">
+        <div className="flex min-h-12 items-center justify-end gap-6 xl:min-h-[4.5rem] min-[860px]:justify-start min-[1440px]:gap-8">
           <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
             <NavGroup group="right" tone="dark" />
           </Suspense>
