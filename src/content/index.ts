@@ -19,6 +19,7 @@ import coversJson from "./pages/catalogue-covers.json";
 import mailingListJson from "./pages/mailing-list.json";
 import privateSalesJson from "./pages/private-sales.json";
 import instagramJson from "./pages/instagram.json";
+import faqJson from "./pages/faq.json";
 import auctionsJson from "./pages/auctions.json";
 import contactJson from "./pages/contact.json";
 import homeJson from "./pages/home.json";
@@ -46,6 +47,7 @@ export const covers = read<"covers">(coversJson);
 export const mailingList = read<"mailingList">(mailingListJson);
 export const privateSalesPage = read<"privateSales">(privateSalesJson);
 export const instagram = read<"instagram">(instagramJson);
+export const faqPage = read<"faq">(faqJson);
 export const settings = read<"settings">(settingsJson);
 export const navigation = read<"navigation">(navigationJson);
 export const home = read<"home">(homeJson);
@@ -104,7 +106,8 @@ export const easyLive = {
 
 /* ------------------------------------------------------------ page switches */
 
-const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "howToBuy" | "about" | "team" | "stories", exact?: boolean][] = [
+const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "howToBuy" | "faq" | "about" | "team" | "stories", exact?: boolean][] = [
+  ["/faqs", "faq"],
   ["/sell", "sell"],
   ["/private-sales", "privateSales"],
   ["/how-to-buy", "howToBuy"],
@@ -120,7 +123,7 @@ export function isPageOn(href: string): boolean {
   const pages = (navigation as { pages?: Partial<Record<string, boolean>> }).pages;
   for (const [prefix, key, exact] of PAGE_SWITCH) {
     const match = exact ? path === prefix : path === prefix || path.startsWith(`${prefix}/`);
-    if (match) return pages?.[key] !== false;
+    if (match) return pages?.[key] !== false && (key !== "faq" || (faqPage.questions ?? []).length > 0);
   }
   return true;
 }

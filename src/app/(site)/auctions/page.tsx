@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { routes } from "@/lib/routes";
 import { getSales } from "@/lib/sales";
+import { jsonLd, salesData } from "@/lib/structured-data";
 import { auctionsPage as c, easyLive, hasPhoto, isShown } from "@/content";
 import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { CoversReel } from "@/components/sales/CoversReel";
@@ -25,6 +26,7 @@ export default async function AuctionsPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(salesData(upcoming))} />
       <div className="shell pt-8">
         <Breadcrumbs items={[{ label: c.eyebrow || c.title }]} />
 

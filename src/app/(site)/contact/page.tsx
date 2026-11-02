@@ -9,6 +9,7 @@ import { sectionTitle, serifText } from "@/components/ui/type";
 import { EnquiryChooser } from "@/components/contact/EnquiryChooser";
 import { ShowroomMap } from "@/components/contact/ShowroomMap";
 import { InstagramIcon } from "@/components/ui/Icons";
+import { jsonLd, organisationData } from "@/lib/structured-data";
 
 const c = contactPage;
 
@@ -20,6 +21,7 @@ const underline = "underline decoration-ink/30 underline-offset-4 hover:decorati
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(organisationData())} />
       <SplitHeader
         breadcrumbs={<Breadcrumbs items={[{ label: c.hero.eyebrow || "Contact" }]} />}
         media={hasPhoto(c.hero.photo) && <PhotoToCome photo={c.hero.photo} priority className={splitMedia} />}

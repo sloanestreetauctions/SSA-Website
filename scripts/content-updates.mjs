@@ -221,6 +221,24 @@ const updates = [
     },
   },
   {
+    file: "navigation.json",
+    description: "FAQs page: switch, and a footer link under Auctions (shown once questions are added)",
+    apply(c) {
+      let changed = false;
+      if (c.pages && !("faq" in c.pages)) {
+        c.pages.faq = true;
+        changed = true;
+      }
+      const col = (c.footerColumns ?? []).find((k) => (k.links ?? []).some((l) => l.href === "/how-to-buy"));
+      if (col && !col.links.some((l) => l.href === "/faqs")) {
+        const at = col.links.findIndex((l) => l.href === "/how-to-buy");
+        col.links.splice(at + 1, 0, { label: "FAQs", href: "/faqs" });
+        changed = true;
+      }
+      return changed;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -420,6 +438,14 @@ const newFiles = {
       buttonLabel: "Email Private Sales",
     },
     steps: { show: true, title: "", steps: [] },
+  },
+  "faq.json": {
+    seo: { title: "Frequently asked questions", description: "Answers to common questions about buying and selling at Sloane Street Auctions." },
+    eyebrow: "Help",
+    title: "Frequently asked questions",
+    intro: "",
+    questions: [],
+    closing: "Can’t find your answer? Call us on {phone} or email {email}.",
   },
   "instagram.json": {
     show: true,

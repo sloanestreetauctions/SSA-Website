@@ -151,6 +151,18 @@ export default function HowToBuyPage() {
           </div>
         </section>
       )}
+
+      {/* Link to the FAQs, once that page has questions */}
+      {isPageOn("/faqs") && (
+        <div className="shell pb-20">
+          <Link
+            href="/faqs"
+            className={`group inline-flex items-center gap-3 border-b border-ink/40 pb-0.5 ${serif} text-[1.25rem] hover:border-ink`}
+          >
+            More questions? Read our FAQs <Arrow />
+          </Link>
+        </div>
+      )}
     </>
   );
 }

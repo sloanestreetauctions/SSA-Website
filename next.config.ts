@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/selling", destination: "/sell", permanent: true },
       { source: "/buying", destination: "/how-to-buy", permanent: true },
-      { source: "/faqs", destination: "/how-to-buy", permanent: true },
+      { source: "/faq", destination: "/faqs", permanent: true },
       { source: "/collection---shipping", destination: "/how-to-buy", permanent: true },
       { source: "/auction-results", destination: "/auctions/past", permanent: true },
       { source: "/news", destination: "/stories", permanent: true },

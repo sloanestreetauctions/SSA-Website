@@ -172,7 +172,7 @@ export default config({
     brand: { name: "Sloane Street Auctions" },
     navigation: {
       "Sales and results": ["calendar", "covers", "highlights"],
-      "Pages (in menu order)": ["home", "auctions", "howToBuy", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
+      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
       "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
       "Legal pages": ["terms", "privacy", "shipping"],
     },
@@ -467,6 +467,7 @@ export default config({
             sell: pageSwitch("Sell With Us"),
             privateSales: pageSwitch("Private Sales"),
             howToBuy: pageSwitch("How to Buy"),
+            faq: pageSwitch("FAQs (shown once at least one question is added)"),
             about: pageSwitch("About"),
             team: pageSwitch("Meet the Team"),
             stories: pageSwitch("Stories & Insights"),
@@ -862,6 +863,26 @@ export default config({
     }),
 
     /* ============================================================= STORIES */
+    faq: singlePage("FAQs", "faq", {
+      seo: seo({ title: "Frequently asked questions" }),
+      eyebrow: line("1. Small heading above the headline"),
+      title: requiredLine("1. Headline"),
+      intro: paragraph("1. Text under the headline"),
+      questions: fields.array(
+        fields.object({
+          question: requiredLine("Question"),
+          answer: richParagraph("Answer"),
+        }),
+        {
+          label: "2. Questions and answers",
+          description:
+            "Each question opens to show its answer. Ideas: What is the buyer’s premium? Can I bid by phone? How do I collect or ship my purchase? What do you take for sale? How soon am I paid? Drag to reorder.",
+          itemLabel: (props) => props.fields.question.value || "New question",
+        },
+      ),
+      closing: richParagraph("3. Line at the bottom"),
+    }),
+
     stories: singlePage("News / Stories", "stories", {
       seo: seo({ title: "Stories & Insights" }),
       eyebrow: line("Small heading"),

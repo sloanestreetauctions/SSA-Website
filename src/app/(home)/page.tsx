@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { getSales } from "@/lib/sales";
+import { jsonLd, organisationData, salesData } from "@/lib/structured-data";
 import { routes } from "@/lib/routes";
 import { home, isPageOn, isShown } from "@/content";
 import { versioned } from "@/lib/photo-version";
@@ -38,6 +39,8 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Information for Google: the house, its hours and the upcoming sales (not shown on the page) */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd([organisationData(), ...salesData(upcoming)])} />
       {/* ================================================================ HERO */}
       {illustration ? (
         <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} />
