@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { PhoneIcon, SearchIcon } from "@/components/ui/Icons";
+import { SearchIcon } from "@/components/ui/Icons";
 import { LogoLockup } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { NavGroup, NavGroupLinks } from "./PrimaryNav";
 import { signInLabel, valuationButtonLabel } from "@/lib/site";
-import { easyLive, settings, telHref } from "@/content";
+import { easyLive } from "@/content";
 
 export type HeaderTone = "dark" | "light";
 
 /**
  * Global header: navigation either side of the logo, which is always exactly
  * central, with "Request a valuation" (and the bidders' sign-in) on a slim
- * line above. On phones: "Menu" on the left, "Call" on the right.
+ * line above. On phones: "Menu" on the left, "Valuation" on the right.
  *
  *  - "dark":  transparent, over the homepage hero.
  *  - "light": solid deep navy, above the page on all other pages.
@@ -86,15 +86,14 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
               <SearchIcon size={19} className="xl:size-[21px] 2xl:size-[23px]" />
             </a>
           )}
-          {/* Phones and tablets: a call button that mirrors "Menu" on the left. */}
-          <a
-            href={telHref(settings.mainPhone)}
-            aria-label={`Call us on ${settings.mainPhone}`}
-            className="-mr-2 inline-flex min-h-11 items-center gap-2 px-2 text-ivory xl:hidden"
+          {/* Phones and tablets: the valuation link, mirroring "Menu" on the left. */}
+          <Link
+            href="/valuation"
+            aria-label={valuationButtonLabel}
+            className="-mr-2 inline-flex min-h-11 items-center px-2 text-ivory xl:hidden"
           >
-            <span className="type-label">Call</span>
-            <PhoneIcon />
-          </a>
+            <span className="type-label">Valuation</span>
+          </Link>
         </div>
       </div>
     </header>
