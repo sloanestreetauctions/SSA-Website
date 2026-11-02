@@ -1,11 +1,43 @@
 {
+  "eyebrow": "Help",
+  "title": "Frequently asked questions",
+  "questions": [
+    {
+      "question": "What’s the difference between an auction and a private sale?",
+      "answer": "At auction, items are bid on and sold to the highest bidder in a public sale. Private sales are for the discreet brokerage of a high-value transaction between seller and buyer."
+    },
+    {
+      "question": "How are estimates determined?",
+      "answer": "To establish an estimate for your item, Sloane Street Auctions will evaluate your property and market demand according to such important aspects as:\n\n- Artist or maker\n- Country of origin\n- Provenance\n- Date of execution\n- Materials\n- Dimensions\n- Rarity\n- Subject matter or type\n- Condition\n- Quality"
+    },
+    {
+      "question": "What is a reserve price?",
+      "answer": "Common to auctions, a reserve price is the minimum amount that a seller will accept as the winning bid. An agreed-upon reserve price for each item of property will be set at or below the low estimate, namely at a level which does not exceed the low estimate. This price is strictly confidential between you and Sloane Street Auctions, and will ensure that your property does not sell below this chosen price."
+    },
+    {
+      "question": "Is my valuation request free of charge?",
+      "answer": "All our estimates are complimentary. Please kindly note that Sloane Street Auctions only provides estimates for items that have been identified as potentially suitable for sale."
+    },
+    {
+      "question": "How long does it take to receive an estimate?",
+      "answer": "Sloane Street Auctions aims to answer an initial enquiry within five business days. On some occasions, if an item requires additional research, more time will be needed. In such special instances, you will be notified of the status of your submission."
+    },
+    {
+      "question": "Is my estimate a final appraisal of value?",
+      "answer": "All estimates are subject to physical examination of the item, as well as changes in the art market. Sloane Street Auctions’ estimates are not formal documents for insurance, taxes, estate valuations or any other external purposes and cannot be used as such."
+    },
+    {
+      "question": "What Is The Buyer's Premium?",
+      "answer": "The buyer's premium is a percentage of the final hammer price that the buyer of an object must pay in addition to the hammer price of an object. Our buyer’s premium rates are as follows: 28% of the hammer price up to and including £1,000,000, 20% on that part of the hammer price from £1,000,001 and in excess. VAT will be added to the buyer’s premium and is payable by you. In addition to the buyer's premium and hammer price, the buyer is responsible for paying all relevant taxes and shipping costs."
+    },
+    {
+      "question": "Why Are Certain Documents Necessary To Complete Bidder Registration or Consignment?",
+      "answer": "If you wish to bid or sell at Sloane Street Auctions, we need to verify your identity to comply with anti-money laundering and sanctions laws.\n\nIndividual clients will be asked to provide a copy of their government-issued photo ID and a recent proof of residential address.\n\nCorporate clients will be asked to provide formal documents evidencing the company’s name, number, address and the identity of its officers, shareholders and ultimate beneficial owners.\n\nWe may also ask you to provide a financial reference and/or deposit before you bid. Please contact our Client Service teams at info@sloanestreetauctions.com for more information or assistance with completing your account."
+    }
+  ],
+  "closing": "Can’t find your answer? Call us on {phone} or email {email}.",
   "seo": {
     "title": "Frequently asked questions",
     "description": "Answers to common questions about buying and selling at Sloane Street Auctions."
-  },
-  "eyebrow": "Help",
-  "title": "Frequently asked questions",
-  "intro": "",
-  "questions": [],
-  "closing": "Can’t find your answer? Call us on {phone} or email {email}."
+  }
 }
