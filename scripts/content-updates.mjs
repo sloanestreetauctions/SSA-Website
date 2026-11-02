@@ -333,6 +333,20 @@ const ONCE = [
       return true;
     },
   },
+  {
+    id: "2026-11-02-private-sales-illustration",
+    file: "private-sales.json",
+    description: "Private Sales: illustration of the Lower Sloane Street shop",
+    apply(c) {
+      if (!c.hero || c.hero.illustration?.image) return false;
+      c.hero.illustration = {
+        image: "/images/pages/private-sales/hero/illustration/image.jpg",
+        alt: "Watercolour illustration of the Sloane Street Auctions Private Sales shop on Lower Sloane Street, with a navy awning, gilded doors and planters of white hydrangeas",
+        onWhite: true,
+      };
+      return true;
+    },
+  },
 ];
 
 /** New content files that didn't exist before, created empty. */
