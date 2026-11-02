@@ -248,6 +248,24 @@ const updates = [
   },
   {
     file: "settings.json",
+    description: "Shipping policy removed (shipping isn’t offered): its link setting tidied away",
+    apply(c) {
+      if (!c.links || !("shipping" in c.links)) return false;
+      delete c.links.shipping;
+      return true;
+    },
+  },
+  {
+    file: "how-to-buy.json",
+    description: "How to Buy: “Read our shipping policy” link removed",
+    apply(c) {
+      if (!c.collection || !("linkLabel" in c.collection)) return false;
+      delete c.collection.linkLabel;
+      return true;
+    },
+  },
+  {
+    file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
       if (c.valuationInbox) return false;
@@ -413,12 +431,7 @@ const newFiles = {
     updated: "",
     body: "",
   },
-  "shipping-policy.json": {
-    seo: { title: "Shipping Policy", description: "Collection and shipping of purchases from Sloane Street Auctions." },
-    title: "Shipping Policy",
-    updated: "",
-    body: "",
-  },
+
   "auction-calendar.json": {
     easyLive: {},
     deadlines: { label: "Consign by", showOnSell: true, sellText: "Now consigning for" },

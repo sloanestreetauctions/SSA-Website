@@ -174,7 +174,7 @@ export default config({
       "Sales and results": ["calendar", "covers", "highlights"],
       "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
       "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
-      "Legal pages": ["terms", "privacy", "shipping"],
+      "Legal pages": ["terms", "privacy"],
     },
   },
   singletons: {
@@ -361,7 +361,6 @@ export default config({
     /* ============================================================ POLICIES */
     terms: policyPage("Terms and Conditions", "terms-and-conditions"),
     privacy: policyPage("Privacy policy", "privacy-policy"),
-    shipping: policyPage("Shipping policy", "shipping-policy"),
 
     /* ===================================================== INSTAGRAM STRIP */
     instagram: singlePage("Instagram strip", "instagram", {
@@ -453,7 +452,6 @@ export default config({
           {
             conditionsOfSale: fields.url({ label: "Conditions of Sale page", validation: { isRequired: true } }),
             privacy: fields.url({ label: "Privacy policy page", validation: { isRequired: true } }),
-            shipping: fields.url({ label: "Shipping policy page", validation: { isRequired: true } }),
           },
           { label: "Policy pages", description: "Web addresses of the legal pages linked from across the site." },
         ),
@@ -688,10 +686,9 @@ export default config({
         text: richParagraph("Text"),
         linkLabel: button("Link", "the Conditions of Sale"),
       }),
-      collection: section("5. Collection and shipping", {
+      collection: section("5. Collection", {
         title: line("Heading"),
         text: richParagraph("Text"),
-        linkLabel: button("Link", "the shipping policy"),
       }),
     }),
 

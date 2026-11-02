@@ -143,8 +143,8 @@ export default function HowToBuyPage() {
               <InfoBlock
                 title={collection.title}
                 text={collection.text}
-                linkLabel={collection.linkLabel}
-                href={policyLinks.shipping}
+                linkLabel=""
+                href=""
                 className={showPayment ? "md:border-l md:border-line md:pl-16" : ""}
               />
             )}

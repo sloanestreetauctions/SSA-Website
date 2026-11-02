@@ -7,7 +7,7 @@ import { serifText } from "@/components/ui/type";
 const link = "text-navy underline decoration-gold underline-offset-4";
 
 /**
- * A legal page (Terms and Conditions, Privacy, Shipping), showing the wording
+ * A legal page (Terms and Conditions, Privacy), showing the wording
  * pasted into the editor exactly as written. Simple formatting:
  * an empty line starts a new paragraph, "## " a heading, "- " a bullet point.
  */

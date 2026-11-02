@@ -77,7 +77,6 @@
   "collection": {
     "show": true,
     "title": "Collection and shipping",
-    "text": "Items not collected, or arranged for shipping, within fourteen days incur storage charges. Please note, we do not offer in-house shipping, except for small items which will incur a fee. ",
-    "linkLabel": "Read our shipping policy"
+    "text": "Items not collected, or arranged for shipping, within fourteen days incur storage charges. Please note, we do not offer in-house shipping, except for small items which will incur a fee. "
   }
 }

@@ -90,11 +90,6 @@ export function SiteFooter() {
                 Privacy
               </a>
             </li>
-            <li>
-              <a href={policyLinks.shipping} className="hover:text-ivory">
-                Shipping
-              </a>
-            </li>
           </ul>
           {navigation.footerNote && <p>{navigation.footerNote}</p>}
         </div>

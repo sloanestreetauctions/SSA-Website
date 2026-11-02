@@ -33,7 +33,6 @@ import teamJson from "./pages/team.json";
 import valuationJson from "./pages/valuation.json";
 import termsJson from "./pages/terms-and-conditions.json";
 import privacyJson from "./pages/privacy-policy.json";
-import shippingJson from "./pages/shipping-policy.json";
 
 type Singletons = (typeof keystaticConfig)["singletons"];
 type Content<K extends keyof Singletons> = Entry<Singletons[K]>;
@@ -63,7 +62,6 @@ export const notFoundPage = read<"notFound">(notFoundJson);
 export const policyPages = {
   terms: read<"terms">(termsJson),
   privacy: read<"privacy">(privacyJson),
-  shipping: read<"shipping">(shippingJson),
 };
 
 /** A photograph field from the editor: the picture (if added yet) and its description. */
@@ -87,7 +85,6 @@ const withinSite = (url: string) => {
 export const policyLinks = {
   conditionsOfSale: withinSite(settings.links.conditionsOfSale),
   privacy: withinSite(settings.links.privacy),
-  shipping: withinSite(settings.links.shipping),
 };
 
 export const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;

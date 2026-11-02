@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
       { source: "/buying", destination: "/how-to-buy", permanent: true },
       { source: "/faq", destination: "/faqs", permanent: true },
       { source: "/collection---shipping", destination: "/how-to-buy", permanent: true },
+      // No shipping policy: shipping is not offered.
+      { source: "/shipping-policy", destination: "/how-to-buy", permanent: true },
       { source: "/auction-results", destination: "/auctions/past", permanent: true },
       { source: "/news", destination: "/stories", permanent: true },
       { source: "/news/:path*", destination: "/stories", permanent: true },

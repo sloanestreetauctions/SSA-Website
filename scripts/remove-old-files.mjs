@@ -24,6 +24,9 @@ const OLD_CODE = [
   "public/demo",
   "public/images/lots",
   "public/images/site",
+  // Shipping policy page removed (shipping isn't offered) — November 2026
+  "src/app/(site)/shipping-policy",
+  "src/content/pages/shipping-policy.json",
 ];
 
 for (const rel of OLD_CODE) {
