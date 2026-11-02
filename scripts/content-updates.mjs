@@ -449,6 +449,7 @@ const newFiles = {
   },
   "instagram.json": {
     show: true,
+    feedUrl: null,
     title: "Follow us on Instagram",
     linkLabel: "Follow us",
     posts: [],

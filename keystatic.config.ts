@@ -367,8 +367,13 @@ export default config({
     instagram: singlePage("Instagram strip", "instagram", {
       show: fields.checkbox({
         label: "Show the Instagram strip on the homepage",
-        description: "Shown once at least one photo has been added. Untick to hide it (nothing is deleted).",
+        description: "Shown once there are photos (from Behold, or added below). Untick to hide it (nothing is deleted).",
         defaultValue: true,
+      }),
+      feedUrl: fields.url({
+        label: "Automatic: your Behold feed address",
+        description:
+          "Paste the feed address from behold.so (it looks like https://feeds.behold.so/…). Your latest six Instagram posts then appear by themselves and update about once an hour. Leave empty to use the photos added by hand below.",
       }),
       title: line("Heading", "e.g. Follow us on Instagram"),
       linkLabel: line(
@@ -384,7 +389,7 @@ export default config({
           }),
         }),
         {
-          label: "Posts",
+          label: "By hand: posts (used only when there is no Behold feed address)",
           description: "Six works best (one row on a computer, two rows of three on a phone). Drag to reorder.",
           itemLabel: (props) => props.fields.photo.fields.alt.value || "Instagram post",
         },
