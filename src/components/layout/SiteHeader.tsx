@@ -4,15 +4,14 @@ import { SearchIcon } from "@/components/ui/Icons";
 import { LogoLockup } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { NavGroup, NavGroupLinks } from "./PrimaryNav";
-import { signInLabel, valuationButtonLabel } from "@/lib/site";
+import { signInLabel } from "@/lib/site";
 import { easyLive } from "@/content";
 
 export type HeaderTone = "dark" | "light";
 
 /**
- * Global header: navigation either side of the logo, which is always exactly
- * central, with "Request a valuation" (and the bidders' sign-in) on a slim
- * line above. On phones: "Menu" on the left, with the logo still exactly central.
+ * Global header: navigation spread evenly either side of the logo, which is
+ * always exactly central. On phones: "Menu" on the left, logo still central.
  *
  *  - "dark":  transparent, over the homepage hero.
  *  - "light": solid deep navy, above the page on all other pages.
@@ -34,13 +33,12 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
         Skip to content
       </a>
 
-      {/* Slim line above the menu on larger screens: the valuation button, and the
-          bidders' sign-in link once the Easy Live sign-in page is set in the editor. */}
-      <div className="mx-auto hidden max-w-[100rem] items-center justify-end gap-6 px-16 pt-3 xl:flex 2xl:px-20">
-        {easyLive.signIn && (
+      {/* Bidders' sign-in link (Easy Live), on a slim line above the menu once its address is set in the editor. */}
+      {easyLive.signIn && (
+        <div className="mx-auto hidden max-w-[88rem] justify-end px-16 pt-3 xl:flex">
           <a
             href={easyLive.signIn}
-            className={`inline-flex min-h-9 items-center gap-2 font-sans text-[0.8125rem] tracking-[0.06em] whitespace-nowrap 2xl:text-[0.875rem] ${soft}`}
+            className={`inline-flex min-h-8 items-center gap-2 font-sans text-[0.8125rem] tracking-[0.06em] whitespace-nowrap ${soft}`}
           >
             <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.1">
               <circle cx="7" cy="4.5" r="2.6" />
@@ -48,18 +46,15 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
             </svg>
             {signInLabel}
           </a>
-        )}
-        <Link
-          href="/valuation"
-          className="inline-flex min-h-9 items-center border border-ivory/40 px-4 font-sans text-[0.8125rem] tracking-[0.06em] whitespace-nowrap text-ivory transition-colors hover:border-ivory hover:bg-ivory hover:text-navy 2xl:text-[0.875rem]"
-        >
-          {valuationButtonLabel}
-        </Link>
-      </div>
+        </div>
+      )}
 
-      {/* Main row: equal columns either side, so the logo is always exactly central. */}
-      <div className="mx-auto grid max-w-[100rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 xl:gap-14 xl:px-16 xl:pt-1 xl:pb-7 2xl:gap-20 2xl:px-20">
-        {/* Left: on larger screens the links sit close to the logo rather than out at the edge */}
+      {/* Equal columns either side, so the logo is always exactly central; the links spread evenly across each side. */}
+      <div
+        className={`mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-5 md:px-10 md:py-6 xl:gap-14 xl:px-16 2xl:gap-16 ${
+          easyLive.signIn ? "xl:pt-1 xl:pb-7" : "xl:py-7"
+        }`}
+      >
         <div className="flex min-h-12 items-center xl:min-h-[4.5rem] xl:justify-end">
           <MobileMenu tone="dark" />
           <Suspense fallback={<NavGroupLinks group="left" pathname={null} tone="dark" />}>
@@ -69,11 +64,10 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
 
         {/* Centre: the logo, exactly as supplied */}
         <Link href="/" aria-label="Sloane Street Auctions — home" className="block">
-          <LogoLockup preload className="w-[7.25rem] md:w-[8.5rem] xl:w-[11rem] 2xl:w-[12.5rem]" />
+          <LogoLockup preload className="w-[7.25rem] md:w-[8.5rem] xl:w-[11rem] 2xl:w-[12rem]" />
         </Link>
 
-        {/* Right: mirrors the left */}
-        <div className="flex min-h-12 items-center justify-end gap-5 xl:min-h-[4.5rem] xl:justify-start">
+        <div className="flex min-h-12 items-center justify-end gap-6 xl:min-h-[4.5rem] xl:justify-start min-[1440px]:gap-8">
           <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
             <NavGroup group="right" tone="dark" />
           </Suspense>
@@ -83,7 +77,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
               aria-label="Search lots and catalogues on our auction site"
               className={`inline-flex min-h-11 items-center px-1 xl:px-0 ${soft}`}
             >
-              <SearchIcon size={19} className="xl:size-[21px] 2xl:size-[23px]" />
+              <SearchIcon size={19} className="xl:size-[21px]" />
             </a>
           )}
         </div>

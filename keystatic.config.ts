@@ -438,7 +438,7 @@ export default config({
             auctions: menuItem("Auctions"),
             howToBuy: menuItem("How to Buy"),
             sell: menuItem("Sell With Us"),
-            stories: menuItem("Stories (phone menu only)"),
+            stories: menuItem("Stories (phone menu and footer)"),
             privateSales: menuItem("Private Sales"),
             about: menuItem("About"),
             contact: menuItem("Contact"),

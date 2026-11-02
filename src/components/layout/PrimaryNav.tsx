@@ -34,7 +34,7 @@ export function NavGroupLinks({
   const off = tone === "dark" ? "text-ivory/75 hover:text-ivory" : "text-ink/70 hover:text-ink";
   return (
     <nav aria-label={group === "left" ? "Main" : "About the house"} className="hidden xl:block">
-      <ul className="flex items-center gap-9 xl:gap-8 2xl:gap-11">
+      <ul className="flex items-center gap-9 min-[1440px]:gap-11 2xl:gap-12">
         {groups[group].map((item) => {
           const current = isCurrentSection(pathname, item.href);
           return (
