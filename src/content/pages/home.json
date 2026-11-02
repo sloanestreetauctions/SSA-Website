@@ -2,7 +2,7 @@
   "hero": {
     "style": "illustration",
     "illustration": {
-      "image": "/images/pages/home/hero/illustration/image.jpg",
+      "image": "/images/pages/home/hero/illustration/image.PNG",
       "alt": "Watercolour illustration of the Sloane Street Auctions shopfront, with navy awnings and planters along the pavement"
     },
     "showWords": false,
