@@ -421,6 +421,12 @@ const newFiles = {
     },
     steps: { show: true, title: "", steps: [] },
   },
+  "instagram.json": {
+    show: true,
+    title: "Follow us on Instagram",
+    linkLabel: "Follow us",
+    posts: [],
+  },
   "mailing-list.json": {
     show: true,
     title: "Join our mailing list",

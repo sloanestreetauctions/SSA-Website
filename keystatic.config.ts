@@ -173,7 +173,7 @@ export default config({
     navigation: {
       "Sales and results": ["calendar", "covers", "highlights"],
       "Pages (in menu order)": ["home", "auctions", "howToBuy", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
-      "Contact details and menus": ["settings", "navigation", "mailingList"],
+      "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
       "Legal pages": ["terms", "privacy", "shipping"],
     },
   },
@@ -362,6 +362,34 @@ export default config({
     terms: policyPage("Terms and Conditions", "terms-and-conditions"),
     privacy: policyPage("Privacy policy", "privacy-policy"),
     shipping: policyPage("Shipping policy", "shipping-policy"),
+
+    /* ===================================================== INSTAGRAM STRIP */
+    instagram: singlePage("Instagram strip", "instagram", {
+      show: fields.checkbox({
+        label: "Show the Instagram strip on the homepage",
+        description: "Shown once at least one photo has been added. Untick to hide it (nothing is deleted).",
+        defaultValue: true,
+      }),
+      title: line("Heading", "e.g. Follow us on Instagram"),
+      linkLabel: line(
+        "Link to your Instagram page",
+        "e.g. @sloanestreetauctions. Goes to the Instagram address in “Address, phone, email & hours”.",
+      ),
+      posts: fields.array(
+        fields.object({
+          photo: photo("instagram", "Photograph", "Shown as a square. Save the picture from your post and upload it here."),
+          link: fields.url({
+            label: "Link to the Instagram post",
+            description: "Open the post on Instagram, copy its address from the browser (or Share → Copy link) and paste it here.",
+          }),
+        }),
+        {
+          label: "Posts",
+          description: "Six works best (one row on a computer, two rows of three on a phone). Drag to reorder.",
+          itemLabel: (props) => props.fields.photo.fields.alt.value || "Instagram post",
+        },
+      ),
+    }),
 
     /* ======================================================== MAILING LIST */
     mailingList: singlePage("Mailing list pop-up", "mailing-list", {

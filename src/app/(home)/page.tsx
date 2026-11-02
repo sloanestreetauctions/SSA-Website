@@ -9,6 +9,7 @@ import { BreakLines } from "@/components/ui/RichText";
 import { FeaturedLots } from "@/components/sales/FeaturedLots";
 import { CoversReel } from "@/components/sales/CoversReel";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
+import { InstagramStrip } from "@/components/sales/InstagramStrip";
 import { SaleCard } from "@/components/sales/SaleCard";
 import { Arrow } from "@/components/ui/Button";
 import photoSizes from "@/content/photo-sizes.json";
@@ -162,6 +163,9 @@ export default async function HomePage() {
 
       {/* ===================================================== SALE HIGHLIGHTS */}
       <HighlightsReel page="home" />
+
+      {/* ===================================================== INSTAGRAM */}
+      <InstagramStrip />
 
       {/* ======================================================= NAVY BAND */}
       {isShown(approach) && (
