@@ -278,7 +278,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
           height={size.height}
           preload
           sizes="(min-width: 1600px) 1500px, 100vw"
-          className="mx-auto h-auto w-full mix-blend-multiply lg:w-auto lg:max-w-full lg:max-h-[max(24rem,calc(100svh-24rem))]"
+          className="mx-auto h-auto w-full mix-blend-multiply lg:w-auto lg:max-w-full lg:max-h-[max(26rem,calc(100svh-17rem))]"
         />
       </div>
       <div className="shell flex flex-col items-center pt-6 pb-12 text-center md:pt-8 md:pb-14">
