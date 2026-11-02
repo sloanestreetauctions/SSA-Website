@@ -2,6 +2,7 @@ import Link from "next/link";
 import { isPageOn, navigation, settings, telHref } from "@/content";
 import { SmartLink } from "@/components/ui/RichText";
 import { site } from "@/lib/site";
+import { InstagramIcon } from "@/components/ui/Icons";
 import { LogoLockup } from "./Logo";
 
 /** The navy footer, identical on every page. */
@@ -22,6 +23,14 @@ export function SiteFooter() {
               {settings.mainPhone}
             </a>
           </address>
+          {settings.instagram && (
+            <a
+              href={settings.instagram}
+              className="mt-4 inline-flex min-h-11 items-center gap-2.5 text-[0.875rem] text-ivory/70 transition-colors hover:text-ivory"
+            >
+              <InstagramIcon /> Instagram
+            </a>
+          )}
         </div>
 
         {/* Navigation */}

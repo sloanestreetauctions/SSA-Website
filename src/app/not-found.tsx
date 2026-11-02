@@ -1,5 +1,6 @@
 import { SiteEnd } from "@/components/layout/SiteEnd";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { LiveBar } from "@/components/sales/LiveBar";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Editorial";
 import { notFoundPage as c } from "@/content";
@@ -7,6 +8,7 @@ import { notFoundPage as c } from "@/content";
 export default function NotFound() {
   return (
     <>
+      <LiveBar />
       <SiteHeader tone="light" />
       <main id="main" className="shell flex-1 py-28 md:py-40">
         {c.eyebrow && <Eyebrow className="mb-6">{c.eyebrow}</Eyebrow>}

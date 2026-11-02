@@ -17,6 +17,7 @@ import calendarJson from "./pages/auction-calendar.json";
 import highlightsJson from "./pages/sale-highlights.json";
 import coversJson from "./pages/catalogue-covers.json";
 import mailingListJson from "./pages/mailing-list.json";
+import privateSalesJson from "./pages/private-sales.json";
 import auctionsJson from "./pages/auctions.json";
 import contactJson from "./pages/contact.json";
 import homeJson from "./pages/home.json";
@@ -42,6 +43,7 @@ export const calendar = read<"calendar">(calendarJson);
 export const highlights = read<"highlights">(highlightsJson);
 export const covers = read<"covers">(coversJson);
 export const mailingList = read<"mailingList">(mailingListJson);
+export const privateSalesPage = read<"privateSales">(privateSalesJson);
 export const settings = read<"settings">(settingsJson);
 export const navigation = read<"navigation">(navigationJson);
 export const home = read<"home">(homeJson);
@@ -100,8 +102,9 @@ export const easyLive = {
 
 /* ------------------------------------------------------------ page switches */
 
-const PAGE_SWITCH: [prefix: string, key: "sell" | "howToBuy" | "about" | "team" | "stories", exact?: boolean][] = [
+const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "howToBuy" | "about" | "team" | "stories", exact?: boolean][] = [
   ["/sell", "sell"],
+  ["/private-sales", "privateSales"],
   ["/how-to-buy", "howToBuy"],
   ["/about/team", "team"],
   ["/about", "about", true],

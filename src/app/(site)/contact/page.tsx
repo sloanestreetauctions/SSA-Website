@@ -8,6 +8,7 @@ import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
 import { sectionTitle, serifText } from "@/components/ui/type";
 import { EnquiryChooser } from "@/components/contact/EnquiryChooser";
 import { ShowroomMap } from "@/components/contact/ShowroomMap";
+import { InstagramIcon } from "@/components/ui/Icons";
 
 const c = contactPage;
 
@@ -68,6 +69,13 @@ export default function ContactPage() {
                 {settings.generalEmail}
               </a>
             </Detail>
+            {settings.instagram && (
+              <Detail icon={<InstagramIcon size={22} />}>
+                <a href={settings.instagram} className={underline}>
+                  Instagram
+                </a>
+              </Detail>
+            )}
           </ul>
 
           <div className="mt-9 max-w-[36rem] border-t border-line pt-6">

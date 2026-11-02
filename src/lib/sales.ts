@@ -11,6 +11,8 @@ import { calendar } from "@/content";
 export type Sale = (typeof calendar.sales)[number] & {
   /** True while the sale's consignment deadline is today or later. */
   consigning: boolean;
+  /** True on the day of the sale itself (London time). */
+  live: boolean;
 };
 
 /** Today's date in London as YYYY-MM-DD (the same form the editor saves dates in). */
@@ -31,9 +33,11 @@ async function splitSales(sales: readonly CalendarSale[]) {
   const today = todayInLondon();
   const sorted: Sale[] = [...sales]
     .sort((a, b) => (a.date ?? "").localeCompare(b.date ?? ""))
-    .map((s) => ({ ...s, consigning: Boolean(s.consignmentDeadline && s.consignmentDeadline >= today) }));
+    .map((s) => ({ ...s, consigning: Boolean(s.consignmentDeadline && s.consignmentDeadline >= today), live: s.date === today }));
   return {
     upcoming: sorted.filter((s) => (s.date ?? "") >= today),
+    /** Sales happening today that have a live bidding link. */
+    liveNow: sorted.filter((s) => s.live && s.liveLink),
     past: sorted.filter((s) => (s.date ?? "") < today).reverse(),
     /** The upcoming sale whose consignment deadline comes soonest (still open), if any. */
     nextConsignment:

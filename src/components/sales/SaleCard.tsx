@@ -79,6 +79,15 @@ export function SaleCard({
           )}
         </Heading>
         {sale.description && <p className="mt-1.5 text-[1.1875rem] leading-snug text-ink-soft">{sale.description}</p>}
+        {sale.live && sale.liveLink && (
+          <a
+            href={sale.liveLink}
+            className="relative z-10 mt-4 inline-flex min-h-12 items-center gap-3 self-start bg-navy-deep px-6 font-serif text-[1.125rem] text-ivory hover:bg-navy-soft"
+          >
+            <span aria-hidden="true" className="size-2 rounded-full bg-[#e5534b] motion-safe:animate-pulse" />
+            {calendar.live?.buttonLabel || "Bid live"} <Arrow />
+          </a>
+        )}
         {sale.consigning && sale.consignmentDeadline && (
           <p className="mt-3 inline-flex items-center gap-2 self-start border-l-2 border-gold pl-3 font-sans text-[0.9375rem] text-ink">
             {calendar.deadlines?.label || "Consign by"} {formatShortDate(sale.consignmentDeadline, sale.consignmentDeadline.slice(0, 4) !== sale.date?.slice(0, 4))}

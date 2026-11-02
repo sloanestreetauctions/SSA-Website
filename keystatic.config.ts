@@ -156,7 +156,7 @@ export default config({
     brand: { name: "Sloane Street Auctions" },
     navigation: {
       Auctions: ["calendar", "covers", "highlights"],
-      Pages: ["home", "auctions", "sell", "howToBuy", "about", "team", "contact", "valuation", "stories", "notFound"],
+      Pages: ["home", "auctions", "sell", "privateSales", "howToBuy", "about", "team", "contact", "valuation", "stories", "notFound"],
       Policies: ["terms", "privacy", "shipping"],
       "Across the site": ["settings", "navigation", "mailingList"],
     },
@@ -190,6 +190,13 @@ export default config({
         },
         { label: "Consignment deadlines" },
       ),
+      live: fields.object(
+        {
+          barText: line("Wording at the start of the bar", "e.g. Live now. The sale’s name follows automatically."),
+          buttonLabel: line("Wording of the button", "e.g. Bid live"),
+        },
+        { label: "Live sale (on the day of a sale)", description: "Shown only on the sale day, and only for a sale with a live bidding link." },
+      ),
       viewingLabel: line("Wording of the viewing times drop-down", "e.g. Viewing times"),
       featured: fields.object(
         {
@@ -222,6 +229,11 @@ export default config({
             "Viewing times",
             "One line per day, e.g. Monday 30 November, 10am – 5pm. Shown on the sale on the Auctions page.",
           ),
+          liveLink: fields.url({
+            label: "Live bidding link",
+            description:
+              "The Easy Live page where people watch and bid live during the sale. On the day of the sale, a “Live now” bar appears at the top of every page and the sale gets a “Bid live” button. Leave empty to hide.",
+          }),
           catalogueLink: fields.url({
             label: "Link to the catalogue",
             description:
@@ -370,6 +382,11 @@ export default config({
         mainPhone: requiredLine("Main telephone"),
         otherPhone: line("Second telephone", "Shown on the Contact page."),
         generalEmail: requiredLine("Main email address"),
+        instagram: fields.url({
+          label: "Instagram page",
+          description:
+            "The full address, e.g. https://www.instagram.com/yourname. Shown as an Instagram link in the footer and on the Contact page. Leave empty to hide.",
+        }),
         accountsEmail: requiredLine("Accounts email address", "Used for invoice and payment enquiries."),
         valuationInbox: requiredLine(
           "Valuation requests are sent to",
@@ -404,6 +421,7 @@ export default config({
         pages: fields.object(
           {
             sell: pageSwitch("Sell With Us"),
+            privateSales: pageSwitch("Private Sales"),
             howToBuy: pageSwitch("How to Buy"),
             about: pageSwitch("About"),
             team: pageSwitch("Meet the Team"),
@@ -421,6 +439,7 @@ export default config({
             howToBuy: menuItem("How to Buy"),
             sell: menuItem("Sell With Us"),
             stories: menuItem("Stories (phone menu only)"),
+            privateSales: menuItem("Private Sales"),
             about: menuItem("About"),
             contact: menuItem("Contact"),
             valuationButton: requiredLine("“Request a valuation” button"),
@@ -621,6 +640,27 @@ export default config({
     }),
 
     /* =============================================================== ABOUT */
+    privateSales: singlePage("Private Sales", "private-sales", {
+      seo: seo({ title: "Private Sales" }),
+      hero: fields.object(
+        {
+          eyebrow: line("Small heading"),
+          title: requiredLine("Headline"),
+          text: richParagraph("Text"),
+          photo: photo("private-sales", "Photograph"),
+        },
+        { label: "Opening" },
+      ),
+      contact: section("Contact box", {
+        title: line("Heading", "e.g. Speak to Private Sales"),
+        text: paragraph("Text"),
+        phone: line("Telephone", "The Private Sales number."),
+        email: line("Email address", "Leave empty to use the main email address."),
+        buttonLabel: button("Button", "an email to Private Sales"),
+      }),
+      steps: section("How it works", { title: line("Heading"), steps: steps("Steps", "Step") }),
+    }),
+
     about: singlePage("About", "about", {
       seo: seo({ title: "About Us" }),
       hero: fields.object(

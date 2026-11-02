@@ -75,7 +75,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
         </Link>
 
         {/* Right */}
-        <div className="flex min-h-12 items-center justify-end gap-7 xl:min-h-[4.5rem] xl:gap-5 2xl:gap-10">
+        <div className="flex min-h-12 items-center justify-end gap-7 xl:min-h-[4.5rem] xl:gap-5 2xl:gap-8">
           <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
             <NavGroup group="right" tone="dark" />
           </Suspense>
@@ -90,7 +90,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
           )}
           <Link
             href="/valuation"
-            className={`hidden min-h-[3.75rem] items-center whitespace-nowrap bg-navy-deep px-8 font-serif [font-variation-settings:'opsz'_18] text-[1.0625rem] xl:min-h-[4rem] xl:text-[1.1875rem] 2xl:min-h-[4.5rem] 2xl:px-10 2xl:text-[1.3125rem] text-ivory transition-colors hover:bg-navy-soft xl:inline-flex ${"border border-ivory/40 hover:border-ivory"}`}
+            className={`hidden min-h-[3.75rem] items-center whitespace-nowrap bg-navy-deep px-8 font-serif [font-variation-settings:'opsz'_18] text-[1.0625rem] xl:min-h-[4rem] xl:px-6 xl:text-[1.0625rem] min-[1440px]:px-8 min-[1440px]:text-[1.1875rem] 2xl:min-h-[4.5rem] text-ivory transition-colors hover:bg-navy-soft xl:inline-flex ${"border border-ivory/40 hover:border-ivory"}`}
           >
             {valuationButtonLabel}
           </Link>

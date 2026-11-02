@@ -25,7 +25,11 @@
       "description": "Visit, call or write to us"
     },
     "valuationButton": "Request a valuation",
-    "signInLabel": "Sign in / Register"
+    "signInLabel": "Sign in / Register",
+    "privateSales": {
+      "label": "Private Sales",
+      "description": "Buying and selling by private agreement"
+    }
   },
   "footerColumns": [
     {
@@ -51,6 +55,10 @@
         {
           "label": "Sell with us",
           "href": "/sell"
+        },
+        {
+          "label": "Private sales",
+          "href": "/private-sales"
         },
         {
           "label": "Request a free valuation",
@@ -91,6 +99,7 @@
     "howToBuy": true,
     "about": true,
     "team": true,
-    "stories": false
+    "stories": false,
+    "privateSales": true
   }
 }

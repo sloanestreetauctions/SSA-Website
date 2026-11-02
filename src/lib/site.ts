@@ -21,6 +21,7 @@ export const primaryNav: NavItem[] = [
   { href: "/how-to-buy", ...h.howToBuy },
   { href: "/sell", ...h.sell },
   { href: "/stories", ...h.stories },
+  { href: "/private-sales", ...(h.privateSales ?? { label: "Private Sales", description: "" }) },
   { href: "/about", ...h.about },
   { href: "/contact", ...h.contact },
 ].filter((item) => isPageOn(item.href));

@@ -38,5 +38,9 @@
       },
       "featuredLots": []
     }
-  ]
+  ],
+  "live": {
+    "barText": "Live now",
+    "buttonLabel": "Bid live"
+  }
 }

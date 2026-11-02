@@ -123,6 +123,37 @@ const updates = [
     },
   },
   {
+    file: "auction-calendar.json",
+    description: "Auction calendar: live sale bar and “Bid live” button wording",
+    apply(c) {
+      if (c.live) return false;
+      c.live = { barText: "Live now", buttonLabel: "Bid live" };
+      return true;
+    },
+  },
+  {
+    file: "navigation.json",
+    description: "Menus: Private Sales page (in the main menu and the footer)",
+    apply(c) {
+      let changed = false;
+      if (c.pages && !("privateSales" in c.pages)) {
+        c.pages.privateSales = true;
+        changed = true;
+      }
+      if (c.header && !c.header.privateSales) {
+        c.header.privateSales = { label: "Private Sales", description: "Buying and selling by private agreement" };
+        changed = true;
+      }
+      const selling = (c.footerColumns ?? []).find((col) => (col.links ?? []).some((l) => l.href === "/sell"));
+      if (selling && !selling.links.some((l) => l.href === "/private-sales")) {
+        const at = selling.links.findIndex((l) => l.href === "/sell");
+        selling.links.splice(at + 1, 0, { label: "Private sales", href: "/private-sales" });
+        changed = true;
+      }
+      return changed;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -274,8 +305,27 @@ const newFiles = {
     easyLive: {},
     deadlines: { label: "Consign by", showOnSell: true, sellText: "Now consigning for" },
     viewingLabel: "Viewing times",
+    live: { barText: "Live now", buttonLabel: "Bid live" },
     featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
+  },
+  "private-sales.json": {
+    seo: { title: "Private Sales", description: "Buying and selling by private agreement with Sloane Street Auctions." },
+    hero: {
+      eyebrow: "Private Sales",
+      title: "Private Sales",
+      text: "Our Private Sales department arranges sales by private agreement, outside the auction calendar. To discuss buying or selling privately, please get in touch.",
+      photo: { image: null, alt: "" },
+    },
+    contact: {
+      show: true,
+      title: "Speak to Private Sales",
+      text: "",
+      phone: "020 7259 0305",
+      email: "",
+      buttonLabel: "Email Private Sales",
+    },
+    steps: { show: true, title: "", steps: [] },
   },
   "mailing-list.json": {
     show: true,

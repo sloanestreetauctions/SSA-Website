@@ -33,3 +33,13 @@ export function ChevronIcon({ className = "", size = 12 }: IconProps) {
     </svg>
   );
 }
+
+export function InstagramIcon({ className = "", size = 18 }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" width={size} height={size} className={className} fill="none" stroke="currentColor" strokeWidth="1.3">
+      <rect x="2.5" y="2.5" width="15" height="15" rx="4.2" />
+      <circle cx="10" cy="10" r="3.4" />
+      <circle cx="14.4" cy="5.6" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
