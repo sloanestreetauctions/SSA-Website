@@ -492,7 +492,8 @@ export default config({
           title: requiredLine("Headline"),
           text: paragraph("Text under the headline"),
           buttonLabel: button("Button", "Auctions"),
-          linkLabel: button("Link under the button", "Sell With Us (shown as a second button when the headline is off)"),
+          linkLabel: button("“Sell with us” button", "Sell With Us"),
+          valuationLabel: button("“Request a valuation” button", "the valuation form"),
           photo: photo("home", "Background photograph", "A wide, atmospheric room photograph. Not a catalogue photo."),
           photoPosition: fields.select({
             label: "Which part of the photograph to keep",

@@ -114,7 +114,7 @@ export default async function HomePage() {
               <h1 id="hero-title" className="sr-only">
                 {hero.title}
               </h1>
-              <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} />
+              <HeroButtons buttonLabel={hero.buttonLabel} linkLabel={sellOn ? hero.linkLabel : ""} valuationLabel={hero.valuationLabel ?? ""} />
             </div>
           )}
         </section>
@@ -213,20 +213,26 @@ export default async function HomePage() {
 function HeroButtons({
   buttonLabel,
   linkLabel,
+  valuationLabel = "",
   className = "",
   tone = "dark",
 }: {
   buttonLabel: string;
   linkLabel: string;
+  valuationLabel?: string;
   className?: string;
   /** "dark" over the photograph; "light" on white under the illustration. */
   tone?: "dark" | "light";
 }) {
-  if (!buttonLabel && !linkLabel) return null;
+  if (!buttonLabel && !linkLabel && !valuationLabel) return null;
+  const outline =
+    tone === "dark"
+      ? "border border-ivory/80 text-ivory hover:border-ivory hover:bg-ivory hover:text-navy"
+      : "border border-ink/30 text-ink hover:border-navy";
   const base =
     "group inline-flex min-h-16 items-center justify-center gap-4 px-9 font-serif text-[1.1875rem] transition-colors [font-variation-settings:'opsz'_18] xl:min-h-[4.25rem] xl:px-11 xl:text-[1.3125rem]";
   return (
-    /* Side by side from tablet width, both the same width, so the gap between them sits exactly in the middle. */
+    /* Side by side from tablet width, all the same width, so the row sits exactly in the middle. */
     <div className={`flex flex-col gap-3 sm:mx-auto sm:grid sm:w-fit sm:auto-cols-fr sm:grid-flow-col sm:gap-4 ${className}`}>
       {buttonLabel && (
         <Link
@@ -242,6 +248,11 @@ function HeroButtons({
           className={`${base} ${tone === "dark" ? "border border-ivory/80 text-ivory hover:border-ivory hover:bg-ivory hover:text-navy" : "border border-ink/30 text-ink hover:border-navy"}`}
         >
           {linkLabel} <Arrow />
+        </Link>
+      )}
+      {valuationLabel && (
+        <Link href="/valuation" className={`${base} ${outline}`}>
+          {valuationLabel} <Arrow />
         </Link>
       )}
     </div>
@@ -293,6 +304,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
         <HeroButtons
           buttonLabel={hero.buttonLabel}
           linkLabel={sellOn ? hero.linkLabel : ""}
+          valuationLabel={hero.valuationLabel ?? ""}
           tone="light"
           className={`w-full ${hero.showWords ? "mt-7" : ""}`}
         />

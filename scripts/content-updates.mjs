@@ -154,6 +154,15 @@ const updates = [
     },
   },
   {
+    file: "home.json",
+    description: "Homepage: “Request a valuation” button beside the other two",
+    apply(c) {
+      if (!c.hero || "valuationLabel" in c.hero) return false;
+      c.hero.valuationLabel = "Request a valuation";
+      return true;
+    },
+  },
+  {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",
     apply(c) {
@@ -276,6 +285,17 @@ const ONCE = [
     description: "Stories & Insights switched off (tick it in Pages & menus to bring it back)",
     apply(c) {
       c.pages = { sell: true, howToBuy: true, about: true, team: true, ...(c.pages ?? {}), stories: false };
+      return true;
+    },
+  },
+  {
+    id: "2026-11-02-home-valuation-not-sell",
+    file: "home.json",
+    description: "Homepage: buttons are now “Explore our auctions” and “Request a valuation” (type wording into the “Sell with us” button to bring it back)",
+    apply(c) {
+      if (!c.hero) return false;
+      c.hero.linkLabel = "";
+      if (!c.hero.valuationLabel) c.hero.valuationLabel = "Request a valuation";
       return true;
     },
   },
