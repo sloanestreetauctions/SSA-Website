@@ -40,5 +40,7 @@
       "alt": "Watercolour illustration of the Sloane Street Auctions showroom on Fulham Road, with navy awnings and planted window boxes",
       "onWhite": true
     }
-  }
+  },
+  "interiorShow": true,
+  "statementsShow": true
 }

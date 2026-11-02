@@ -10,6 +10,11 @@
     "photo": {
       "image": null,
       "alt": ""
+    },
+    "illustration": {
+      "image": "/images/pages/private-sales/hero/illustration/image.jpg",
+      "alt": "Watercolour illustration of the Sloane Street Auctions Private Sales shop on Lower Sloane Street, with a navy awning, gilded doors and planters of white hydrangeas",
+      "onWhite": true
     }
   },
   "contact": {
@@ -18,7 +23,8 @@
     "text": "",
     "phone": "020 7259 0305",
     "email": "",
-    "buttonLabel": "Email Private Sales"
+    "buttonLabel": "Email Private Sales",
+    "address": "69 Lower Sloane Street\nLondon"
   },
   "steps": {
     "show": true,

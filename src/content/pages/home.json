@@ -9,11 +9,12 @@
     "title": "3rd December",
     "text": "The Christmas Sale",
     "buttonLabel": "Explore our auctions",
-    "linkLabel": "Sell with us",
+    "linkLabel": "",
     "photo": {
       "alt": "A dimly lit gallery room with a gilt-framed painting of a horse above a walnut chest, a classical bust and porcelain vases"
     },
-    "photoPosition": "lower"
+    "photoPosition": "lower",
+    "valuationLabel": "Request a valuation"
   },
   "upcoming": {
     "show": true,
@@ -44,5 +45,6 @@
       "title": "Buyers worldwide",
       "body": "Marketing to buyers around the world."
     }
-  ]
+  ],
+  "valuesShow": true
 }

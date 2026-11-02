@@ -18,5 +18,8 @@
     "The property must belong to the person requesting the valuation, or to their registered agent.",
     "We do not authenticate items, and give no warranty as to origin, provenance, condition, date, age, value or authenticity."
   ],
-  "notesFooter": "Fees and the selling process are explained on [Sell With Us](/sell)."
+  "notesFooter": "Fees and the selling process are explained on [Sell With Us](/sell).",
+  "nextStepsShow": true,
+  "talkShow": true,
+  "notesShow": true
 }
