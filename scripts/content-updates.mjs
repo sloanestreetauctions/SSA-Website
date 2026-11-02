@@ -214,10 +214,18 @@ const updates = [
     file: "contact.json",
     description: "Contact: “Getting here” (Tube and buses) under the opening hours",
     apply(c) {
-      if (!c.hero || "gettingHereTitle" in c.hero) return false;
-      c.hero.gettingHereTitle = "Getting here";
-      c.hero.gettingHere = "";
-      return true;
+      // Only ever adds what is missing: never touches wording that has already been typed in.
+      if (!c.hero) return false;
+      let changed = false;
+      if (!c.hero.gettingHereTitle) {
+        c.hero.gettingHereTitle = "Getting here";
+        changed = true;
+      }
+      if (c.hero.gettingHere == null) {
+        c.hero.gettingHere = "";
+        changed = true;
+      }
+      return changed;
     },
   },
   {

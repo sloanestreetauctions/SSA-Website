@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import { isPageOn } from "@/content";
+import { isPageOn, policyLinks } from "@/content";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { easyLive, hasPhoto, howToBuyPage, isShown, settings } from "@/content";
+import { easyLive, hasPhoto, howToBuyPage, isShown } from "@/content";
 import { routes } from "@/lib/routes";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
@@ -135,7 +135,7 @@ export default function HowToBuyPage() {
                 title={payment.title}
                 text={payment.text}
                 linkLabel={payment.linkLabel}
-                href={settings.links.conditionsOfSale}
+                href={policyLinks.conditionsOfSale}
                 className={showCollection ? "md:pr-16" : ""}
               />
             )}
@@ -144,7 +144,7 @@ export default function HowToBuyPage() {
                 title={collection.title}
                 text={collection.text}
                 linkLabel={collection.linkLabel}
-                href={settings.links.shipping}
+                href={policyLinks.shipping}
                 className={showPayment ? "md:border-l md:border-line md:pl-16" : ""}
               />
             )}

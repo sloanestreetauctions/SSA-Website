@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { settings } from "@/content";
+import { settings, policyLinks } from "@/content";
 import {
   FIELD_ORDER,
   PHOTO_LIMITS,
@@ -432,7 +432,7 @@ export function ValuationForm({ deliveryReady = false }: { deliveryReady?: boole
             />
             <span>
               I agree that Sloane Street Auctions may contact me about this valuation request. See our{" "}
-              <a href={settings.links.privacy} className="text-navy underline decoration-gold underline-offset-4">
+              <a href={policyLinks.privacy} className="text-navy underline decoration-gold underline-offset-4">
                 privacy policy
               </a>
               .

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { auctionsPage, isPageOn, isShown, navigation, sellPage, settings, telHref } from "@/content";
+import { auctionsPage, isPageOn, isShown, navigation, sellPage, settings, telHref, policyLinks } from "@/content";
 import { SmartLink } from "@/components/ui/RichText";
 import { site } from "@/lib/site";
 import { InstagramIcon } from "@/components/ui/Icons";
@@ -81,17 +81,17 @@ export function SiteFooter() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>© {site.name}</li>
             <li>
-              <a href={settings.links.conditionsOfSale} className="hover:text-ivory">
+              <a href={policyLinks.conditionsOfSale} className="hover:text-ivory">
                 Conditions of Sale
               </a>
             </li>
             <li>
-              <a href={settings.links.privacy} className="hover:text-ivory">
+              <a href={policyLinks.privacy} className="hover:text-ivory">
                 Privacy
               </a>
             </li>
             <li>
-              <a href={settings.links.shipping} className="hover:text-ivory">
+              <a href={policyLinks.shipping} className="hover:text-ivory">
                 Shipping
               </a>
             </li>

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { isPageOn } from "@/content";
+import { isPageOn, policyLinks } from "@/content";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { calendar, hasPhoto, isShown, sellPage, settings } from "@/content";
@@ -158,7 +158,7 @@ export default async function SellPage() {
               )}
               {fees.linkLabel && (
                 <a
-                  href={settings.links.conditionsOfSale}
+                  href={policyLinks.conditionsOfSale}
                   className={`group mt-6 inline-flex items-center gap-3 self-start border-b border-ink/40 pb-0.5 ${serif} text-[1.3125rem] hover:border-ink`}
                 >
                   {fees.linkLabel} <Arrow />
