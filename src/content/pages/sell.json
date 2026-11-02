@@ -1,8 +1,4 @@
 {
-  "seo": {
-    "title": "Sell With Us",
-    "description": "Free valuations, no seller’s commission and a 2% + VAT loss and damage waiver fee only if your item sells."
-  },
   "hero": {
     "eyebrow": "Sell with us",
     "title": "A guide to selling with us.",
@@ -31,7 +27,7 @@
       },
       {
         "title": "Sold at auction",
-        "body": "Your item is offered in a suitable sale. If it sells, you will be paid the hammer price (minus 2% plus VAT loss and damage waiver fee) 35 days after the sale. If it does not sell, please contact us to discuss your options."
+        "body": "Your item is offered in a suitable sale. If it sells, you will be paid the hammer price (minus 2% + VAT loss and damage waiver fee) 35 days after the sale. If it does not sell, please contact us to discuss your options."
       }
     ]
   },
@@ -54,5 +50,9 @@
       "alt": "Jewelled panther ring set with white stones, black enamel spots and green eyes",
       "onWhite": true
     }
+  },
+  "seo": {
+    "title": "Sell With Us",
+    "description": "Free valuations, no seller’s commission and a 2% + VAT loss and damage waiver fee only if your item sells."
   }
 }
