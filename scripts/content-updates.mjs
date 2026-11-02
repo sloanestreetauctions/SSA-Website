@@ -162,6 +162,24 @@ const updates = [
       return true;
     },
   },
+  ...[
+    ["home.json", ["valuesShow"]],
+    ["about.json", ["interiorShow", "statementsShow"]],
+    ["valuation.json", ["nextStepsShow", "talkShow", "notesShow"]],
+  ].map(([file, keys]) => ({
+    file,
+    description: `On/off tick boxes for the remaining parts of the page (${file.replace(".json", "")})`,
+    apply(c) {
+      let changed = false;
+      for (const key of keys) {
+        if (!(key in c)) {
+          c[key] = true;
+          changed = true;
+        }
+      }
+      return changed;
+    },
+  })),
   {
     file: "settings.json",
     description: "Contact details: inbox for valuation requests (info@)",

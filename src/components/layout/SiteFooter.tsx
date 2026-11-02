@@ -1,9 +1,16 @@
 import Link from "next/link";
-import { isPageOn, navigation, settings, telHref } from "@/content";
+import { auctionsPage, isPageOn, isShown, navigation, sellPage, settings, telHref } from "@/content";
 import { SmartLink } from "@/components/ui/RichText";
 import { site } from "@/lib/site";
 import { InstagramIcon } from "@/components/ui/Icons";
 import { LogoLockup } from "./Logo";
+
+/** Links to a part of a page (e.g. /sell#fees-title) disappear while that part is switched off in the editor. */
+function sectionIsShown(href: string) {
+  if (href.includes("#fees-title")) return isShown(sellPage.fees);
+  if (href.includes("#past")) return isShown(auctionsPage.past);
+  return true;
+}
 
 /** The navy footer, identical on every page. */
 export function SiteFooter() {
@@ -35,7 +42,7 @@ export function SiteFooter() {
 
         {/* Navigation */}
         <div className="grid gap-10 sm:grid-cols-[1fr_1.3fr_1fr] lg:col-span-6 lg:col-start-4 lg:gap-12">
-          {navigation.footerColumns.map((col) => ({ ...col, links: col.links.filter((l) => isPageOn(l.href)) })).filter((col) => col.links.length > 0).map((col) => (
+          {navigation.footerColumns.map((col) => ({ ...col, links: col.links.filter((l) => isPageOn(l.href) && sectionIsShown(l.href)) })).filter((col) => col.links.length > 0).map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
               <h2 className="border-b border-ivory/15 pb-2 font-serif text-[1rem] text-ivory [font-variation-settings:'opsz'_18]">
                 {col.heading}

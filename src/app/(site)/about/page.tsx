@@ -52,13 +52,13 @@ export default function AboutPage() {
         )}
       </SplitHeader>
 
-      {hasPhoto(c.interiorPhoto) && (
+      {c.interiorShow !== false && hasPhoto(c.interiorPhoto) && (
         <div className="shell pt-12 md:pt-16">
           <PhotoToCome photo={c.interiorPhoto} className="aspect-[2.6]" sizes="(min-width: 1600px) 1408px, 100vw" />
         </div>
       )}
 
-      {statements.length > 0 && (
+      {c.statementsShow !== false && statements.length > 0 && (
         <section aria-label="Our approach, expertise and clients" className="theme-dark mt-12 bg-navy text-ivory md:mt-16">
           <ul
             className={`shell grid gap-10 py-14 md:gap-0 md:py-16 ${

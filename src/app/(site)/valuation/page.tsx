@@ -12,6 +12,9 @@ export const metadata: Metadata = { title: c.seo.title, description: c.seo.descr
 const link = "text-navy underline decoration-gold underline-offset-4";
 
 export default function ValuationPage() {
+  const showNext = c.nextStepsShow !== false && c.nextSteps.length > 0;
+  const showTalk = c.talkShow !== false && Boolean(c.talkTitle || c.talkText);
+  const showNotes = c.notesShow !== false && c.notes.length > 0;
   return (
     <div className="shell pt-10 pb-28 md:pt-14 md:pb-36">
       <Breadcrumbs items={[{ label: "Sell With Us", href: "/sell" }, { label: c.title }]} />
@@ -27,10 +30,10 @@ export default function ValuationPage() {
           <ValuationForm deliveryReady={process.env.VALUATION_DELIVERY === "resend"} />
         </div>
 
-        {(c.nextSteps.length > 0 || c.talkTitle || c.talkText || c.notes.length > 0) && (
+        {(showNext || showTalk || showNotes) && (
           <aside className="lg:col-span-4 lg:pt-12" aria-label="About valuations">
             <div className="space-y-12 lg:sticky lg:top-10 [&>*:first-child]:border-t-2 [&>*:first-child]:border-navy">
-              {c.nextSteps.length > 0 && (
+              {showNext && (
                 <div className="border-t border-line pt-6">
                   {c.nextStepsTitle && <h2 className="type-subtitle mb-5">{c.nextStepsTitle}</h2>}
                   <ol className="space-y-4">
@@ -44,7 +47,7 @@ export default function ValuationPage() {
                 </div>
               )}
 
-              {(c.talkTitle || c.talkText) && (
+              {showTalk && (
                 <div className="border-t border-line pt-6">
                   {c.talkTitle && <h2 className="type-subtitle mb-3">{c.talkTitle}</h2>}
                   {c.talkText && (
@@ -55,7 +58,7 @@ export default function ValuationPage() {
                 </div>
               )}
 
-              {c.notes.length > 0 && (
+              {showNotes && (
                 <div className="border-t border-line pt-6">
                   {c.notesTitle && <h2 className="type-subtitle mb-4">{c.notesTitle}</h2>}
                   <div className="type-small">

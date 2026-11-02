@@ -194,7 +194,7 @@ export default async function HomePage() {
 
       {/* ===================================================== VALUE POINTS
           Each point restates terms published on the current website. */}
-      {values.length > 0 && (
+      {home.valuesShow !== false && values.length > 0 && (
         <section aria-label="Why sell with us">
           <ul className={`shell grid gap-10 py-14 md:gap-8 md:py-[4.2rem] ${values.length === 1 ? "" : values.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
             {values.map((v) => (

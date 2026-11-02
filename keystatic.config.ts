@@ -38,17 +38,30 @@ const LINK_HELP =
 
 const EMPTY_HIDES = "Leave empty to hide.";
 
+/** A field's hint, always ending with "Leave empty to hide." as its own sentence. */
+const hint = (description?: string) => {
+  if (!description) return EMPTY_HIDES;
+  const d = description.trim();
+  return `${/[.!?)”]$/.test(d) ? d : `${d}.`} ${EMPTY_HIDES}`;
+};
+
 /** Required: page headlines and a few essentials only. */
 const requiredLine = (label: string, description?: string) =>
   fields.text({ label, description, validation: { isRequired: true } });
 
 /** Optional single line: hidden on the page when empty. */
-const line = (label: string, description?: string) =>
-  fields.text({ label, description: description ? `${description} ${EMPTY_HIDES}` : EMPTY_HIDES });
+/** An on/off tick box for a part of a page that isn't a section of its own. */
+const showSwitch = (label: string) =>
+  fields.checkbox({
+    label,
+    description: "Untick to hide it on the website. Nothing is deleted, so you can tick it again later.",
+    defaultValue: true,
+  });
+
+const line = (label: string, description?: string) => fields.text({ label, description: hint(description) });
 
 /** Optional paragraph: hidden on the page when empty. */
-const paragraph = (label: string, description?: string) =>
-  fields.text({ label, multiline: true, description: description ? `${description} ${EMPTY_HIDES}` : EMPTY_HIDES });
+const paragraph = (label: string, description?: string) => fields.text({ label, multiline: true, description: hint(description) });
 
 const richParagraph = (label: string) => paragraph(label, LINK_HELP);
 
@@ -93,7 +106,7 @@ function section<S extends Record<string, ComponentSchema>>(label: string, schem
     {
       show: fields.checkbox({
         label: "Show this section",
-        description: "Untick to hide the whole section; nothing is deleted, so you can bring it back later.",
+        description: "Untick to hide this whole section on the website. Nothing is deleted, so you can tick it again later.",
         defaultValue: true,
       }),
       ...schema,
@@ -119,7 +132,7 @@ const seo = (defaults: { title: string }) =>
       title: requiredLine("Page title", `Shown in the browser tab and in Google, e.g. “${defaults.title}”.`),
       description: paragraph("Page summary", "One or two sentences shown under the title in Google results."),
     },
-    { label: "Search engines and browser tab" },
+    { label: "Google and the browser tab (optional)", description: "How this page appears in Google search results. You rarely need to change this." },
   );
 
 const steps = (label: string, itemLabel: string) =>
@@ -130,7 +143,10 @@ const steps = (label: string, itemLabel: string) =>
   });
 
 function singlePage<S extends Record<string, ComponentSchema>>(label: string, page: string, schema: S) {
-  return singleton({ label, path: `src/content/pages/${page}`, format: { data: "json" }, schema });
+  // The Google / browser-tab settings are technical, so they always sit at the bottom of the page in the editor.
+  const { seo: google, ...rest } = schema as Record<string, ComponentSchema>;
+  const ordered = (google ? { ...rest, seo: google } : rest) as S;
+  return singleton({ label, path: `src/content/pages/${page}`, format: { data: "json" }, schema: ordered });
 }
 
 /** A legal page: the exact wording, pasted in. Lightly formatted so long text stays readable. */
@@ -155,10 +171,10 @@ export default config({
   ui: {
     brand: { name: "Sloane Street Auctions" },
     navigation: {
-      Auctions: ["calendar", "covers", "highlights"],
-      Pages: ["home", "auctions", "sell", "privateSales", "howToBuy", "about", "team", "contact", "valuation", "stories", "notFound"],
-      Policies: ["terms", "privacy", "shipping"],
-      "Across the site": ["settings", "navigation", "mailingList"],
+      "Sales and results": ["calendar", "covers", "highlights"],
+      "Pages (in menu order)": ["home", "auctions", "howToBuy", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
+      "Contact details and menus": ["settings", "navigation", "mailingList"],
+      "Legal pages": ["terms", "privacy", "shipping"],
     },
   },
   singletons: {
@@ -272,7 +288,7 @@ export default config({
     }),
 
     /* ============================================ PAST CATALOGUE COVERS */
-    covers: singlePage("Past catalogue covers", "catalogue-covers", {
+    covers: singlePage("Catalogue covers", "catalogue-covers", {
       show: fields.checkbox({
         label: "Show the catalogue covers",
         description: "Shown once at least one cover has been added. Untick to hide it everywhere.",
@@ -348,7 +364,7 @@ export default config({
     shipping: policyPage("Shipping policy", "shipping-policy"),
 
     /* ======================================================== MAILING LIST */
-    mailingList: singlePage("Mailing list sign-up", "mailing-list", {
+    mailingList: singlePage("Mailing list pop-up", "mailing-list", {
       show: fields.checkbox({
         label: "Show the mailing-list panel",
         description:
@@ -370,7 +386,7 @@ export default config({
 
     /* ============================================================ SETTINGS */
     settings: singleton({
-      label: "Contact details & opening hours",
+      label: "Address, phone, email & hours",
       path: "src/content/pages/settings",
       format: { data: "json" },
       schema: {
@@ -414,7 +430,7 @@ export default config({
 
     /* ========================================================== NAVIGATION */
     navigation: singleton({
-      label: "Pages & menus",
+      label: "Menus, footer & pages on/off",
       path: "src/content/pages/navigation",
       format: { data: "json" },
       schema: {
@@ -484,7 +500,7 @@ export default config({
           }),
           illustration: photo("home", "Illustration", "Shown whole, never cropped. Best on a plain white background."),
           showWords: fields.checkbox({
-            label: "Show the headline and text",
+            label: "Show the headline and text (headline on/off)",
             description:
               "Untick to show just the two buttons. The headline is still read by Google and screen readers.",
             defaultValue: true,
@@ -509,23 +525,24 @@ export default config({
             defaultValue: "center",
           }),
         },
-        { label: "Opening (top of the page)" },
+        { label: "1. Opening (top of the page)", description: "The illustration or photograph, and the buttons under it." },
       ),
       upcoming: section(
-        "Upcoming auctions",
+        "2. Upcoming auctions",
         {
           title: line("Heading"),
           viewAllLabel: button("Link to all auctions", "Auctions"),
           noUpcoming: paragraph("Shown when no sales are coming up"),
         },
-        "The sales themselves are listed in the Auction calendar.",
+        "The sales themselves are added in the Auction calendar. Featured lots, catalogue covers and sale highlights appear after this; they are edited under “Sales and results”.",
       ),
-      approach: section("Navy band", {
+      approach: section("3. Navy band", {
         eyebrow: line("Small heading"),
         title: paragraph("Headline", "Start a new line where you want the headline to break on larger screens."),
         text: paragraph("Text"),
         linkLabel: button("Link", "Sell With Us"),
       }),
+      valuesShow: showSwitch("4. Points at the bottom: show them"),
       values: fields.array(
         fields.object({
           icon: fields.select({
@@ -542,26 +559,26 @@ export default config({
           body: paragraph("Text"),
         }),
         {
-          label: "Points at the bottom",
-          description: "Remove them all to hide this row.",
+          label: "4. Points at the bottom",
+          description: "Up to three short points with icons, near the bottom of the homepage.",
           itemLabel: (props) => props.fields.title.value || "Point",
         },
       ),
     }),
 
     /* ============================================================ AUCTIONS */
-    auctions: singlePage("Auctions page", "auctions", {
+    auctions: singlePage("Auctions", "auctions", {
       seo: seo({ title: "Auctions" }),
-      eyebrow: line("Small heading"),
-      title: requiredLine("Headline"),
-      intro: paragraph("Text under the headline"),
+      eyebrow: line("1. Small heading above the headline"),
+      title: requiredLine("1. Headline"),
+      intro: paragraph("1. Text under the headline"),
       catalogueLinkLabel: button("Link to all catalogues", "your Easy Live auction site (once its address is in the Auction calendar)"),
-      noUpcoming: paragraph("Shown when no sales are coming up"),
-      past: section("Past auctions", {
+      noUpcoming: paragraph("2. Shown when no sales are coming up", "The sales themselves are added in the Auction calendar."),
+      past: section("3. Past auctions", {
         title: line("Heading"),
         text: paragraph("Text"),
       }),
-      selling: section("Selling panel at the bottom", {
+      selling: section("4. Selling panel at the bottom", {
         photo: objectPhoto("auctions", "Photograph"),
         title: line("Heading"),
         text: paragraph("Text"),
@@ -581,10 +598,10 @@ export default config({
           secondaryButton: button("Second button", "“Visit us”"),
           photo: photo("sell", "Photograph"),
         },
-        { label: "Opening" },
+        { label: "1. Opening (top of the page)" },
       ),
-      process: section("How selling works", { title: line("Heading"), steps: steps("Steps", "Step") }),
-      showroom: section("Visit us (navy section)", {
+      process: section("2. How selling works", { title: line("Heading"), steps: steps("Steps", "Step") }),
+      showroom: section("3. Visit us (navy section)", {
         eyebrow: line("Small heading"),
         title: line("Headline"),
         text: richParagraph("Text"),
@@ -592,12 +609,16 @@ export default config({
         appointmentSubject: line("Subject of the appointment email"),
         photo: photo("sell", "Photograph"),
       }),
-      fees: section("Fees and terms", {
-        title: line("Heading"),
-        text: richParagraph("Text"),
-        linkLabel: button("Link", "the Conditions of Sale"),
-        photo: objectPhoto("sell", "Photograph"),
-      }),
+      fees: section(
+        "4. Fees box (your commission and terms)",
+        {
+          title: line("Heading", "e.g. Fees and terms"),
+          text: richParagraph("Text"),
+          linkLabel: button("Link", "the Conditions of Sale"),
+          photo: objectPhoto("sell", "Photograph"),
+        },
+        "A box near the bottom of Sell With Us explaining your seller’s commission and fees, with a link to your Conditions of Sale. The “Fees and terms” link in the footer only appears while this box is shown.",
+      ),
     }),
 
     /* ========================================================== HOW TO BUY */
@@ -612,15 +633,15 @@ export default config({
           secondaryButton: button("Second button", "“Register to bid”"),
           photo: photo("how-to-buy", "Photograph"),
         },
-        { label: "Opening" },
+        { label: "1. Opening (top of the page)" },
       ),
-      register: section("Register to bid", {
+      register: section("2. Register to bid", {
         title: line("Heading"),
         text: paragraph("Text"),
         buttonLabel: button("Button", "your Easy Live sign-in page (set in the Auction calendar)"),
         steps: steps("Steps", "Step"),
       }),
-      ways: section("Ways to bid", {
+      ways: section("3. Ways to bid", {
         title: line("Heading"),
         items: fields.array(
           fields.object({ title: requiredLine("Heading"), body: paragraph("Text"), photo: photo("how-to-buy", "Photograph") }),
@@ -628,19 +649,19 @@ export default config({
         ),
         note: richParagraph("Note underneath"),
       }),
-      payment: section("After the sale", {
+      payment: section("4. After the sale (paying)", {
         title: line("Heading"),
         text: richParagraph("Text"),
         linkLabel: button("Link", "the Conditions of Sale"),
       }),
-      collection: section("Collection and shipping", {
+      collection: section("5. Collection and shipping", {
         title: line("Heading"),
         text: richParagraph("Text"),
         linkLabel: button("Link", "the shipping policy"),
       }),
     }),
 
-    /* =============================================================== ABOUT */
+    /* ======================================================= PRIVATE SALES */
     privateSales: singlePage("Private Sales", "private-sales", {
       seo: seo({ title: "Private Sales" }),
       hero: fields.object(
@@ -650,16 +671,16 @@ export default config({
           text: richParagraph("Text"),
           photo: photo("private-sales", "Photograph"),
         },
-        { label: "Opening" },
+        { label: "1. Opening (top of the page)" },
       ),
-      contact: section("Contact box", {
+      contact: section("2. Contact box (under the opening text)", {
         title: line("Heading", "e.g. Speak to Private Sales"),
         text: paragraph("Text"),
         phone: line("Telephone", "The Private Sales number."),
         email: line("Email address", "Leave empty to use the main email address."),
         buttonLabel: button("Button", "an email to Private Sales"),
       }),
-      steps: section("How it works", { title: line("Heading"), steps: steps("Steps", "Step") }),
+      steps: section("3. How it works", { title: line("Heading"), steps: steps("Steps", "Step") }),
     }),
 
     about: singlePage("About", "about", {
@@ -671,15 +692,17 @@ export default config({
           linkLabel: button("Link", "Meet the Team"),
           photo: photo("about", "Photograph"),
         },
-        { label: "Opening" },
+        { label: "1. Opening (top of the page)" },
       ),
-      interiorPhoto: photo("about", "Wide photograph"),
+      interiorShow: showSwitch("2. Wide photograph: show it"),
+      interiorPhoto: photo("about", "2. Wide photograph"),
+      statementsShow: showSwitch("3. Navy band: show it"),
       statements: fields.array(fields.object({ title: requiredLine("Heading"), body: paragraph("Text") }), {
-        label: "Navy band",
-        description: "Remove them all to hide the band.",
+        label: "3. Navy band",
+        description: "Up to three short statements on a navy band.",
         itemLabel: (props) => props.fields.title.value || "Statement",
       }),
-      visit: section("Visit us", {
+      visit: section("4. Visit us", {
         title: line("Heading"),
         text: richParagraph("Text"),
         primaryButton: button("Main button", "Meet the Team"),
@@ -691,9 +714,9 @@ export default config({
     /* ================================================================ TEAM */
     team: singlePage("Meet the Team", "team", {
       seo: seo({ title: "Meet the Team" }),
-      title: requiredLine("Headline"),
-      intro: paragraph("Text under the headline", "Leave an empty line between paragraphs."),
-      featured: section("Featured person (large photograph at the top)", {
+      title: requiredLine("1. Headline"),
+      intro: paragraph("1. Text under the headline", "Leave an empty line between paragraphs."),
+      featured: section("2. Featured person (large photograph at the top)", {
         name: line("Name"),
         role: line("Job title"),
         email: line("Email address", "Shown with an envelope, as a link."),
@@ -707,13 +730,13 @@ export default config({
           photo: photo("team", "Portrait", "An upright (portrait-shaped) photograph."),
         }),
         {
-          label: "Everyone else (four to a row)",
+          label: "3. Everyone else (four to a row)",
           description: "Use the ⋯ menu on a person to remove them, or drag to reorder.",
           itemLabel: (props) => props.fields.name.value || "Person (name to be added)",
         },
       ),
-      primaryButton: button("Main button", "Contact"),
-      secondaryButton: button("Second link", "the valuation form"),
+      primaryButton: button("4. Button at the bottom", "Contact"),
+      secondaryButton: button("4. Link at the bottom", "the valuation form"),
     }),
 
     /* ============================================================= CONTACT */
@@ -728,16 +751,16 @@ export default config({
           hoursTitle: line("Opening hours heading"),
           photo: photo("contact", "Photograph"),
         },
-        { label: "Opening", description: "The address, phone numbers and hours come from “Contact details”." },
+        { label: "1. Opening (top of the page)", description: "The address, phone numbers and opening hours themselves are edited in “Address, phone, email & hours”." },
       ),
-      map: section("Map", {
+      map: section("2. Map", {
         placeName: line("Name on the map pin", "Start a new line where it should break."),
         areaLabel: line("Area name on the map"),
         buttonLabel: requiredLine("Button that loads the map"),
         directionsLabel: line("Directions button"),
         note: line("Small note", "Explains that the map comes from Google."),
       }),
-      enquiries: section("How can we help?", {
+      enquiries: section("3. “How can we help?” choices", {
         title: line("Heading"),
         text: paragraph("Text"),
         question: requiredLine("Question above the choices"),
@@ -776,28 +799,31 @@ export default config({
     /* =========================================================== VALUATION */
     valuation: singlePage("Request a Valuation", "valuation", {
       seo: seo({ title: "Request a Free Valuation" }),
-      eyebrow: line("Small heading"),
-      title: requiredLine("Headline"),
-      intro: paragraph("Text under the headline"),
+      eyebrow: line("1. Small heading above the headline"),
+      title: requiredLine("1. Headline"),
+      intro: paragraph("1. Text under the headline"),
+      nextStepsShow: showSwitch("2. “What happens next” box: show it"),
       nextStepsTitle: line("“What happens next” heading"),
       nextSteps: fields.array(requiredLine("Step"), {
-        label: "What happens next",
-        description: "Remove them all to hide this box.",
+        label: "2. What happens next",
+        description: "Short steps, shown in a box beside the form.",
         itemLabel: (props) => props.value || "Step",
       }),
+      talkShow: showSwitch("3. “Prefer to talk?” box: show it"),
       talkTitle: line("“Prefer to talk?” heading"),
       talkText: richParagraph("“Prefer to talk?” text"),
+      notesShow: showSwitch("4. “Good to know” box: show it"),
       notesTitle: line("“Good to know” heading"),
       notes: fields.array(requiredLine("Note"), {
-        label: "Good to know",
-        description: "Remove them all to hide this box.",
+        label: "4. Good to know",
+        description: "Short notes, shown in a box beside the form.",
         itemLabel: (props) => props.value || "Note",
       }),
       notesFooter: richParagraph("Line under the notes"),
     }),
 
     /* ============================================================= STORIES */
-    stories: singlePage("Stories & Insights", "stories", {
+    stories: singlePage("News / Stories", "stories", {
       seo: seo({ title: "Stories & Insights" }),
       eyebrow: line("Small heading"),
       title: requiredLine("Headline"),
@@ -805,7 +831,7 @@ export default config({
     }),
 
     /* ======================================================= PAGE NOT FOUND */
-    notFound: singlePage("Page not found", "not-found", {
+    notFound: singlePage("“Page not found” message", "not-found", {
       eyebrow: line("Small heading"),
       title: requiredLine("Headline"),
       text: paragraph("Text"),
