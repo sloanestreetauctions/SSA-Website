@@ -8,6 +8,27 @@ const nextConfig: NextConfig = {
   // opt in to caching with "use cache" (see src/lib/catalogue/index.ts).
   cacheComponents: true,
   partialPrefetching: true,
+  // Don't advertise which software runs the site.
+  poweredByHeader: false,
+
+  // Security headers on every page and file: force HTTPS, stop other sites showing this one
+  // inside a frame (click-jacking), stop browsers guessing file types, share less with other
+  // sites, and switch off camera, microphone and location, which the site never needs.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Strict-Transport-Security", value: "max-age=63072000" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+        ],
+      },
+    ];
+  },
 
   // Removed pages: send any old links to the auctions page.
   async redirects() {
