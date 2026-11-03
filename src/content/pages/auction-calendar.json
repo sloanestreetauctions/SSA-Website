@@ -75,6 +75,19 @@
         "onWhite": false
       },
       "featuredLots": []
+    },
+    {
+      "title": "The September Auction",
+      "kind": "live",
+      "date": "2026-09-24",
+      "closingDate": "2026-09-24",
+      "time": "10:30",
+      "consignmentDeadline": "2026-09-24",
+      "description": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
     }
   ]
 }
