@@ -212,6 +212,41 @@
   }
 }
 
+/* Page transitions: moving between pages, the old page fades out quickly and the
+   new one fades in, rising a few pixels, so the site feels calm rather than jumpy.
+   The header and footer stay still. Browsers without support simply change page. */
+::view-transition-group(.page) {
+  animation: none;
+}
+::view-transition-old(.page) {
+  animation: 160ms ease-out both page-fade-out;
+}
+::view-transition-new(.page) {
+  animation: 380ms cubic-bezier(0.22, 0.61, 0.36, 1) 60ms both page-fade-in;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 /* Mailing-list panel: rises gently into view (skipped for reduced motion). */
 @keyframes ssa-rise {
   from {

@@ -12,6 +12,8 @@ import { CoversReel } from "@/components/sales/CoversReel";
 import { HighlightsReel } from "@/components/sales/HighlightsReel";
 import { InstagramStrip } from "@/components/sales/InstagramStrip";
 import { SaleCard } from "@/components/sales/SaleCard";
+import { DaysToGo } from "@/components/sales/DaysToGo";
+import type { Sale } from "@/lib/sales";
 import { Arrow } from "@/components/ui/Button";
 import photoSizes from "@/content/photo-sizes.json";
 
@@ -43,7 +45,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd([organisationData(), ...salesData(upcoming)])} />
       {/* ================================================================ HERO */}
       {illustration ? (
-        <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} />
+        <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} nextSale={upcoming[0]} />
       ) : (
         <section
           aria-labelledby="hero-title"
@@ -272,7 +274,7 @@ function HeroButtons({
  * sits in a white box, with the headline and buttons underneath.
  * On laptops it is sized so the headline and buttons are visible without scrolling.
  */
-function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; image: string; sellOn: boolean }) {
+function IllustrationHero({ hero, image, sellOn, nextSale }: { hero: typeof home.hero; image: string; sellOn: boolean; nextSale?: Sale }) {
   const size = measured[image] ?? { width: 4000, height: 1852 };
   return (
     <section aria-labelledby="hero-title">
@@ -308,6 +310,7 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
             {hero.title}
           </h1>
         )}
+        <NextSaleLine sale={nextSale} label={hero.nextSaleLabel ?? ""} className={hero.showWords ? "mt-6" : ""} />
         <HeroButtons
           buttonLabel={hero.buttonLabel}
           linkLabel={sellOn ? hero.linkLabel : ""}
@@ -317,6 +320,33 @@ function IllustrationHero({ hero, image, sellOn }: { hero: typeof home.hero; ima
         />
       </div>
     </section>
+  );
+}
+
+/**
+ * NEXT AUCTION — one quiet line above the buttons: "Next auction  The Christmas
+ * Auction · Thursday 3 December · in 30 days". The countdown is worked out in the
+ * visitor's browser, so it is right every day. Hidden when the editor's wording is
+ * empty or no sale is coming up.
+ */
+function NextSaleLine({ sale, label, className = "" }: { sale?: Sale; label: string; className?: string }) {
+  if (!label || !sale?.date) return null;
+  const day = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "Europe/London" }).format(
+    new Date(`${sale.date}T12:00:00Z`),
+  );
+  return (
+    <Link
+      href={routes.auctions}
+      className={`group mb-7 inline-flex max-w-full flex-wrap items-baseline justify-center gap-x-2.5 gap-y-1 font-serif text-[1.125rem] text-ink-soft [font-variation-settings:'opsz'_18] md:text-[1.25rem] ${className}`}
+    >
+      <span className="w-full font-sans text-[0.75rem] font-[600] tracking-[0.18em] text-gold-ink uppercase sm:w-auto">{label}</span>
+      <span className="text-ink underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-ink/40">{sale.title}</span>
+      <span aria-hidden="true" className="hidden text-gold sm:inline">
+        ·
+      </span>
+      <span>{day}</span>
+      <DaysToGo date={sale.date} />
+    </Link>
   );
 }
 

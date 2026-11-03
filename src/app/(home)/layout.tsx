@@ -1,5 +1,6 @@
 import { SiteEnd } from "@/components/layout/SiteEnd";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { ViewTransition } from "react";
 import { LiveBar } from "@/components/sales/LiveBar";
 
 /** Homepage: the same solid navy header as every other page, with the photograph below it. */
@@ -8,9 +9,12 @@ export default function HomeLayout({ children }: LayoutProps<"/">) {
     <div className="relative flex flex-1 flex-col">
       <LiveBar />
       <SiteHeader tone="light" />
-      <main id="main" className="flex-1">
-        {children}
-      </main>
+      {/* Moving between pages: the page content fades softly across (see "Page transitions" in globals.css). */}
+      <ViewTransition name="page" default="page">
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+      </ViewTransition>
       <SiteEnd />
     </div>
   );

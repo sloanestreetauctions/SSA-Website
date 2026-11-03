@@ -162,6 +162,15 @@ const updates = [
       return true;
     },
   },
+  {
+    file: "home.json",
+    description: "Homepage: countdown line to the next auction",
+    apply(c) {
+      if (!c.hero || "nextSaleLabel" in c.hero) return false;
+      c.hero.nextSaleLabel = "Next auction";
+      return true;
+    },
+  },
   ...[
     ["home.json", ["valuesShow"]],
     ["about.json", ["interiorShow", "statementsShow"]],

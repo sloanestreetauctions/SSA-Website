@@ -542,6 +542,10 @@ export default config({
           buttonLabel: button("Button", "Auctions"),
           linkLabel: button("“Sell with us” button", "Sell With Us"),
           valuationLabel: button("“Request a valuation” button", "the valuation form"),
+          nextSaleLabel: line(
+            "Countdown to the next auction",
+            "A line above the buttons showing the next sale in the Auction calendar, e.g. “NEXT AUCTION  The Christmas Auction · Thursday 3 December · in 30 days”. Type the first words.",
+          ),
           photo: photo("home", "Background photograph", "A wide, atmospheric room photograph. Not a catalogue photo."),
           photoPosition: fields.select({
             label: "Which part of the photograph to keep",
