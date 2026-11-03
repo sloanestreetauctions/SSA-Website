@@ -52,8 +52,9 @@
     {
       "title": "The Subterranean Sale",
       "kind": "timed",
-      "date": "2026-11-02",
-      "closingDate": "2026-12-13",
+      "date": "2026-11-06",
+      "closingDate": "2026-11-13",
+      "time": "14:00",
       "photo": {
         "onWhite": false
       },
