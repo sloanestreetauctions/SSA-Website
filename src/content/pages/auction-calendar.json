@@ -35,17 +35,7 @@
       "photo": {
         "onWhite": false
       },
-      "featuredLots": [
-        {
-          "photo": {
-            "image": "/images/pages/calendar/sales/0/featuredLots/0/photo/image.PNG",
-            "onWhite": false
-          },
-          "lotNumber": "34",
-          "maker": "Jon",
-          "title": "test"
-        }
-      ]
+      "featuredLots": []
     },
     {
       "title": "The February Fine Art Sale",
