@@ -77,8 +77,17 @@ export function salesData(sales: readonly Sale[]) {
       description: s.description || undefined,
       startDate: s.time && /^\d{1,2}[:.]\d{2}$/.test(s.time.trim()) ? `${s.date}T${s.time.trim().replace(".", ":").padStart(5, "0")}` : s.date,
       eventStatus: "https://schema.org/EventScheduled",
-      eventAttendanceMode: s.liveLink ? "https://schema.org/MixedEventAttendanceMode" : "https://schema.org/OfflineEventAttendanceMode",
-      location: { "@type": "Place", name: "Sloane Street Auctions", address: postalAddress() },
+      ...(s.kind === "timed" && s.closingDate ? { endDate: s.closingDate } : {}),
+      eventAttendanceMode:
+        s.kind === "timed"
+          ? "https://schema.org/OnlineEventAttendanceMode"
+          : s.liveLink
+            ? "https://schema.org/MixedEventAttendanceMode"
+            : "https://schema.org/OfflineEventAttendanceMode",
+      location:
+        s.kind === "timed" && s.catalogueLink
+          ? { "@type": "VirtualLocation", url: s.catalogueLink }
+          : { "@type": "Place", name: "Sloane Street Auctions", address: postalAddress() },
       organizer: { "@id": `${siteUrl}/#house` },
       url: s.catalogueLink || `${siteUrl}/auctions`,
       image: s.photo?.image ? `${siteUrl}${s.photo.image}` : `${siteUrl}/opengraph-image.png`,

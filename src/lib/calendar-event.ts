@@ -1,7 +1,21 @@
 import { settings } from "@/content";
 
 /** What a calendar entry needs from a sale in the Auction calendar. */
-type SaleLike = { title: string; date?: string | null; time?: string | null; description?: string | null; catalogueLink?: string | null };
+type SaleLike = {
+  title: string;
+  date?: string | null;
+  time?: string | null;
+  description?: string | null;
+  catalogueLink?: string | null;
+  /** "timed": a timed online sale on The Saleroom, entered in the calendar on its closing day. */
+  kind?: string | null;
+  closingDate?: string | null;
+};
+
+const timed = (sale: SaleLike) => sale.kind === "timed";
+/** The day the calendar entry is on: the sale day, or for a timed sale the day bidding closes. */
+const eventDate = (sale: SaleLike) => (timed(sale) && sale.closingDate ? sale.closingDate : (sale.date ?? ""));
+const eventTitle = (sale: SaleLike) => `${sale.title}${timed(sale) ? " (bidding closes)" : ""} · Sloane Street Auctions`;
 
 /** A stable address for each sale's calendar file, e.g. 2026-12-03-the-christmas-auction. */
 export function saleEventId(sale: SaleLike) {
@@ -35,16 +49,20 @@ const nextDay = (date: string) => {
  * it is an all-day entry.
  */
 function when(sale: SaleLike) {
-  const date = sale.date ?? "";
+  const date = eventDate(sale);
   const time = /^\d{1,2}[:.]\d{2}$/.test((sale.time ?? "").trim()) ? (sale.time ?? "").trim().replace(".", ":") : null;
   if (!time) return { allDay: true as const, start: day(date), end: nextDay(date) };
   const start = londonToUtc(date, time);
   return { allDay: false as const, start: stamp(start), end: stamp(new Date(start.getTime() + 60 * 60_000)) };
 }
 
-const location = () => [settings.addressLines.join(", ")].join("");
+const location = (sale: SaleLike) => (timed(sale) ? "Online: The Saleroom" : settings.addressLines.join(", "));
 const details = (sale: SaleLike) =>
-  [sale.description, sale.time ? `Starts at ${sale.time}.` : "", sale.catalogueLink ? `Catalogue: ${sale.catalogueLink}` : ""]
+  [
+    sale.description,
+    sale.time ? (timed(sale) ? `Lots start closing at ${sale.time}.` : `Starts at ${sale.time}.`) : "",
+    sale.catalogueLink ? `Catalogue: ${sale.catalogueLink}` : "",
+  ]
     .filter(Boolean)
     .join("\n");
 
@@ -53,10 +71,10 @@ export function googleCalendarUrl(sale: SaleLike) {
   const w = when(sale);
   const q = new URLSearchParams({
     action: "TEMPLATE",
-    text: `${sale.title} · Sloane Street Auctions`,
+    text: eventTitle(sale),
     dates: `${w.start}/${w.end}`,
     details: details(sale),
-    location: location(),
+    location: location(sale),
     ctz: "Europe/London",
   });
   return `https://calendar.google.com/calendar/render?${q.toString()}`;
@@ -78,14 +96,14 @@ export function icsFile(sale: SaleLike) {
     `DTSTAMP:${stamp(new Date())}`,
     w.allDay ? `DTSTART;VALUE=DATE:${w.start}` : `DTSTART:${w.start}`,
     w.allDay ? `DTEND;VALUE=DATE:${w.end}` : `DTEND:${w.end}`,
-    `SUMMARY:${esc(`${sale.title} · Sloane Street Auctions`)}`,
-    `LOCATION:${esc(location())}`,
+    `SUMMARY:${esc(eventTitle(sale))}`,
+    `LOCATION:${esc(location(sale))}`,
     `DESCRIPTION:${esc(details(sale))}`,
     ...(sale.catalogueLink ? [`URL:${sale.catalogueLink}`] : []),
     "BEGIN:VALARM",
     "TRIGGER:-P1D",
     "ACTION:DISPLAY",
-    `DESCRIPTION:${esc(`Tomorrow: ${sale.title}`)}`,
+    `DESCRIPTION:${esc(`Tomorrow: ${sale.title}${timed(sale) ? " (bidding closes)" : ""}`)}`,
     "END:VALARM",
     "END:VEVENT",
     "END:VCALENDAR",

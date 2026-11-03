@@ -9,6 +9,9 @@ import { calendar } from "@/content";
  * nothing needs republishing when a sale or deadline date passes.
  */
 export type Sale = (typeof calendar.sales)[number] & {
+  /** "timed": a timed online sale held on The Saleroom. Anything else: a live auction on Easy Live. */
+  kind?: string | null;
+  closingDate?: string | null;
   /** True while the sale's consignment deadline is today or later. */
   consigning: boolean;
   /** True on the day of the sale itself (London time). */
@@ -34,11 +37,13 @@ async function splitSales(sales: readonly CalendarSale[]) {
   const sorted: Sale[] = [...sales]
     .sort((a, b) => (a.date ?? "").localeCompare(b.date ?? ""))
     .map((s) => ({ ...s, consigning: Boolean(s.consignmentDeadline && s.consignmentDeadline >= today), live: s.date === today }));
+  /** A timed online sale stays upcoming until bidding closes; a live auction until its day has passed. */
+  const lastDay = (s: Sale) => (s.kind === "timed" && s.closingDate ? s.closingDate : (s.date ?? ""));
   return {
-    upcoming: sorted.filter((s) => (s.date ?? "") >= today),
+    upcoming: sorted.filter((s) => lastDay(s) >= today),
     /** Sales happening today that have a live bidding link. */
     liveNow: sorted.filter((s) => s.live && s.liveLink),
-    past: sorted.filter((s) => (s.date ?? "") < today).reverse(),
+    past: sorted.filter((s) => lastDay(s) < today).reverse(),
     /** The upcoming sale whose consignment deadline comes soonest (still open), if any. */
     nextConsignment:
       sorted

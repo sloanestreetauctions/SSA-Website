@@ -45,7 +45,7 @@ export default async function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd([organisationData(), ...salesData(upcoming)])} />
       {/* ================================================================ HERO */}
       {illustration ? (
-        <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} nextSale={upcoming[0]} />
+        <IllustrationHero hero={hero} image={illustration} sellOn={sellOn} nextSale={upcoming.find((s) => s.kind !== "timed") ?? upcoming[0]} />
       ) : (
         <section
           aria-labelledby="hero-title"

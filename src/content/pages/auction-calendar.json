@@ -42,5 +42,10 @@
   "live": {
     "barText": "Live now",
     "buttonLabel": "Bid live"
+  },
+  "timed": {
+    "badge": "Timed online sale",
+    "closesLabel": "Closes",
+    "buttonLabel": "View and bid on The Saleroom"
   }
 }

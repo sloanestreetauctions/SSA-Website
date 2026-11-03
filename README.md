@@ -44,6 +44,10 @@ Easy Live hosts catalogues, lots, accounts, registration, bidding and payment on
 - **Auction calendar** (in the editor): add each sale once — name, date, time, short description, cover photo and the
   link to its catalogue on the Easy Live site. It appears on the homepage and Auctions page, and moves to
   "Past auctions" automatically the day after the sale. No cover photo? It shows a navy cover with the date.
+- **Timed online sales** (on The Saleroom): add them to the Auction calendar like any sale, but set **Type of sale** to
+  "Timed online sale", fill in **Bidding closes**, and paste the sale's The Saleroom page as its link. They're marked
+  "Timed online sale", link straight to The Saleroom, and get their own section under the live auctions on the
+  Auctions page. They stay upcoming until bidding closes. The wording is under Auction calendar → Timed online sales.
 - **Past catalogue covers** (in the editor, under Auctions): your catalogue covers, newest first, shown as a scrolling
   row on the homepage (and, if ticked, the Auctions page). Each cover is shown whole; add a link to open its catalogue.
 - **Easy Live links** (top of the Auction calendar): your auction site's address and its sign-in page. Once filled in,

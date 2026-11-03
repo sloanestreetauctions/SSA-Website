@@ -213,6 +213,14 @@ export default config({
         },
         { label: "Live sale (on the day of a sale)", description: "Shown only on the sale day, and only for a sale with a live bidding link." },
       ),
+      timed: fields.object(
+        {
+          badge: line("Label on each timed sale", "e.g. Timed online sale"),
+          closesLabel: line("Wording before the closing date", "e.g. Closes"),
+          buttonLabel: line("Wording of the link to the sale", "e.g. View and bid on The Saleroom"),
+        },
+        { label: "Timed online sales (The Saleroom)", description: "Wording for sales whose type is “Timed online sale”." },
+      ),
       viewingLabel: line("Wording of the viewing times drop-down", "e.g. Viewing times"),
       featured: fields.object(
         {
@@ -233,8 +241,27 @@ export default config({
       sales: fields.array(
         fields.object({
           title: requiredLine("Name of the sale", "e.g. Fine Art, Antiques & Collectables"),
-          date: fields.date({ label: "Date of the sale", validation: { isRequired: true } }),
-          time: line("Start time", "e.g. 11:00"),
+          kind: fields.select({
+            label: "Type of sale",
+            description:
+              "“Live auction”: held in the saleroom, catalogue and bidding on Easy Live. “Timed online sale”: held on The Saleroom; the sale is marked as a timed sale and its button goes straight to The Saleroom.",
+            options: [
+              { label: "Live auction (Easy Live)", value: "live" },
+              { label: "Timed online sale (The Saleroom)", value: "timed" },
+            ],
+            defaultValue: "live",
+          }),
+          date: fields.date({
+            label: "Date of the sale",
+            description: "For a timed online sale: the day bidding opens.",
+            validation: { isRequired: true },
+          }),
+          closingDate: fields.date({
+            label: "Bidding closes (timed online sales only)",
+            description:
+              "The day bidding ends on The Saleroom. The sale stays under Upcoming auctions until this day has passed. Leave empty for live auctions.",
+          }),
+          time: line("Start time", "e.g. 11:00. For a timed online sale: the time lots start closing, e.g. 19:00."),
           consignmentDeadline: fields.date({
             label: "Consignment deadline",
             description:
@@ -253,7 +280,7 @@ export default config({
           catalogueLink: fields.url({
             label: "Link to the catalogue",
             description:
-              "The sale’s page on your Easy Live auction site. Until it’s added, the sale shows “Catalogue coming soon”.",
+              "The sale’s page on your Easy Live auction site (for a timed online sale: its page on The Saleroom). Until it’s added, the sale shows “Catalogue coming soon”.",
           }),
           photo: objectPhoto("calendar", "Cover photograph", "A highlight from the sale."),
           featuredLots: fields.array(
@@ -610,6 +637,14 @@ export default config({
       intro: paragraph("1. Text under the headline"),
       catalogueLinkLabel: button("Link to all catalogues", "your Easy Live auction site (once its address is in the Auction calendar)"),
       noUpcoming: paragraph("2. Shown when no sales are coming up", "The sales themselves are added in the Auction calendar."),
+      timed: section(
+        "2b. Timed online sales (The Saleroom)",
+        {
+          title: line("Heading", "e.g. Timed online sales"),
+          text: paragraph("Text under the heading"),
+        },
+        "Upcoming sales whose type is “Timed online sale” are listed here, under the live auctions. Shown only when one is coming up.",
+      ),
       past: section("3. Past auctions (its own tab: /auctions/past)", {
         title: line("Heading"),
         text: paragraph("Text"),

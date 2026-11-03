@@ -163,6 +163,24 @@ const updates = [
     },
   },
   {
+    file: "auction-calendar.json",
+    description: "Auction calendar: timed online sales on The Saleroom (wording)",
+    apply(c) {
+      if (c.timed) return false;
+      c.timed = { badge: "Timed online sale", closesLabel: "Closes", buttonLabel: "View and bid on The Saleroom" };
+      return true;
+    },
+  },
+  {
+    file: "auctions.json",
+    description: "Auctions page: “Timed online sales” section",
+    apply(c) {
+      if (c.timed) return false;
+      c.timed = { show: true, title: "Timed online sales", text: "Online-only sales held on The Saleroom. Browse the lots and bid there." };
+      return true;
+    },
+  },
+  {
     file: "home.json",
     description: "Homepage: countdown line to the next auction",
     apply(c) {

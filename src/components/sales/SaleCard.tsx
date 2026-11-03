@@ -27,6 +27,9 @@ export function SaleCard({
   const d = sale.date ? saleDateParts(sale.date) : null;
   const large = size === "large";
   const link = sale.catalogueLink;
+  const timed = sale.kind === "timed";
+  const closes = timed && sale.closingDate ? saleDateParts(sale.closingDate) : null;
+  const words = calendar.timed;
   const viewingLines = (sale.viewing ?? "")
     .split("\n")
     .map((l) => l.trim())
@@ -62,10 +65,30 @@ export function SaleCard({
         )}
       </div>
       <div className={`flex flex-1 flex-col font-serif [font-variation-settings:'opsz'_18] ${large ? "px-6 pt-5 pb-6" : "px-6 pt-4 pb-5"}`}>
+        {timed && (words?.badge ?? "Timed online sale") && (
+          <p className="mb-2 self-start border border-gold/70 px-2.5 py-1 font-sans text-[0.75rem] font-[600] tracking-[0.14em] text-gold-ink uppercase">
+            {words?.badge ?? "Timed online sale"}
+          </p>
+        )}
         {d && (
           <p className="font-sans text-[0.875rem] tracking-[0.12em] text-ink-soft uppercase tabular-nums">
-            {d.day} {d.month} {d.year}
-            {sale.time && <> · {sale.time}</>}
+            {closes ? (
+              <>
+                {d.day} {d.month}
+                {d.year !== closes.year && <> {d.year}</>} – {closes.day} {closes.month} {closes.year}
+                {sale.time && (
+                  <>
+                    {" "}
+                    · {words?.closesLabel || "Closes"} {sale.time}
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                {d.day} {d.month} {d.year}
+                {sale.time && <> · {sale.time}</>}
+              </>
+            )}
           </p>
         )}
         <Heading
@@ -139,7 +162,7 @@ export function SaleCard({
         >
           {link ? (
             <>
-              View catalogue <Arrow />
+              {timed ? words?.buttonLabel || "View and bid on The Saleroom" : "View catalogue"} <Arrow />
             </>
           ) : (
             "Catalogue coming soon"

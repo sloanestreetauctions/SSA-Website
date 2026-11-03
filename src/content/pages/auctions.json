@@ -20,5 +20,10 @@
     "title": "Thinking of consigning?",
     "text": "We conduct free valuations, Monday to Friday. You can visit our Chelsea saleroom, arrange a home valuation, or complete the form below.",
     "buttonLabel": "Request a free valuation"
+  },
+  "timed": {
+    "show": true,
+    "title": "Timed online sales",
+    "text": "Online-only sales held on The Saleroom. Browse the lots and bid there."
   }
 }

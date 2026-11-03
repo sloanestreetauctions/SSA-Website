@@ -23,6 +23,9 @@ export const metadata: Metadata = { title: c.seo.title, description: c.seo.descr
  */
 export default async function AuctionsPage() {
   const { upcoming } = await getSales();
+  /** Live auctions first; timed online sales (The Saleroom) get their own section underneath. */
+  const liveSales = upcoming.filter((s) => s.kind !== "timed");
+  const timedSales = isShown(c.timed) ? upcoming.filter((s) => s.kind === "timed") : [];
 
   return (
     <>
@@ -50,16 +53,36 @@ export default async function AuctionsPage() {
         <AuctionTabs current="upcoming" />
 
         {/* ============================================= FORTHCOMING SALES */}
-        {upcoming.length ? (
+        {liveSales.length > 0 && (
           <ul className="mt-8 grid gap-6 md:grid-cols-2">
-            {upcoming.map((sale, i) => (
+            {liveSales.map((sale, i) => (
               <li key={`${sale.title}-${sale.date}-${i}`}>
                 <SaleCard sale={sale} size="large" priority={i < 2} headingLevel={2} />
               </li>
             ))}
           </ul>
-        ) : (
-          c.noUpcoming && <p className={`mt-8 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.noUpcoming}</p>
+        )}
+        {liveSales.length === 0 && timedSales.length === 0 && c.noUpcoming && (
+          <p className={`mt-8 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.noUpcoming}</p>
+        )}
+
+        {/* ========================================= TIMED ONLINE SALES (The Saleroom) */}
+        {timedSales.length > 0 && (
+          <section aria-labelledby={c.timed.title ? "timed-title" : undefined} aria-label={c.timed.title ? undefined : "Timed online sales"} className="mt-16">
+            {c.timed.title && (
+              <h2 id="timed-title" className="font-serif text-[2.25rem] leading-tight font-[380] [font-variation-settings:'opsz'_60] md:text-[2.75rem]">
+                {c.timed.title}
+              </h2>
+            )}
+            {c.timed.text && <p className={`mt-3 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.timed.text}</p>}
+            <ul className="mt-8 grid gap-6 md:grid-cols-2">
+              {timedSales.map((sale, i) => (
+                <li key={`${sale.title}-${sale.date}-${i}`}>
+                  <SaleCard sale={sale} size="large" headingLevel={c.timed.title ? 3 : 2} />
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </div>
 
