@@ -16,7 +16,7 @@
   "selling": {
     "show": true,
     "photo": {
-      "image": "/images/pages/auctions/selling/photo/image.JPG",
+      "image": "/images/pages/auctions/selling/photo/image.PNG",
       "onWhite": false
     },
     "title": "Thinking of consigning?",
