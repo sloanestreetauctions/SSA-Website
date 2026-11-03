@@ -89,6 +89,20 @@
         "onWhite": false
       },
       "featuredLots": []
+    },
+    {
+      "title": "The Summer Auction",
+      "kind": "live",
+      "date": "2026-07-10",
+      "closingDate": "2026-07-10",
+      "time": "10:30",
+      "consignmentDeadline": "2026-07-10",
+      "description": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/35f794b69c868c92f5b92548b46dab8e/f696df3e52c0cf46109d4cecaabb248f/the-summer-auction-to-include-noble-estates-old-and-modern/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
     }
   ]
 }
