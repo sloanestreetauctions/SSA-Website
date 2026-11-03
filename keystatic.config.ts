@@ -172,7 +172,7 @@ export default config({
     brand: { name: "Sloane Street Auctions" },
     navigation: {
       "Sales and results": ["calendar", "covers", "highlights"],
-      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "about", "team", "contact", "valuation", "stories", "notFound"],
+      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "jewellery", "about", "team", "contact", "valuation", "stories", "notFound"],
       "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
       "Legal pages": ["terms", "privacy"],
     },
@@ -222,6 +222,7 @@ export default config({
         { label: "Timed online sales (The Saleroom)", description: "Wording for sales whose type is “Timed online sale”." },
       ),
       viewingLabel: line("Wording of the viewing times drop-down", "e.g. Viewing times"),
+      downloadLabel: line("Wording of the catalogue PDF link", "e.g. Download the catalogue (PDF). Shown on sales that have a catalogue PDF."),
       featured: fields.object(
         {
           show: fields.checkbox({
@@ -281,6 +282,13 @@ export default config({
             label: "Link to the catalogue",
             description:
               "The sale’s page on your Easy Live auction site (for a timed online sale: its page on The Saleroom). Until it’s added, the sale shows “Catalogue coming soon”.",
+          }),
+          catalogueFile: fields.file({
+            label: "Catalogue PDF (optional)",
+            description:
+              "Upload the catalogue as a PDF and a “Download the catalogue” link appears on the sale (also once it’s a past auction). Keep it under about 25 MB: most PDF programs have a “reduce file size” option.",
+            directory: "public/catalogues",
+            publicPath: "/catalogues/",
           }),
           photo: objectPhoto("calendar", "Cover photograph", "A highlight from the sale."),
           featuredLots: fields.array(
@@ -496,6 +504,7 @@ export default config({
           {
             sell: pageSwitch("Sell With Us"),
             privateSales: pageSwitch("Private Sales"),
+            jewellery: pageSwitch("Jewellery"),
             howToBuy: pageSwitch("How to Buy"),
             faq: pageSwitch("FAQs (shown once at least one question is added)"),
             about: pageSwitch("About"),
@@ -757,6 +766,55 @@ export default config({
         buttonLabel: button("Button", "an email to Private Sales"),
       }),
       steps: section("3. How it works", { title: line("Heading"), steps: steps("Steps", "Step") }),
+    }),
+
+    jewellery: singlePage("Jewellery", "jewellery", {
+      seo: seo({ title: "Jewellery" }),
+      hero: fields.object(
+        {
+          eyebrow: line("Small heading", "e.g. Specialist department"),
+          title: requiredLine("Headline"),
+          text: richParagraph("Text"),
+          buttonLabel: button("Button", "the valuation form"),
+          photo: objectPhoto("jewellery", "Photograph", "A piece of jewellery, ideally an upright studio photo."),
+        },
+        { label: "1. Opening (top of the page)" },
+      ),
+      specialist: section(
+        "2. Meet the specialist",
+        {
+          eyebrow: line("Small heading", "e.g. Your specialist"),
+          name: line("Name", "The section only appears once a name is added."),
+          role: line("Job title", "e.g. Head of Jewellery"),
+          text: richParagraph("A short introduction, in their own words"),
+          photo: photo("jewellery", "Portrait"),
+          phone: line("Direct telephone", "Leave empty to hide."),
+          email: line("Email address", "Leave empty to hide."),
+        },
+      ),
+      gallery: section(
+        "3. Photographs",
+        {
+          title: line("Heading", "e.g. From recent sales"),
+          items: fields.array(
+            fields.object({
+              photo: objectPhoto("jewellery", "Photograph"),
+              caption: line("Caption", "e.g. A coral and gold bracelet watch, sold for £3,800. Only write prices that are real."),
+            }),
+            {
+              label: "Photographs",
+              description: "Shown as a scrolling row. Add 4 or more for the best look. Drag to reorder.",
+              itemLabel: (props) => props.fields.caption.value || "Photograph",
+            },
+          ),
+        },
+        "Shown once at least one photograph is added.",
+      ),
+      valuation: section("4. Valuation panel (bottom of the page)", {
+        title: line("Heading", "e.g. Request a jewellery valuation"),
+        text: paragraph("Text"),
+        buttonLabel: button("Button", "the valuation form"),
+      }),
     }),
 
     about: singlePage("About", "about", {

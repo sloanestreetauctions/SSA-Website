@@ -1,0 +1,41 @@
+{
+  "seo": {
+    "title": "Jewellery valuations and auctions in Chelsea",
+    "description": "Free jewellery valuations at our Chelsea saleroom or from photographs, and fine jewellery in our auctions."
+  },
+  "hero": {
+    "eyebrow": "Specialist department",
+    "title": "Jewellery",
+    "text": "Fine jewellery features in many of our sales. Our jewellery specialist offers free valuations, from photographs or in person at our Chelsea saleroom.",
+    "buttonLabel": "Request a jewellery valuation",
+    "photo": {
+      "image": "/images/pages/jewellery/hero/photo/image.png",
+      "alt": "A coral and 18ct yellow gold bracelet wristwatch",
+      "onWhite": true
+    }
+  },
+  "specialist": {
+    "show": true,
+    "eyebrow": "Your specialist",
+    "name": "",
+    "role": "",
+    "text": "",
+    "photo": {
+      "image": null,
+      "alt": ""
+    },
+    "phone": "",
+    "email": ""
+  },
+  "gallery": {
+    "show": true,
+    "title": "From recent sales",
+    "items": []
+  },
+  "valuation": {
+    "show": true,
+    "title": "Request a jewellery valuation",
+    "text": "Send us photographs and a few details through our valuation form, or bring your pieces to our Chelsea saleroom. Valuations are free.",
+    "buttonLabel": "Request a valuation"
+  }
+}

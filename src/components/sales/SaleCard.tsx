@@ -141,6 +141,18 @@ export function SaleCard({
             </ul>
           </details>
         )}
+        {sale.catalogueFile && (calendar.downloadLabel ?? "Download the catalogue (PDF)") && (
+          /* The printed catalogue as a PDF, uploaded in the editor. Above the card's link so it can be clicked. */
+          <a
+            href={sale.catalogueFile}
+            className="relative z-10 mt-4 inline-flex min-h-11 items-center gap-2.5 self-start font-sans text-[0.9375rem] text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink"
+          >
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2">
+              <path d="M8 1.5v9M4.5 7 8 10.5 11.5 7M2 13.5h12" />
+            </svg>
+            {calendar.downloadLabel ?? "Download the catalogue (PDF)"}
+          </a>
+        )}
         {large && viewingLines.length > 0 && (
           /* Closed by default so the card stays short; sits above the card's catalogue link so it can be opened. */
           <details className="group/viewing relative z-10 mt-4 border-t border-line pt-3">

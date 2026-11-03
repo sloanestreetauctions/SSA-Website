@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { formatSaleDate } from "@/lib/format";
 import { getSales } from "@/lib/sales";
-import { auctionsPage as c, isShown } from "@/content";
+import { auctionsPage as c, calendar, isShown } from "@/content";
 import { AuctionTabs } from "@/components/sales/AuctionTabs";
 import { CoversReel } from "@/components/sales/CoversReel";
 import { Arrow } from "@/components/ui/Button";
@@ -58,6 +58,15 @@ export default async function PastAuctionsPage() {
                   </a>
                 ) : (
                   <div className={cls}>{row}</div>
+                )}
+                {sale.catalogueFile && (calendar.downloadLabel ?? "Download the catalogue (PDF)") && (
+                  /* The catalogue PDF uploaded in the editor */
+                  <a
+                    href={sale.catalogueFile}
+                    className="-mt-2 mb-5 inline-flex min-h-11 items-center gap-2.5 font-sans text-[0.9375rem] text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink sm:ml-[18rem]"
+                  >
+                    {calendar.downloadLabel ?? "Download the catalogue (PDF)"}
+                  </a>
                 )}
               </li>
             );

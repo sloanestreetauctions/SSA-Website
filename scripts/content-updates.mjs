@@ -163,6 +163,17 @@ const updates = [
     },
   },
   {
+    file: "navigation.json",
+    description: "Footer: “Jewellery” link under Selling",
+    apply(c) {
+      const selling = (c.footerColumns ?? []).find((col) => (col.links ?? []).some((l) => l.href === "/sell"));
+      if (!selling || selling.links.some((l) => l.href === "/jewellery")) return false;
+      const at = selling.links.findIndex((l) => l.href === "/private-sales");
+      selling.links.splice(at >= 0 ? at + 1 : selling.links.length, 0, { label: "Jewellery", href: "/jewellery" });
+      return true;
+    },
+  },
+  {
     file: "auction-calendar.json",
     description: "Auction calendar: timed online sales on The Saleroom (wording)",
     apply(c) {
@@ -466,6 +477,31 @@ const newFiles = {
     live: { barText: "Live now", buttonLabel: "Bid live" },
     featured: { show: true, eyebrow: "From the sale", estimateLabel: "Estimate", linkLabel: "View and bid", catalogueLabel: "View the full catalogue", showOnAuctionsPage: true },
     sales: [],
+  },
+  "jewellery.json": {
+    seo: {
+      title: "Jewellery valuations and auctions in Chelsea",
+      description: "Free jewellery valuations at our Chelsea saleroom or from photographs, and fine jewellery in our auctions.",
+    },
+    hero: {
+      eyebrow: "Specialist department",
+      title: "Jewellery",
+      text: "Fine jewellery features in many of our sales. Our jewellery specialist offers free valuations, from photographs or in person at our Chelsea saleroom.",
+      buttonLabel: "Request a jewellery valuation",
+      photo: {
+        image: "/images/pages/jewellery/hero/photo/image.png",
+        alt: "A coral and 18ct yellow gold bracelet wristwatch",
+        onWhite: true,
+      },
+    },
+    specialist: { show: true, eyebrow: "Your specialist", name: "", role: "", text: "", photo: { image: null, alt: "" }, phone: "", email: "" },
+    gallery: { show: true, title: "From recent sales", items: [] },
+    valuation: {
+      show: true,
+      title: "Request a jewellery valuation",
+      text: "Send us photographs and a few details through our valuation form, or bring your pieces to our Chelsea saleroom. Valuations are free.",
+      buttonLabel: "Request a valuation",
+    },
   },
   "private-sales.json": {
     seo: { title: "Private Sales", description: "Buying and selling by private agreement with Sloane Street Auctions." },
