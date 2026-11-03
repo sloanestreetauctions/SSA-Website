@@ -7,6 +7,7 @@ import { formatShortDate } from "@/lib/format";
 import { getSales } from "@/lib/sales";
 import { routes } from "@/lib/routes";
 import { Arrow } from "@/components/ui/Button";
+import { FaqPrompt } from "@/components/ui/FaqPrompt";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { ObjectPhoto, PhotoToCome } from "@/components/ui/PhotoToCome";
 import { RichText } from "@/components/ui/RichText";
@@ -169,6 +170,9 @@ export default async function SellPage() {
           </div>
         </section>
       )}
+
+      {/* Link to the FAQs, once that page has questions */}
+      <FaqPrompt />
     </>
   );
 }

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { easyLive, hasPhoto, howToBuyPage, isShown } from "@/content";
 import { routes } from "@/lib/routes";
+import { FaqPrompt } from "@/components/ui/FaqPrompt";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { PhotoToCome } from "@/components/ui/PhotoToCome";
@@ -153,17 +154,7 @@ export default function HowToBuyPage() {
       )}
 
       {/* Link to the FAQs, once that page has questions */}
-      {isPageOn("/faqs") && (
-        <div className="shell flex flex-col items-center py-16 text-center md:py-20">
-          <p className={`${serif} text-[1.625rem] leading-snug text-ink md:text-[1.875rem]`}>Still have questions?</p>
-          <Link
-            href="/faqs"
-            className={`group mt-5 inline-flex min-h-14 items-center gap-3 border border-ink/30 px-8 ${serif} text-[1.1875rem] transition-colors hover:border-navy hover:bg-navy hover:text-ivory`}
-          >
-            Read our FAQs <Arrow />
-          </Link>
-        </div>
-      )}
+      <FaqPrompt />
     </>
   );
 }
