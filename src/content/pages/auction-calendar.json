@@ -5,6 +5,15 @@
     "showOnSell": true,
     "sellText": "Now consigning for"
   },
+  "live": {
+    "barText": "Live now",
+    "buttonLabel": "Bid live"
+  },
+  "timed": {
+    "badge": "Timed online sale",
+    "closesLabel": "Closes",
+    "buttonLabel": "View and bid on The Saleroom"
+  },
   "viewingLabel": "Viewing times",
   "featured": {
     "show": true,
@@ -17,6 +26,7 @@
   "sales": [
     {
       "title": "The Christmas Auction",
+      "kind": "live",
       "date": "2026-12-03",
       "time": "10:30",
       "consignmentDeadline": "2026-11-13",
@@ -29,6 +39,7 @@
     },
     {
       "title": "The February Fine Art Sale",
+      "kind": "live",
       "date": "2027-02-04",
       "time": "10:30",
       "consignmentDeadline": "2027-01-15",
@@ -37,15 +48,16 @@
         "onWhite": false
       },
       "featuredLots": []
+    },
+    {
+      "title": "The Subterranean Sale",
+      "kind": "timed",
+      "date": "2026-11-06",
+      "closingDate": "2026-12-13",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
     }
-  ],
-  "live": {
-    "barText": "Live now",
-    "buttonLabel": "Bid live"
-  },
-  "timed": {
-    "badge": "Timed online sale",
-    "closesLabel": "Closes",
-    "buttonLabel": "View and bid on The Saleroom"
-  }
+  ]
 }
