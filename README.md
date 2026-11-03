@@ -200,8 +200,10 @@ and gives your email address.
 
 ## The logo
 
-One file, `public/brand/logo.png`, in its original colour: PANTONE 871 C (screen equivalent #84754E), from the vector
-print artwork. It is never recoloured. Vector masters are in `brand-source/vector/`.
+The gilded crest over the wordmark (approved November 2026). `public/brand/logo.png` is the version for navy
+backgrounds (header, footer, menu), in a slightly brighter gold so it reads as gold on navy. It is never recoloured.
+Vector masters are in `brand-source/vector/`: `logo-gold.svg` (white or ivory backgrounds), `logo-gold-for-navy.svg`,
+and the crest on its own (`crest-gold*.svg`). The earlier line-drawing logo is kept in `brand-source/vector/previous/`.
 
 ## Restoring an earlier version
 
