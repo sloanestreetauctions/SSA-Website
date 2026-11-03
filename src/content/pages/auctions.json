@@ -2,7 +2,7 @@
   "eyebrow": "Auctions",
   "title": "Upcoming auctions",
   "catalogueLinkLabel": "Browse all catalogues",
-  "noUpcoming": "New catalogues are published here as soon as they are ready.",
+  "noUpcoming": "There are no upcoming sales at the moment. New catalogues are published here as soon as they are ready.",
   "timed": {
     "show": true,
     "title": "Timed online sales",
