@@ -1,11 +1,13 @@
 {
-  "seo": {
-    "title": "Auctions"
-  },
   "eyebrow": "Auctions",
   "title": "Upcoming auctions",
   "catalogueLinkLabel": "Browse all catalogues",
-  "noUpcoming": "There are no upcoming sales at the moment. New catalogues are published here as soon as they are ready.",
+  "noUpcoming": "New catalogues are published here as soon as they are ready.",
+  "timed": {
+    "show": true,
+    "title": "Timed online sales",
+    "text": "Online-only sales held on The Saleroom. Browse the lots and bid there."
+  },
   "past": {
     "show": true,
     "title": "Past auctions",
@@ -21,9 +23,7 @@
     "text": "We conduct free valuations, Monday to Friday. You can visit our Chelsea saleroom, arrange a home valuation, or complete the form below.",
     "buttonLabel": "Request a free valuation"
   },
-  "timed": {
-    "show": true,
-    "title": "Timed online sales",
-    "text": "Online-only sales held on The Saleroom. Browse the lots and bid there."
+  "seo": {
+    "title": "Auctions"
   }
 }
