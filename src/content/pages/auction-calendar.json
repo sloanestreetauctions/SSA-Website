@@ -59,6 +59,22 @@
         "onWhite": false
       },
       "featuredLots": []
+    },
+    {
+      "title": "The October Estates Auction:",
+      "kind": "live",
+      "date": "2026-10-22",
+      "closingDate": "2026-10-22",
+      "time": "10:30",
+      "consignmentDeadline": "2026-10-22",
+      "description": "The Indian and Islamic Sale including Dr M Farsi Collection of Arms and Armour, British and European including the Extraordinary Property of a Lady and Fine Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/33edc71ea8a0cd1c07270635d82ab632/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sale-inc/",
+      "photo": {
+        "image": "/images/pages/calendar/sales/3/photo/image.JPG",
+        "alt": "Huggins, Jaguar",
+        "onWhite": false
+      },
+      "featuredLots": []
     }
   ]
 }
