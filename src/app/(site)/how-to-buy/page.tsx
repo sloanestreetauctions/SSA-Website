@@ -154,12 +154,13 @@ export default function HowToBuyPage() {
 
       {/* Link to the FAQs, once that page has questions */}
       {isPageOn("/faqs") && (
-        <div className="shell pb-20">
+        <div className="shell flex flex-col items-center py-16 text-center md:py-20">
+          <p className={`${serif} text-[1.625rem] leading-snug text-ink md:text-[1.875rem]`}>Still have questions?</p>
           <Link
             href="/faqs"
-            className={`group inline-flex items-center gap-3 border-b border-ink/40 pb-0.5 ${serif} text-[1.25rem] hover:border-ink`}
+            className={`group mt-5 inline-flex min-h-14 items-center gap-3 border border-ink/30 px-8 ${serif} text-[1.1875rem] transition-colors hover:border-navy hover:bg-navy hover:text-ivory`}
           >
-            More questions? Read our FAQs <Arrow />
+            Read our FAQs <Arrow />
           </Link>
         </div>
       )}
