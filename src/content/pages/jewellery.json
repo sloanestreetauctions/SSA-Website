@@ -1,8 +1,4 @@
 {
-  "seo": {
-    "title": "Jewellery valuations and auctions in Chelsea",
-    "description": "Free jewellery valuations at our Chelsea saleroom or from photographs, and fine jewellery in our auctions."
-  },
   "hero": {
     "eyebrow": "Specialist department",
     "title": "Jewellery",
@@ -17,15 +13,12 @@
   "specialist": {
     "show": true,
     "eyebrow": "Your specialist",
-    "name": "",
-    "role": "",
-    "text": "",
+    "name": "Stephen Giles",
+    "role": "Head of Jewellery",
+    "text": "Stephen is a jewellery specialist with over 40 years experience in the auction sector. He started his career in 1981 working for the Crown Jeweller at Garrard and Co., 112 Regent Street. In 1987 he joined Bonhams auctioneers, where he was Director of Jewellery for 10 years, after which he became European Director of Phillips Auctions, responsible for auctions in London and Geneva. \n\nAs our Head of Jewellery, Stephen conducts valuations on Wednesdays, which are available by an appointment and a walk-in basis. \n\nHe is responsible for the cataloguing of jewellery and condition reports. ",
     "photo": {
-      "image": null,
-      "alt": ""
-    },
-    "phone": "",
-    "email": ""
+      "image": "/images/pages/jewellery/specialist/photo/image.jpg"
+    }
   },
   "gallery": {
     "show": true,
@@ -37,5 +30,9 @@
     "title": "Request a jewellery valuation",
     "text": "Send us photographs and a few details through our valuation form, or bring your pieces to our Chelsea saleroom. Valuations are free.",
     "buttonLabel": "Request a valuation"
+  },
+  "seo": {
+    "title": "Jewellery valuations and auctions in Chelsea",
+    "description": "Free jewellery valuations at our Chelsea saleroom or from photographs, and fine jewellery in our auctions."
   }
 }
