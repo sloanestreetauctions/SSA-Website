@@ -87,7 +87,6 @@ export function PastAuctionsBrowser({ items, cards }: { items: PastItem[]; cards
             type="search"
             value={state.q}
             onChange={(e) => update({ q: e.target.value, page: 1 })}
-            placeholder="e.g. jewellery, Thatcher, March"
             className={`mt-2 ${field}`}
           />
         </div>

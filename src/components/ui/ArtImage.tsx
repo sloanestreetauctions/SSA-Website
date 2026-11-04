@@ -23,7 +23,7 @@ type ArtImageProps = {
   imageClassName?: string;
   /** Show the "Placeholder image" tag when the image is a stand-in. */
   showPlaceholderTag?: boolean;
-  /** When the photo is shown whole (a different shape from its box), leave an even margin all round so it never touches the edges. */
+  /** Always show the photo whole, with an even margin all round, so every card in a row looks the same whatever the photo's shape. */
   insetWhenWhole?: boolean;
 };
 
@@ -64,7 +64,7 @@ export function ArtImage({
   const box = boxRatio(frameClassName);
   const ratio = image.width / image.height;
   const shapesMatch = box !== null && Math.abs(ratio / box - 1) <= FILL_TOLERANCE;
-  const fill = image.isPlaceholder || (shapesMatch && !onWhite);
+  const fill = image.isPlaceholder || (shapesMatch && !onWhite && !insetWhenWhole);
 
   return (
     <div className={`relative overflow-hidden ${frameClassName}`}>
