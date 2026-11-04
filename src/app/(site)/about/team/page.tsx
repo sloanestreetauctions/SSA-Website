@@ -73,9 +73,13 @@ export default function TeamPage() {
               {member.buttonLabel && available(member.buttonHref) && (
                 <Link
                   href={member.buttonHref!}
-                  className={`group mt-4 flex min-h-12 w-fit items-center gap-3 bg-navy-deep px-5 ${serifText} text-[1.0625rem] text-ivory hover:bg-navy-soft`}
+                  className={`group mt-4 flex min-h-12 w-fit items-center gap-3 bg-navy-deep px-3.5 py-2 ${serifText} text-[1rem] leading-snug text-ivory hover:bg-navy-soft sm:px-5 sm:text-[1.0625rem]`}
                 >
-                  {member.buttonLabel} <Arrow />
+                  {/* No arrow on phones, where the cards are narrow: the words get the room. */}
+                  {member.buttonLabel}{" "}
+                  <span className="hidden sm:inline-flex">
+                    <Arrow />
+                  </span>
                 </Link>
               )}
             </li>

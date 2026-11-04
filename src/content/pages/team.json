@@ -57,7 +57,7 @@
       },
       "linkLabel": "Visit the Jewellery department",
       "linkHref": "/jewellery",
-      "buttonLabel": "Book a Jewellery Valuation",
+      "buttonLabel": "Book a Valuation",
       "buttonHref": "/jewellery/appointments"
     },
     {
