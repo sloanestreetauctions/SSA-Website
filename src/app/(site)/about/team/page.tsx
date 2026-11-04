@@ -6,7 +6,8 @@ import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { PhotoToCome } from "@/components/ui/PhotoToCome";
 import { serifText } from "@/components/ui/type";
-import { isShown, paragraphs, teamPage } from "@/content";
+import { isShown, paragraphs, personAnchor, teamPage } from "@/content";
+import { JEWELLERY_APPOINTMENTS_PATH, jewelleryBookingLive } from "@/lib/booking/status";
 
 const c = teamPage;
 
@@ -17,6 +18,13 @@ export const metadata: Metadata = { title: c.seo.title, description: c.seo.descr
  * Names, job titles and portraits are added in the editing screen (Meet the Team).
  * Nothing here is invented.
  */
+/** A person's link or button only shows while the page it leads to is available. */
+function available(href?: string | null) {
+  if (!href) return false;
+  if (href.split(/[?#]/)[0] === JEWELLERY_APPOINTMENTS_PATH) return jewelleryBookingLive();
+  return isPageOn(href);
+}
+
 export default function TeamPage() {
   if (!isPageOn("/about/team")) notFound();
   return (
@@ -49,9 +57,26 @@ export default function TeamPage() {
         {/* Everyone else, four to a row */}
         <ul className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4 md:gap-x-6">
           {c.members.map((member, i) => (
-            <li key={i}>
+            /* Each person has their own address, e.g. /about/team#stephen-giles, so other pages can link straight to them. */
+            <li key={i} id={member.name ? personAnchor(member.name) : undefined} className="scroll-mt-8 target:[&_.person-name]:text-navy">
               <PhotoToCome photo={member.photo} className="mb-4 aspect-[4/5]" sizes="(min-width: 768px) 24vw, 50vw" />
               <Person name={member.name} role={member.role} email={member.email} />
+              {member.linkLabel && available(member.linkHref) && (
+                <Link
+                  href={member.linkHref!}
+                  className={`group mt-3 inline-flex items-center gap-2.5 ${serifText} text-[1.0625rem] text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink`}
+                >
+                  {member.linkLabel} <Arrow />
+                </Link>
+              )}
+              {member.buttonLabel && available(member.buttonHref) && (
+                <Link
+                  href={member.buttonHref!}
+                  className={`group mt-4 flex min-h-12 w-fit items-center gap-3 bg-navy-deep px-5 ${serifText} text-[1.0625rem] text-ivory hover:bg-navy-soft`}
+                >
+                  {member.buttonLabel} <Arrow />
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -85,7 +110,7 @@ export default function TeamPage() {
 function Person({ name, role, email }: { name: string; role: string; email?: string }) {
   return (
     <>
-      {name && <p className="font-serif text-[1.375rem] leading-snug [font-variation-settings:'opsz'_36]">{name}</p>}
+      {name && <p className="person-name font-serif text-[1.375rem] leading-snug [font-variation-settings:'opsz'_36]">{name}</p>}
       {role && <p className={`${serifText} text-[1.0625rem] leading-snug text-ink-soft`}>{role}</p>}
       {email && (
         <a

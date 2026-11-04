@@ -54,7 +54,11 @@
       "photo": {
         "image": "/images/pages/team/members/4/photo/image.jpg",
         "alt": "Portrait of Stephen Giles"
-      }
+      },
+      "linkLabel": "Visit the Jewellery department",
+      "linkHref": "/jewellery",
+      "buttonLabel": "Book an Appointment",
+      "buttonHref": "/jewellery/appointments"
     },
     {
       "name": "Phoebe Janes",

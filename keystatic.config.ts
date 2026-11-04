@@ -792,6 +792,14 @@ export default config({
           eyebrow: line("Small heading", "e.g. Your specialist"),
           name: line("Name", "The section only appears once a name is added."),
           role: line("Job title", "e.g. Head of Jewellery"),
+          teamLinkLabel: line(
+            "Link to their card on Meet the Team",
+            "e.g. Stephen on Meet the Team. Goes to the person with the same name on Meet the Team.",
+          ),
+          bookingLabel: line(
+            "Appointment button",
+            "e.g. Book an appointment with Stephen. Goes to the jewellery booking page; only shown once booking is switched on.",
+          ),
           text: richParagraph("A short introduction, in their own words"),
           photo: photo("jewellery", "Portrait"),
           phone: line("Direct telephone", "Leave empty to hide."),
@@ -868,6 +876,13 @@ export default config({
           role: line("Job title"),
           email: line("Email address"),
           photo: photo("team", "Portrait", "An upright (portrait-shaped) photograph."),
+          linkLabel: line("Link under the name: wording", "e.g. Visit the Jewellery department"),
+          linkHref: line("Link under the name: goes to", "A page on this site, e.g. /jewellery."),
+          buttonLabel: line("Button: wording", "e.g. Book an Appointment"),
+          buttonHref: line(
+            "Button: goes to",
+            "A page on this site, e.g. /jewellery/appointments. A button to the jewellery booking page only appears once booking is switched on.",
+          ),
         }),
         {
           label: "3. Everyone else (four to a row)",

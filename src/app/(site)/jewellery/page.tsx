@@ -8,7 +8,8 @@ import { RichText } from "@/components/ui/RichText";
 import { SplitHeader } from "@/components/ui/SplitHeader";
 import { Reel } from "@/components/sales/Reel";
 import { FaqPrompt } from "@/components/ui/FaqPrompt";
-import { hasPhoto, isPageOn, isShown, jewelleryPage as c, paragraphs, telHref } from "@/content";
+import { hasPhoto, isPageOn, isShown, jewelleryPage as c, paragraphs, personAnchor, teamPage, telHref } from "@/content";
+import { JEWELLERY_APPOINTMENTS_PATH, jewelleryBookingLive } from "@/lib/booking/status";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
@@ -26,6 +27,11 @@ export default function JewelleryPage() {
   if (!isPageOn("/jewellery")) notFound();
   const { hero, specialist, gallery, valuation } = c;
   const photos = (gallery.items ?? []).filter((item) => hasPhoto(item.photo));
+  // The specialist's card on Meet the Team (same name), if that page is on and they're on it.
+  const onTeamPage =
+    specialist.name && isPageOn("/about/team") && teamPage.members.some((m) => m.name?.trim() === specialist.name?.trim());
+  const teamHref = specialist.name ? `/about/team#${personAnchor(specialist.name)}` : "";
+  const booking = jewelleryBookingLive() && specialist.bookingLabel;
 
   return (
     <>
@@ -75,6 +81,14 @@ export default function JewelleryPage() {
                 {specialist.name}
               </h2>
               {specialist.role && <p className="mt-1 font-sans text-[1rem] tracking-[0.06em] text-ink-soft">{specialist.role}</p>}
+              {onTeamPage && specialist.teamLinkLabel && (
+                <Link
+                  href={teamHref}
+                  className={`group mt-4 inline-flex items-center gap-3 border-b border-ink/40 pb-0.5 ${serif} text-[1.125rem] hover:border-ink`}
+                >
+                  {specialist.teamLinkLabel} <Arrow />
+                </Link>
+              )}
               {specialist.text && (
                 <div className={`mt-6 space-y-4 ${serif} text-[1.25rem] leading-[1.55] text-ink`}>
                   {paragraphs(specialist.text).map((p) => (
@@ -83,6 +97,15 @@ export default function JewelleryPage() {
                     </p>
                   ))}
                 </div>
+              )}
+              {booking && (
+                /* Stephen's bookable appointments: separate from the general valuation form further down. */
+                <Link
+                  href={JEWELLERY_APPOINTMENTS_PATH}
+                  className={`group mt-8 inline-flex min-h-16 items-center gap-4 bg-navy-deep px-8 ${serif} text-[1.1875rem] text-ivory transition-colors hover:bg-navy-soft`}
+                >
+                  {specialist.bookingLabel} <Arrow />
+                </Link>
               )}
               {(specialist.phone || specialist.email) && (
                 <ul className={`mt-6 space-y-1 ${serif} text-[1.1875rem]`}>

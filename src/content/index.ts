@@ -132,6 +132,15 @@ const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "jewellery" |
   ["/stories", "stories"],
 ];
 
+/** The address of a person's card on Meet the Team, e.g. "Stephen Giles" → "stephen-giles" (/about/team#stephen-giles). */
+export const personAnchor = (name: string) =>
+  name
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
 /** False when the page a link leads to has been switched off in the editor (Menus & footer → Pages switched on). */
 export function isPageOn(href: string): boolean {
   if (!href.startsWith("/")) return true;
