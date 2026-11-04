@@ -59,6 +59,7 @@ export function siteMenu({ bookingLive }: { bookingLive: boolean }): SiteMenu {
       group(h.about.label, h.about.description, [
         { label: "About Us", href: "/about" },
         { label: "Meet the Team", href: "/about/team" },
+        { label: "Bar & Cafe", href: "/about/bar-cafe" },
       ]),
       link(h.contact.label, "/contact", h.contact.description),
     ]),

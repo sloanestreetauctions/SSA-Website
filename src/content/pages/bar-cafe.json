@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "eyebrow": "Next door",
+    "title": "Sloane Street Auctions Bar & Cafe",
+    "intro": "",
+    "illustration": {
+      "image": "/images/pages/bar-cafe/hero/illustration/image.png",
+      "alt": "Watercolour illustration of the Sloane Street Auctions Bar & Café shopfront, with a navy awning, café tables outside and a chalkboard sign",
+      "onWhite": true
+    }
+  },
+  "hours": {
+    "title": "Opening hours",
+    "days": [],
+    "note": ""
+  },
+  "menu": {
+    "title": "Menu",
+    "intro": "",
+    "fileLabel": "Download the menu (PDF)",
+    "sections": []
+  },
+  "visit": {
+    "title": "Find us",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "note": ""
+  },
+  "seo": {
+    "title": "Bar & Cafe",
+    "description": ""
+  }
+}

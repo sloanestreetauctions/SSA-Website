@@ -13,6 +13,7 @@
 import type { Entry } from "@keystatic/core/reader";
 import type keystaticConfig from "../../keystatic.config";
 import aboutJson from "./pages/about.json";
+import barCafeJson from "./pages/bar-cafe.json";
 import calendarJson from "./pages/auction-calendar.json";
 import highlightsJson from "./pages/sale-highlights.json";
 import coversJson from "./pages/catalogue-covers.json";
@@ -58,6 +59,7 @@ export const auctionsPage = read<"auctions">(auctionsJson);
 export const sellPage = read<"sell">(sellJson);
 export const howToBuyPage = read<"howToBuy">(howToBuyJson);
 export const aboutPage = read<"about">(aboutJson);
+export const barCafePage = read<"barCafe">(barCafeJson);
 export const teamPage = read<"team">(teamJson);
 export const contactPage = read<"contact">(contactJson);
 export const valuationPage = read<"valuation">(valuationJson);
@@ -123,7 +125,7 @@ export const easyLive = {
 
 /* ------------------------------------------------------------ page switches */
 
-const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "jewellery" | "howToBuy" | "faq" | "about" | "team" | "stories", exact?: boolean][] = [
+const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "jewellery" | "howToBuy" | "faq" | "about" | "team" | "barCafe" | "stories", exact?: boolean][] = [
   ["/faqs", "faq"],
   ["/sell", "sell"],
   ["/private-sales", "privateSales"],
@@ -131,6 +133,7 @@ const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "jewellery" |
   ["/jewellery", "jewellery", true],
   ["/how-to-buy", "howToBuy"],
   ["/about/team", "team"],
+  ["/about/bar-cafe", "barCafe"],
   ["/about", "about", true],
   ["/stories", "stories"],
 ];
@@ -151,7 +154,13 @@ export function isPageOn(href: string): boolean {
   const pages = (navigation as { pages?: Partial<Record<string, boolean>> }).pages;
   for (const [prefix, key, exact] of PAGE_SWITCH) {
     const match = exact ? path === prefix : path === prefix || path.startsWith(`${prefix}/`);
-    if (match) return pages?.[key] !== false && (key !== "faq" || (faqPage.questions ?? []).length > 0);
+    if (match)
+      return (
+        pages?.[key] !== false &&
+        (key !== "faq" || (faqPage.questions ?? []).length > 0) &&
+        // The Bar & Cafe page waits until there is something to show.
+        (key !== "barCafe" || (barCafePage.hours.days ?? []).length > 0 || (barCafePage.menu.sections ?? []).length > 0 || Boolean(barCafePage.menu.file))
+      );
   }
   return true;
 }

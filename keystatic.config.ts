@@ -172,7 +172,7 @@ export default config({
     brand: { name: "Sloane Street Auctions" },
     navigation: {
       "Sales and results": ["calendar", "covers", "highlights"],
-      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "jewellery", "appointments", "about", "team", "contact", "valuation", "stories", "notFound"],
+      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "jewellery", "appointments", "about", "team", "contact", "valuation", "barCafe", "stories", "notFound"],
       "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
       "Legal pages": ["terms", "privacy"],
     },
@@ -513,6 +513,7 @@ export default config({
             faq: pageSwitch("FAQs (shown once at least one question is added)"),
             about: pageSwitch("About"),
             team: pageSwitch("Meet the Team"),
+            barCafe: pageSwitch("Bar & Cafe (shown once opening hours or a menu are added)"),
             stories: pageSwitch("Stories & Insights"),
           },
           {
@@ -913,6 +914,77 @@ export default config({
       daySheetEmail: line(
         "Next day's appointments are emailed to",
         "At 6pm every Tuesday, a printable PDF of Wednesday's appointments goes to this address (e.g. Stephen's email). Several addresses can be separated by commas. Leave empty to send none.",
+      ),
+    }),
+
+    /* ======================================================= BAR & CAFE (About) */
+    barCafe: singlePage("Bar & Cafe", "bar-cafe", {
+      seo: seo({ title: "Bar & Cafe" }),
+      hero: fields.object(
+        {
+          eyebrow: line("Small heading", "e.g. Next door"),
+          title: requiredLine("Name", "e.g. Sloane Street Auctions Bar & Cafe"),
+          intro: richParagraph("A few words about it"),
+          illustration: objectPhoto("bar-cafe", "Illustration", "Your illustration of the bar & cafe. Shown whole at the top of the page."),
+        },
+        { label: "1. Top of the page" },
+      ),
+      hours: fields.object(
+        {
+          title: line("Heading", "e.g. Opening hours"),
+          days: fields.array(
+            fields.object({
+              days: requiredLine("Day or days", "e.g. Monday – Friday"),
+              times: requiredLine("Hours", "e.g. 8:00 – 18:00, or Closed"),
+            }),
+            { label: "Opening hours", itemLabel: (props) => `${props.fields.days.value} ${props.fields.times.value}`.trim() },
+          ),
+          note: paragraph("Note under the hours", "e.g. Kitchen closes 30 minutes before closing. Leave empty for none."),
+        },
+        { label: "2. Opening hours" },
+      ),
+      menu: fields.object(
+        {
+          title: line("Heading", "e.g. Menu"),
+          intro: paragraph("Text above the menu", "e.g. Our menu changes with the seasons."),
+          file: fields.file({
+            label: "Menu PDF (optional)",
+            description: "Upload the menu as a PDF and a “Download the menu” link appears. Replace it whenever the menu changes.",
+            directory: "public/bar-cafe",
+            publicPath: "/bar-cafe/",
+          }),
+          fileLabel: line("Wording of the download link", "e.g. Download the menu (PDF)"),
+          sections: fields.array(
+            fields.object({
+              title: requiredLine("Section", "e.g. Breakfast, Coffee, Wine"),
+              items: fields.array(
+                fields.object({
+                  name: requiredLine("Dish or drink"),
+                  description: line("Description", "Optional, e.g. sourdough, crushed avocado, chilli"),
+                  price: line("Price", "As you’d like it shown, e.g. £4.50"),
+                }),
+                { label: "Items", itemLabel: (props) => `${props.fields.name.value}${props.fields.price.value ? ` · ${props.fields.price.value}` : ""}` },
+              ),
+            }),
+            {
+              label: "Menu typed onto the page (optional)",
+              description: "Easier to read on phones and found by Google. You can use this, the PDF above, or both.",
+              itemLabel: (props) => props.fields.title.value || "New section",
+            },
+          ),
+        },
+        { label: "3. Menu" },
+      ),
+      visit: fields.object(
+        {
+          title: line("Heading", "e.g. Find us"),
+          address: paragraph("Address", "One line per row. Leave empty to hide."),
+          phone: line("Telephone", "Leave empty to hide."),
+          email: line("Email", "Leave empty to hide."),
+          instagram: fields.url({ label: "Instagram (optional)", description: "The bar & cafe’s own Instagram page, if it has one." }),
+          note: richParagraph("Note, e.g. bookings or private hire"),
+        },
+        { label: "4. Finding us" },
       ),
     }),
 

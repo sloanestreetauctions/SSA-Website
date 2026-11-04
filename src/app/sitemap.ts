@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/valuation",
     "/about",
     "/about/team",
+    "/about/bar-cafe",
     "/contact",
     "/terms-and-conditions",
     "/privacy-policy",
