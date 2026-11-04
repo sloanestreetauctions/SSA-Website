@@ -21,6 +21,8 @@ const TOKEN_AUDIENCE = "https://oauth2.googleapis.com/token";
 const SCOPES = [
   // Create the "Jewellery appointments" calendar and manage only calendars it created itself.
   "https://www.googleapis.com/auth/calendar.app.created",
+  // Share that calendar with the house (info@).
+  "https://www.googleapis.com/auth/calendar.acls",
   // Add appointments to a calendar shared with it (if one is set instead).
   "https://www.googleapis.com/auth/calendar.events",
   // See when Stephen is busy (only free/busy, never what the appointments are).
@@ -81,7 +83,8 @@ export async function busyTimes(calendarIds: string[], from: Date, to: Date): Pr
   for (const id of calendarIds) {
     const cal = body.calendars?.[id];
     // A calendar that hasn't been shared with the service account comes back with an error, not "free": never treat that as free.
-    if (!cal || cal.errors?.length) throw new CalendarError(`A calendar couldn't be read (${cal?.errors?.[0]?.reason ?? "missing"}). Check it is shared with the service account.`);
+    if (!cal || cal.errors?.length)
+      throw new CalendarError(`The calendar "${id}" couldn't be read (${cal?.errors?.[0]?.reason ?? "missing"}). Check it is shared with the service account.`);
     for (const b of cal.busy ?? []) busy.push({ start: Date.parse(b.start), end: Date.parse(b.end) });
   }
   return busy;
