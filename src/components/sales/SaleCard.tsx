@@ -53,6 +53,7 @@ export function SaleCard({
             priority={priority}
             sizes={large ? "(min-width: 768px) 45vw, 100vw" : "(min-width: 768px) 29vw, 100vw"}
             frameClassName={large ? "aspect-[1.25]" : "aspect-[1.6]"}
+            insetWhenWhole
           />
         ) : (
           /* No cover photograph yet: a typographic navy cover with the date, so the row still looks complete. */

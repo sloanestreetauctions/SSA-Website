@@ -43,11 +43,14 @@ export function ObjectPhoto({
   sizes: sizesAttr,
   frameClassName,
   priority,
+  insetWhenWhole,
 }: {
   photo: EditorialPhoto | null | undefined;
   sizes: string;
   frameClassName: string;
   priority?: boolean;
+  /** See ArtImage: an even margin round a photo shown whole. */
+  insetWhenWhole?: boolean;
 }) {
   if (!hasPhoto(photo)) return null;
   // A photo added moments ago may not be measured until the next restart: show it whole meanwhile.
@@ -58,6 +61,7 @@ export function ObjectPhoto({
       sizes={sizesAttr}
       priority={priority}
       frameClassName={frameClassName}
+      insetWhenWhole={insetWhenWhole}
     />
   );
 }

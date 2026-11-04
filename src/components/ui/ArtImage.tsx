@@ -23,6 +23,8 @@ type ArtImageProps = {
   imageClassName?: string;
   /** Show the "Placeholder image" tag when the image is a stand-in. */
   showPlaceholderTag?: boolean;
+  /** When the photo is shown whole (a different shape from its box), leave an even margin all round so it never touches the edges. */
+  insetWhenWhole?: boolean;
 };
 
 /** Reads the box shape from its aspect class (e.g. "aspect-[4/3]", "aspect-[1.6]", "aspect-square"). */
@@ -56,6 +58,7 @@ export function ArtImage({
   frameClassName = "",
   imageClassName = "",
   showPlaceholderTag = true,
+  insetWhenWhole = false,
 }: ArtImageProps) {
   const onWhite = image.background === "white";
   const box = boxRatio(frameClassName);
@@ -71,7 +74,7 @@ export function ArtImage({
         fill
         sizes={sizes}
         preload={priority}
-        className={`${fill ? "object-cover" : "object-contain"} ${onWhite ? "mix-blend-multiply" : ""} ${imageClassName}`}
+        className={`${fill ? "object-cover" : "object-contain"} ${!fill && insetWhenWhole ? "p-[6%]" : ""} ${onWhite ? "mix-blend-multiply" : ""} ${imageClassName}`}
       />
       {image.isPlaceholder && showPlaceholderTag && <PlaceholderTag />}
     </div>
