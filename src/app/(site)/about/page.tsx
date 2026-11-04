@@ -10,6 +10,7 @@ import { RichText } from "@/components/ui/RichText";
 import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
 import { aboutPage, hasPhoto, isShown, paragraphs } from "@/content";
 import { serifText } from "@/components/ui/type";
+import { InstagramStrip } from "@/components/sales/InstagramStrip";
 
 const c = aboutPage;
 
@@ -122,6 +123,9 @@ export default function AboutPage() {
           </div>
         </section>
       )}
+
+      {/* Instagram: the latest posts (editor → Instagram strip) */}
+      <InstagramStrip />
     </>
   );
 }

@@ -400,7 +400,7 @@ export default config({
     /* ===================================================== INSTAGRAM STRIP */
     instagram: singlePage("Instagram strip", "instagram", {
       show: fields.checkbox({
-        label: "Show the Instagram strip on the homepage",
+        label: "Show the Instagram strip on the About page",
         description: "Shown once there are photos (from Behold, or added below). Untick to hide it (nothing is deleted).",
         defaultValue: true,
       }),
