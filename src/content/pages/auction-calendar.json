@@ -25,6 +25,18 @@
   },
   "sales": [
     {
+      "title": "The February Fine Art Sale",
+      "kind": "live",
+      "date": "2027-02-04",
+      "time": "10:30",
+      "consignmentDeadline": "2027-01-15",
+      "description": " To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
       "title": "The Christmas Auction",
       "kind": "live",
       "date": "2026-12-03",
@@ -32,18 +44,6 @@
       "consignmentDeadline": "2026-11-13",
       "description": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "viewing": "Friday 20 November | 9:30am - 6:00pm\nSaturday 21 November | 10:00am - 4:00pm\nSunday 22 November | 12:00pm - 4:00pm\nMonday 23 November | 9:30am - 6:00pm\nTuesday 24 November | 9:30am - 6:00pm\nWednesday 25 November | 9:30am - 6:00pm\nThursday 26 November | 9:30am - 8:00pm\nFriday 27 November | 9:30am - 6:00pm\nSaturday 28 November | 10:00am - 4:00pm\nSunday 29 November | 12:00pm - 4:00pm\nMonday 30 November | 9:30am - 6:00pm\nTuesday 1 December | 9:30am - 6:00pm\nWednesday 2 December | 9:30am - 6:00pm\nThursday 3 December | 9:30am - 10:30am",
-      "photo": {
-        "onWhite": false
-      },
-      "featuredLots": []
-    },
-    {
-      "title": "The February Fine Art Sale",
-      "kind": "live",
-      "date": "2027-02-04",
-      "time": "10:30",
-      "consignmentDeadline": "2027-01-15",
-      "description": " To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "photo": {
         "onWhite": false
       },
@@ -67,14 +67,15 @@
       "closingDate": "2026-10-22",
       "time": "10:30",
       "consignmentDeadline": "2026-10-22",
-      "description": "The Indian and Islamic Sale including Dr M Farsi Collection of Arms and Armour, British and European including the Extraordinary Property of a Lady and Fine Jewellery",
+      "description": "",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/33edc71ea8a0cd1c07270635d82ab632/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sale-inc/",
       "photo": {
         "image": "/images/pages/calendar/sales/3/photo/image.JPG",
         "alt": "Huggins, Jaguar",
         "onWhite": true
       },
-      "featuredLots": []
+      "featuredLots": [],
+      "longDescription": "The Indian and Islamic Sale including Dr M Farsi Collection of Arms and Armour, British and European including the Extraordinary Property of a Lady and Fine Jewellery"
     },
     {
       "title": "The September Auction",
@@ -83,13 +84,14 @@
       "closingDate": "2026-09-24",
       "time": "10:30",
       "consignmentDeadline": "2026-09-24",
-      "description": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery",
+      "description": "",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d3b8e975b4a6f13a735e4646c0322705/f696df3e52c0cf46109d4cecaabb248f/the-september-auction-to-include-noble-estates-old-and-mod/",
       "photo": {
         "image": "/images/pages/calendar/sales/4/photo/image.JPG",
         "onWhite": false
       },
-      "featuredLots": []
+      "featuredLots": [],
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery"
     },
     {
       "title": "The Summer Auction",
@@ -98,13 +100,14 @@
       "closingDate": "2026-07-10",
       "time": "10:30",
       "consignmentDeadline": "2026-07-10",
-      "description": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "description": "",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/35f794b69c868c92f5b92548b46dab8e/f696df3e52c0cf46109d4cecaabb248f/the-summer-auction-to-include-noble-estates-old-and-modern/",
       "photo": {
         "image": "/images/pages/calendar/sales/5/photo/image.JPG",
         "onWhite": false
       },
-      "featuredLots": []
+      "featuredLots": [],
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery"
     },
     {
       "title": "The June Auction",
@@ -113,10 +116,219 @@
       "closingDate": "2026-06-19",
       "time": "10:30",
       "consignmentDeadline": "2026-06-19",
-      "description": "To include Noble Estates, Old and Modern Masters and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP",
+      "description": "",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/c1d242fbd8eebed3e8150d13505b64b9/f696df3e52c0cf46109d4cecaabb248f/the-june-auction-to-include-noble-estates-old-and-modern-m/",
       "photo": {
         "image": "/images/pages/calendar/sales/6/photo/image.JPG",
+        "onWhite": false
+      },
+      "featuredLots": [],
+      "longDescription": "To include Noble Estates, Old and Modern Masters and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP"
+    },
+    {
+      "title": "The Early Summer Auction",
+      "kind": "live",
+      "date": "2026-05-21",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ffac61d59acf648b62d03663c3f40013/f696df3e52c0cf46109d4cecaabb248f/the-early-summer-auction-to-include-noble-estates-old-and/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Spring Auction",
+      "kind": "live",
+      "date": "2026-04-16",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Old and Modern Masters, Jewellery and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/56a93412a897ee7375068ac7544e8fbb/f696df3e52c0cf46109d4cecaabb248f/the-spring-auction-to-include-old-and-modern-masters-jewel/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The March Auction",
+      "kind": "live",
+      "date": "2026-03-12",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/165cc5c974071ff2e2d59ff428abd049/f696df3e52c0cf46109d4cecaabb248f/the-march-auction-to-include-noble-estates-old-and-modern/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The February Valentine's Fine Art Auction",
+      "kind": "live",
+      "date": "2026-02-05",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/cbf71e38dc560794c2f902d3c1e382b2/f696df3e52c0cf46109d4cecaabb248f/the-february-valentines-fine-art-auction-to-include-noble/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Christmas Fine Art Auction",
+      "kind": "live",
+      "date": "2025-12-05",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture, Jewellery and Fine Wines",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/a273c97948f1c5bf9b07726176169085/f696df3e52c0cf46109d4cecaabb248f/the-christmas-fine-art-auction-to-include-noble-estates-ol/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Baroness Margaret Thatcher LG, OM, DstJ, PC, FRS, HonFRSC, Princely and Noble Estates Auction",
+      "kind": "live",
+      "date": "2025-10-29",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/0591ac7b2104792fb2ae7e2404193276/f696df3e52c0cf46109d4cecaabb248f/the-baroness-margaret-thatcher-lg-om-dstj-pc-frs-honfrs/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The September Fine Art Auction",
+      "kind": "live",
+      "date": "2025-09-26",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/4c7d1fb227ca35481f12a68399e790e6/f696df3e52c0cf46109d4cecaabb248f/the-september-fine-art-auction-to-include-noble-estates-ol/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Summer Fine Art Auction",
+      "kind": "live",
+      "date": "2025-07-08",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/76c754e2672fec5fd41ef9d64c3a3ff2/f696df3e52c0cf46109d4cecaabb248f/the-summer-fine-art-auction-to-include-noble-estates-old-a/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The June Auction",
+      "kind": "live",
+      "date": "2025-06-12",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old Masters, Jewellery, Modern British and Sculpture",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/fc966e783c9874b8dbecec2b27b5569e/f696df3e52c0cf46109d4cecaabb248f/the-june-auction-to-include-noble-estates-old-masters-jew/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Early Summer Auction",
+      "kind": "live",
+      "date": "2025-05-02",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Noble Estates, Old Masters, Jewellery, Modern British, Sculpture and Arts of the Islamic World",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/7ed06a13b6087e481ece1a1c151f2e4b/f696df3e52c0cf46109d4cecaabb248f/the-early-summer-auction-to-include-noble-estates-old-mast/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Spring Fine Art Auction",
+      "kind": "live",
+      "date": "2025-03-28",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Old Masters, Jewellery, Modern British, Sculpture and Fine Estate Contents",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/eb4c9d5758952201f2babcaa2577f7fd/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-auction-to-include-old-masters-jewelle/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Valentine's Auction",
+      "kind": "live",
+      "date": "2025-02-06",
+      "time": "10:30",
+      "description": "",
+      "longDescription": "To include Old and Modern Masters, Jewellery and other Estate Contents including The Late Baroness Thatcher",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/8ef4ee0d32eded79d43f2acda335e82b/f696df3e52c0cf46109d4cecaabb248f/the-valentines-auction-to-include-old-and-modern-masters/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Winter Auction",
+      "kind": "live",
+      "date": "2024-11-29",
+      "time": "11:00",
+      "description": "",
+      "longDescription": "Personal Property of the Late Baroness Margaret Thatcher and the Antiquarian Peter Roe and other Fine Estate Contents, Old and Modern Masters, Fine Furniture and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/2f613f169db00ca69af6865cd639c7ca/f696df3e52c0cf46109d4cecaabb248f/the-winter-auction-personal-property-of-the-late-baroness-m/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The 23rd October Sale",
+      "kind": "live",
+      "date": "2024-10-23",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "To include 20th Century, Modern and Old Masters, Islamic and Asian Art and Jewellery",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ae18e34f77daf91e2e2dc35f715886bd/f696df3e52c0cf46109d4cecaabb248f/the-23rd-october-sale-to-include-20th-century-modern-and-o/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The 19th September Sale",
+      "kind": "live",
+      "date": "2024-09-19",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "To include Old Master and Sporting Paintings, Jewellery, Furniture and Estate Contents",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/57ba55fd804cde525292cbce45eef0e2/f696df3e52c0cf46109d4cecaabb248f/the-19th-september-sale-to-include-old-master-and-sporting/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Old Master Sale",
+      "kind": "live",
+      "date": "2024-07-03",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "Jewellery, Paintings, Furniture and Estate Contents",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/2461b6c809c06ce0225a8811d432ff6e/f696df3e52c0cf46109d4cecaabb248f/the-old-master-sale-jewellery-paintings-furniture-and-est/",
+      "photo": {
         "onWhite": false
       },
       "featuredLots": []
