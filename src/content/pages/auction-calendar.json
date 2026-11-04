@@ -72,7 +72,7 @@
       "photo": {
         "image": "/images/pages/calendar/sales/3/photo/image.JPG",
         "alt": "Huggins, Jaguar",
-        "onWhite": false
+        "onWhite": true
       },
       "featuredLots": []
     },
