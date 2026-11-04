@@ -24,52 +24,44 @@
         "days": "Saturday – Sunday",
         "times": "Closed"
       }
-    ],
-    "note": ""
+    ]
   },
   "menu": {
     "title": "Menu",
     "intro": "Fresh pastries & homemade sweet treats delivered daily, please ask at the bar for details.",
+    "file": "/bar-cafe/menu/file.pdf",
     "fileLabel": "Download the menu (PDF)",
     "sections": [
       {
         "title": "Small Bites",
-        "description": "",
         "items": [
           {
             "name": "Shropshire Salumi Mini Salami “Beer Sticks”",
-            "description": "",
             "price": "£3.50"
           },
           {
             "name": "Homemade Sausage Roll & Mustard",
-            "description": "",
             "price": "£5.50"
           },
           {
             "name": "Toasted Ham & Cheese Croissant",
-            "description": "",
             "price": "£6.50"
           },
           {
             "name": "Homemade Hummus, Spiced Chickpea Salsa, Seeded Dukkah, Olive Oil & Pitta (VG)",
-            "description": "",
             "price": "£7.50"
           },
           {
             "name": "Bacon Ciabatta Sandwich",
-            "description": "",
             "price": "£6.50"
           }
         ]
       },
       {
         "title": "Large Bites",
-        "description": "",
         "items": [
           {
             "name": "Smashed Avocado, Pickled Onion, Sun-Dried Tomato & Feta on Sourdough (V)",
-            "description": "",
             "price": "£8.50"
           },
           {
@@ -79,33 +71,27 @@
           },
           {
             "name": "French Omelette, Cheese & Avocado (V)",
-            "description": "",
             "price": "£10.00"
           },
           {
             "name": "Fig, Goats Cheese, Beetroot, Chicory & Orange Salad (V)",
-            "description": "",
             "price": "£12.50"
           }
         ]
       },
       {
         "title": "Toasties",
-        "description": "",
         "items": [
           {
             "name": "Mozzarella, Gouda & Cheddar Cheese and Caramelised Onion Toastie (V)",
-            "description": "",
             "price": "£8.50"
           },
           {
             "name": "Shropshire Salumi Bresaola, Coppa & Salami, Dill Pickle, Mustard & Cheese",
-            "description": "",
             "price": "£12.50"
           },
           {
             "name": "Fig, Brie, Mortadella & Walnut",
-            "description": "",
             "price": "£10.00"
           }
         ]
@@ -128,132 +114,107 @@
       },
       {
         "title": "Soft Drinks",
-        "description": "",
         "items": [
           {
             "name": "Still Water 330ml",
-            "description": "",
             "price": "£2.00"
           },
           {
             "name": "San Pellegrino Sparkling Water 250ml",
-            "description": "",
             "price": "£2.50"
           },
           {
             "name": "Daily Dose Orange Juice",
-            "description": "",
             "price": "£3.80"
           },
           {
             "name": "San Pellegrino Lemon Juice",
-            "description": "",
             "price": "£3.00"
           },
           {
             "name": "San Pellegrino Pomegranate & Orange",
-            "description": "",
             "price": "£3.00"
           },
           {
             "name": "Coca Cola",
-            "description": "",
             "price": "£3.00"
           },
           {
             "name": "Coca Cola Zero",
-            "description": "",
             "price": "£3.00"
           }
         ]
       },
       {
         "title": "Beer",
-        "description": "",
         "items": [
           {
             "name": "Peroni Beer",
-            "description": "",
             "price": "£5.00"
           },
           {
             "name": "Lucky Saint 0.5%",
-            "description": "",
             "price": "£5.00"
           }
         ]
       },
       {
         "title": "Cocktails & Spirits",
-        "description": "",
         "items": [
           {
             "name": "Espresso Martini",
-            "description": "",
             "price": "£13.50"
           },
           {
             "name": "Classic Negroni",
-            "description": "",
             "price": "£14.00"
           },
           {
             "name": "Gin & Tonic 25ml/50ml",
-            "description": "",
             "price": "£7.50/£10.50"
           },
           {
             "name": "Vodka & Tonic 25ml/50ml",
-            "description": "",
             "price": "£7.50/£10.50"
           },
           {
             "name": "Hugo Spritz",
-            "description": "",
             "price": "£12.50"
           },
           {
             "name": "Aperol Spritz",
-            "description": "",
             "price": "£12.50"
           },
           {
             "name": "Dark & Stormy",
-            "description": "",
             "price": "£12.50"
           },
           {
             "name": "Margarita",
-            "description": "",
             "price": "£13.50"
           },
           {
             "name": "Cocchi Vermouth 50ml",
-            "description": "",
             "price": "£7.00"
           },
           {
             "name": "Balvenie 14 years 50ml",
-            "description": "",
             "price": "£16.00"
           },
           {
             "name": "Glenfiddich 12 years 50ml",
-            "description": "",
             "price": "£12.00"
           }
         ]
       }
     ],
-    "file": "/bar-cafe/menu.pdf",
     "note": "(V) Vegetarian (VG) Vegan\n\nOur kitchen handles all 14 major allergens, so traces may be present in any dish. Please ask a member of staff for allergen information before ordering."
   },
   "visit": {
     "title": "Find us",
     "address": "168 Fulham Road\nLondon SW10 9PR",
-    "phone": "",
-    "email": "",
-    "note": ""
+    "email": "cafe@sloanestreetauctions.com",
+    "instagram": "@sloanestreetauctionscafe"
   },
   "seo": {
     "title": "Bar & Cafe",
