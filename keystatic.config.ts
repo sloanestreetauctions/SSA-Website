@@ -266,12 +266,16 @@ export default config({
           consignmentDeadline: fields.date({
             label: "Consignment deadline",
             description:
-              "Last date to consign items for this sale. Shown on the sale (and on Sell With Us) until it has passed. Leave empty to hide.",
+              "Last date to consign items for this sale. Shown on the sale (and on Sell With Us) until it has passed, never on Past auctions. Leave empty to hide (not needed for past sales).",
           }),
           description: paragraph("Short description", "One or two lines, e.g. what is in the sale and how to bid."),
+          longDescription: paragraph(
+            "Full description (optional)",
+            "A longer write-up of the sale, shown under the short description on Upcoming and Past auctions. Leave a blank line between paragraphs.",
+          ),
           viewing: paragraph(
             "Viewing times",
-            "One line per day, e.g. Monday 30 November, 10am – 5pm. Shown on the sale on the Auctions page.",
+            "One line per day, e.g. Monday 30 November, 10am – 5pm. Shown on the sale on Upcoming auctions only (not needed for past sales).",
           ),
           liveLink: fields.url({
             label: "Live bidding link",

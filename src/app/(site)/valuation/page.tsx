@@ -5,6 +5,7 @@ import { RichText } from "@/components/ui/RichText";
 import { Breadcrumbs, Eyebrow } from "@/components/ui/Editorial";
 import { Notes } from "@/components/ui/PageParts";
 import { ValuationForm } from "@/components/valuation/ValuationForm";
+import { valuationDeliveryReady } from "@/lib/valuation/delivery";
 
 const c = valuationPage;
 
@@ -28,7 +29,7 @@ export default function ValuationPage() {
 
       <div className="mt-8 grid gap-16 lg:mt-4 lg:grid-cols-12">
         <div className="lg:col-span-8">
-          <ValuationForm deliveryReady={process.env.VALUATION_DELIVERY === "resend"} />
+          <ValuationForm deliveryReady={valuationDeliveryReady()} />
         </div>
 
         {(showNext || showTalk || showNotes) && (

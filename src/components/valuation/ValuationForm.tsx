@@ -43,18 +43,48 @@ const FIELD_LABELS: Record<keyof FieldErrors, string> = {
  * Shrinks a photo in the browser before upload (phone photos are often
  * 5–10 MB). Also corrects rotation and converts to JPEG.
  */
-async function preparePhoto(file: File): Promise<File> {
+async function preparePhoto(file: File, maxDimension: number = PHOTO_LIMITS.maxDimension, quality = 0.86): Promise<File> {
   const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
-  const scale = Math.min(1, PHOTO_LIMITS.maxDimension / Math.max(bitmap.width, bitmap.height));
+  const scale = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
   const canvas = document.createElement("canvas");
   canvas.width = Math.round(bitmap.width * scale);
   canvas.height = Math.round(bitmap.height * scale);
   canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
   bitmap.close();
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.86));
+  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
   if (!blob) throw new Error("encode failed");
   const name = file.name.replace(/\.[^.]+$/, "") + ".jpg";
   return new File([blob], name, { type: "image/jpeg" });
+}
+
+/**
+ * The website's host accepts at most 4.5 MB per request, photographs included.
+ * If the photos together come to more than this budget, each one that is over
+ * its share is made a little smaller (still plenty for a valuation) until they fit.
+ */
+const UPLOAD_BUDGET = 3.8 * 1024 * 1024;
+const SMALLER_STEPS: [number, number][] = [
+  [2000, 0.82],
+  [1600, 0.8],
+  [1400, 0.78],
+  [1200, 0.75],
+  [1000, 0.72],
+];
+
+async function fitUploadBudget(files: File[]): Promise<File[]> {
+  const total = files.reduce((sum, f) => sum + f.size, 0);
+  if (total <= UPLOAD_BUDGET) return files;
+  const share = UPLOAD_BUDGET / files.length;
+  return Promise.all(
+    files.map(async (file) => {
+      let current = file;
+      for (const [dimension, quality] of SMALLER_STEPS) {
+        if (current.size <= share) break;
+        current = await preparePhoto(file, dimension, quality);
+      }
+      return current;
+    }),
+  );
 }
 
 export function ValuationForm({ deliveryReady = false }: { deliveryReady?: boolean }) {
@@ -134,12 +164,17 @@ export function ValuationForm({ deliveryReady = false }: { deliveryReady?: boole
 
     const body = new FormData(event.currentTarget);
     body.delete("photos");
-    photos.forEach((p) => body.append("photos", p.file));
     body.set("consent", values.consent ? "yes" : "");
 
     setSubmitting(true);
     try {
+      (await fitUploadBudget(photos.map((p) => p.file))).forEach((file) => body.append("photos", file));
       const response = await fetch("/api/valuation", { method: "POST", body });
+      // Too large for the host (shouldn't happen after fitting, but never blame the visitor's connection for it).
+      if (response.status === 413) {
+        setServerMessage(`Your photographs are too large to send together. Please remove one or two and try again, or email ${settings.generalEmail}.`);
+        return;
+      }
       const data = await response.json();
       if (data.ok) {
         setResult({ reference: data.reference, delivered: data.delivered, name: values.name.split(" ")[0] });

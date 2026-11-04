@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/structured-data";
+import { searchEnginesWelcome } from "@/lib/indexing";
 import { hanken, newsreader } from "./fonts";
 import "./globals.css";
 
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
     description: site.description,
   },
   twitter: { card: "summary_large_image" },
-  // Keep the prototype out of search engines until launch.
-  robots: { index: false, follow: false },
+  // Hidden from search engines until the real address is attached (see src/lib/indexing.ts).
+  robots: searchEnginesWelcome() ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {

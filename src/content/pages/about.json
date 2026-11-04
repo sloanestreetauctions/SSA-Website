@@ -31,7 +31,7 @@
     "show": true,
     "title": "Visit us on Fulham Road",
     "text": "158–164 Fulham Road, Chelsea, London SW10 9PR.",
-    "primaryButton": "Meet the team",
+    "primaryButton": "",
     "secondaryButton": "Contact us",
     "illustration": {
       "image": "/images/pages/about/visit/illustration/image.PNG",
