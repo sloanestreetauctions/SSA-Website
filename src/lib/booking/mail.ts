@@ -27,6 +27,10 @@ export type BookingEmail = {
   closingNote: string;
   /** The appointments calendar, so the house email can link straight to it. */
   calendarId?: string;
+  /** Lets the client cancel (in their confirmation). */
+  clientCancelLink?: string;
+  /** Lets the house cancel and tell the client (in the house email). */
+  houseCancelLink?: string;
 };
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -81,11 +85,13 @@ export async function sendBookingEmails(b: BookingEmail) {
     to: [b.email],
     reply_to: b.notifyEmail,
     subject: `Your jewellery appointment: ${b.when}`,
-    text: `Dear ${b.name},\n\nThank you for booking an appointment with ${b.specialist}, our Head of Jewellery.\n\nWhen: ${b.when}\nWhere: ${b.location.replace(/\n/g, ", ")}\n\n${b.closingNote}\n\nReference: ${b.reference}\n\nSloane Street Auctions`,
+    text: `Dear ${b.name},\n\nThank you for booking an appointment with ${b.specialist}, our Head of Jewellery.\n\nWhen: ${b.when}\nWhere: ${b.location.replace(/\n/g, ", ")}\n\n${b.closingNote}${b.clientCancelLink ? `\n\nCan't make it? Cancel this appointment: ${b.clientCancelLink}` : ""}\n\nReference: ${b.reference}\n\nSloane Street Auctions`,
     html: page(
       `<p>Dear ${esc(b.name)},</p><p>Thank you for booking an appointment with ${esc(b.specialist)}, our Head of Jewellery.</p>` +
         `<p><strong>When:</strong> ${esc(b.when)}<br><strong>Where:</strong><br>${where}</p>` +
-        `<p>${esc(b.closingNote)}</p><p style="color:#5c5a5f;font-size:14px">Reference: ${esc(b.reference)}</p>`,
+        `<p>${esc(b.closingNote)}</p>` +
+        (b.clientCancelLink ? `<p>Can't make it? <a href="${esc(b.clientCancelLink)}">Cancel this appointment</a></p>` : "") +
+        `<p style="color:#5c5a5f;font-size:14px">Reference: ${esc(b.reference)}</p>`,
     ),
     attachments: [{ filename: "jewellery-appointment.ics", content: Buffer.from(calendarFile(b)).toString("base64"), content_type: "text/calendar" }],
   });
@@ -94,14 +100,74 @@ export async function sendBookingEmails(b: BookingEmail) {
     to: [b.notifyEmail],
     reply_to: b.email,
     subject: `New jewellery appointment: ${b.when} · ${b.name}`,
-    text: `A jewellery appointment has been booked on the website.\n\nWhen: ${b.when}\nName: ${b.name}\nEmail: ${b.email}\nTelephone: ${b.phone}\n\nAbout their jewellery:\n${b.details || "(nothing added)"}\n\nIt is in the Jewellery appointments calendar${calendarLink ? ` (add it to your Google Calendar: ${calendarLink})` : ""}. To cancel, delete it there and reply to this email to let the client know. Reference: ${b.reference}`,
+    text: `A jewellery appointment has been booked on the website.\n\nWhen: ${b.when}\nName: ${b.name}\nEmail: ${b.email}\nTelephone: ${b.phone}\n\nAbout their jewellery:\n${b.details || "(nothing added)"}\n\nIt is in the Jewellery appointments calendar${calendarLink ? ` (add it to your Google Calendar: ${calendarLink})` : ""}.${b.houseCancelLink ? `\n\nCancel and tell the client: ${b.houseCancelLink}` : " To cancel, delete it there and reply to this email to let the client know."}\n\nReference: ${b.reference}`,
     html: page(
       `<p>A jewellery appointment has been booked on the website.</p>` +
         `<p><strong>When:</strong> ${esc(b.when)}<br><strong>Name:</strong> ${esc(b.name)}<br><strong>Email:</strong> ${esc(b.email)}<br><strong>Telephone:</strong> ${esc(b.phone)}</p>` +
         `<p><strong>About their jewellery:</strong><br>${b.details ? esc(b.details).replace(/\n/g, "<br>") : "(nothing added)"}</p>` +
         `<p style="color:#5c5a5f;font-size:14px">It is in the Jewellery appointments calendar` +
         (calendarLink ? ` (<a href="${esc(calendarLink)}">add it to your Google Calendar</a>)` : "") +
-        `. To cancel, delete it there and reply to this email to let the client know. Reference: ${esc(b.reference)}</p>`,
+        `. Reference: ${esc(b.reference)}</p>` +
+        (b.houseCancelLink
+          ? `<p><a href="${esc(b.houseCancelLink)}">Cancel and tell the client</a></p>`
+          : `<p>To cancel, delete it there and reply to this email to let the client know.</p>`),
+    ),
+  });
+  const [toClient, toHouse] = await Promise.allSettled([client, house]);
+  return { client: toClient.status === "fulfilled", house: toHouse.status === "fulfilled" };
+}
+
+export type CancellationEmail = {
+  by: "client" | "house";
+  reference: string;
+  when: string;
+  name: string;
+  email: string;
+  /** From the house, to the client (optional). */
+  note: string;
+  specialist: string;
+  notifyEmail: string;
+  from: string;
+  rebookLink: string;
+};
+
+/** Tells the client and the house that an appointment has been cancelled. */
+export async function sendCancellationEmails(c: CancellationEmail) {
+  const dear = c.name ? `Dear ${c.name},` : "Hello,";
+  const opening =
+    c.by === "client"
+      ? `Your jewellery appointment with ${c.specialist} on ${c.when} has been cancelled, as you asked.`
+      : `We're sorry, but we have had to cancel your jewellery appointment with ${c.specialist} on ${c.when}.`;
+  const client = c.email
+    ? send({
+        from: c.from,
+        to: [c.email],
+        reply_to: c.notifyEmail,
+        subject: `Appointment cancelled: ${c.when}`,
+        text: `${dear}\n\n${opening}${c.note ? `\n\n${c.note}` : ""}\n\nYou're welcome to book another time: ${c.rebookLink}\nOr simply reply to this email.\n\nReference: ${c.reference}\n\nSloane Street Auctions`,
+        html: page(
+          `<p>${esc(dear)}</p><p>${esc(opening)}</p>` +
+            (c.note ? `<p>${esc(c.note).replace(/\n/g, "<br>")}</p>` : "") +
+            `<p>You're welcome to <a href="${esc(c.rebookLink)}">book another time</a>, or simply reply to this email.</p>` +
+            `<p style="color:#5c5a5f;font-size:14px">Reference: ${esc(c.reference)}</p>`,
+        ),
+      })
+    : Promise.reject(new Error("No client email on the appointment."));
+  const who = c.name || "The client";
+  const houseLine =
+    c.by === "client"
+      ? `${who} has cancelled their jewellery appointment on ${c.when}. The time is free to book again.`
+      : `The jewellery appointment with ${who} on ${c.when} has been cancelled from the website and ${c.email ? "the client has been emailed" : "the client couldn't be emailed (no address on the booking)"}. The time is free to book again.`;
+  const house = send({
+    from: c.from,
+    to: [c.notifyEmail],
+    ...(c.email ? { reply_to: c.email } : {}),
+    subject: `Appointment cancelled: ${c.when} · ${c.name || c.reference}`,
+    text: `${houseLine}${c.note ? `\n\nYour note to the client:\n${c.note}` : ""}\n\nReference: ${c.reference}`,
+    html: page(
+      `<p>${esc(houseLine)}</p>` +
+        (c.note ? `<p><strong>Your note to the client:</strong><br>${esc(c.note).replace(/\n/g, "<br>")}</p>` : "") +
+        `<p style="color:#5c5a5f;font-size:14px">Reference: ${esc(c.reference)}</p>`,
     ),
   });
   const [toClient, toHouse] = await Promise.allSettled([client, house]);

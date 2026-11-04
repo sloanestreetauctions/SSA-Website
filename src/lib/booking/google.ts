@@ -122,6 +122,10 @@ export function eventIdFor(calendarId: string, start: string) {
 }
 
 export type NewEvent = {
+  /** The booking reference, kept on the calendar entry so a cancel link only ever matches its own booking. */
+  reference?: string;
+  clientName?: string;
+  clientEmail?: string;
   summary: string;
   description: string;
   location: string;
@@ -141,7 +145,14 @@ export async function createAppointment(calendarId: string, event: NewEvent): Pr
     end: { dateTime: event.end, timeZone: "Europe/London" },
     status: "confirmed",
     transparency: "opaque",
-    extendedProperties: { private: { bookedOn: "sloanestreetauctions.com" } },
+    extendedProperties: {
+      private: {
+        bookedOn: "sloanestreetauctions.com",
+        ...(event.reference ? { reference: event.reference } : {}),
+        ...(event.clientName ? { clientName: event.clientName } : {}),
+        ...(event.clientEmail ? { clientEmail: event.clientEmail } : {}),
+      },
+    },
   };
   const cal = encodeURIComponent(calendarId);
   const res = await call(`/calendars/${cal}/events`, { method: "POST", body: JSON.stringify(body) });
@@ -182,4 +193,41 @@ export async function shareCalendar(calendarId: string, email: string, role: "wr
     .then((b: { error?: { message?: string; errors?: { reason?: string }[] } }) => b.error?.errors?.[0]?.reason || b.error?.message || "")
     .catch(() => "");
   throw new CalendarError(`Google wouldn't share the appointments calendar with ${email} as ${role} (${res.status}${reason ? `: ${reason}` : ""}).`);
+}
+
+export type StoredAppointment = {
+  status: string;
+  start: string;
+  end: string;
+  reference?: string;
+  clientName?: string;
+  clientEmail?: string;
+};
+
+/** The appointment booked at `start`, if there is one (including cancelled ones, so they can be told apart). */
+export async function findAppointment(calendarId: string, start: string): Promise<StoredAppointment | null> {
+  const res = await call(`/calendars/${encodeURIComponent(calendarId)}/events/${eventIdFor(calendarId, start)}`);
+  if (res.status === 404 || res.status === 410) return null;
+  if (!res.ok) throw new CalendarError(`Google couldn't look up the appointment (${res.status}).`);
+  const e = (await res.json()) as {
+    status?: string;
+    start?: { dateTime?: string };
+    end?: { dateTime?: string };
+    extendedProperties?: { private?: Record<string, string> };
+  };
+  const p = e.extendedProperties?.private ?? {};
+  return {
+    status: e.status ?? "confirmed",
+    start: e.start?.dateTime ? new Date(e.start.dateTime).toISOString() : start,
+    end: e.end?.dateTime ? new Date(e.end.dateTime).toISOString() : start,
+    reference: p.reference,
+    clientName: p.clientName,
+    clientEmail: p.clientEmail,
+  };
+}
+
+/** Removes the appointment at `start` from the calendar (its time becomes free again). */
+export async function removeAppointment(calendarId: string, start: string) {
+  const res = await call(`/calendars/${encodeURIComponent(calendarId)}/events/${eventIdFor(calendarId, start)}`, { method: "DELETE" });
+  if (!res.ok && res.status !== 404 && res.status !== 410) throw new CalendarError(`Google wouldn't remove the appointment (${res.status}).`);
 }

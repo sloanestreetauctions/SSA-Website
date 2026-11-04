@@ -91,6 +91,12 @@ checks Google again, then creates the appointment in the website's own "Jeweller
 (shared with info@); the same time can
 never be booked twice. The client gets a confirmation email with a calendar file; the inbox set in the editor gets the
 details (Reply goes to the client). If Stephen deletes an appointment in Google Calendar, that time becomes free again.
+
+**Cancelling.** The client's confirmation has a **Cancel this appointment** link, and the email to the house has a
+**Cancel and tell the client** link (with room for an optional note to the client). Either one removes the appointment
+from the calendar, frees the time and emails both sides. Each link is signed by the website, works only for its own
+booking (never for a later booking at the same time) and only before the appointment. Deleting the entry in Google
+Calendar still works too, but then nobody is emailed.
 Client details are kept only in that calendar entry and the two emails.
 
 **Off until set up.** Nothing appears on the site (no menu item, no buttons, the page says "not found") until

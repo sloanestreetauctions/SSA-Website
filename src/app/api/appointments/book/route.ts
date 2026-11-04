@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         { status: 429 },
       );
     }
-    const result = await book(input);
+    const result = await book(input, new Date(), new URL(request.url).origin);
     if (!result.ok) {
       return Response.json(
         { ok: false, taken: true, message: "Sorry, that time has just been booked by someone else. Please choose another." },

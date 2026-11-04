@@ -1,8 +1,9 @@
 import "server-only";
 import { createHash, randomBytes } from "node:crypto";
 import { appointmentsPage, jewelleryPage, tokens } from "@/content";
-import { busyTimes, CalendarError, createAppointment, createCalendar, shareCalendar } from "./google";
-import { sendBookingEmails } from "./mail";
+import { busyTimes, CalendarError, createAppointment, createCalendar, findAppointment, removeAppointment, shareCalendar } from "./google";
+import { cancelLink, verify, type LinkKind } from "./links";
+import { sendBookingEmails, sendCancellationEmails } from "./mail";
 import { bookingSettings } from "./status";
 import { bookingWindow, freeSlots, type BookingRules, type Slot } from "./slots";
 import { hold, load, save } from "./store";
@@ -135,7 +136,7 @@ export type BookingResult =
  *  3. create the calendar entry, with an ID that Google won't accept twice;
  *  4. send the two emails.
  */
-export async function book(input: BookingInput, now = new Date()): Promise<BookingResult> {
+export async function book(input: BookingInput, now = new Date(), origin = "https://sloanestreetauctions.com"): Promise<BookingResult> {
   const { from } = bookingSettings();
   const calendarId = await appointmentsCalendarId();
   const release = await hold(`appointment:${calendarId}:${input.start}`);
@@ -148,6 +149,9 @@ export async function book(input: BookingInput, now = new Date()): Promise<Booki
     const location = appointmentsPage.location || "";
     const reference = `JA-${slot.date.replace(/-/g, "")}-${randomBytes(3).toString("hex").toUpperCase()}`;
     const created = await createAppointment(calendarId, {
+      reference,
+      clientName: input.name,
+      clientEmail: input.email,
       summary: `Jewellery appointment: ${input.name}`,
       description: [
         `Booked on the website. Reference ${reference}.`,
@@ -178,6 +182,8 @@ export async function book(input: BookingInput, now = new Date()): Promise<Booki
       from,
       closingNote: plainText(appointmentsPage.page.confirmationText ?? ""),
       calendarId,
+      clientCancelLink: cancelLink(origin, "client", reference, slot.start),
+      houseCancelLink: cancelLink(origin, "house", reference, slot.start),
     });
     // The booking stands even if an email fails; the house is told in the logs (no personal details) and the visitor on screen.
     if (!emailed.client || !emailed.house) console.error(`Appointment ${reference}: email not sent (client ${emailed.client}, house ${emailed.house}).`);
@@ -185,6 +191,55 @@ export async function book(input: BookingInput, now = new Date()): Promise<Booki
   } finally {
     await release();
   }
+}
+
+export type CancelLookup =
+  | { ok: true; when: string; reference: string; clientName?: string }
+  | { ok: false; reason: "invalid" | "gone" | "past" };
+
+/**
+ * Checks a cancel link: genuine (signed by us), for a booking that is still in
+ * the calendar under that same reference (so an old link can never cancel a
+ * new booking at the same time), and not already over.
+ */
+export async function lookUpForCancel(kind: LinkKind, reference: string, start: string, token: string, now = new Date()): Promise<CancelLookup> {
+  if (!reference || !start || Number.isNaN(Date.parse(start)) || !verify(kind, reference, start, token)) return { ok: false, reason: "invalid" };
+  const calendarId = await appointmentsCalendarId();
+  const found = await findAppointment(calendarId, start);
+  if (!found || found.status === "cancelled" || found.reference !== reference) return { ok: false, reason: "gone" };
+  if (Date.parse(start) <= now.getTime()) return { ok: false, reason: "past" };
+  return { ok: true, when: describeWhen(start), reference, clientName: kind === "house" ? found.clientName : undefined };
+}
+
+export type CancelResult = { ok: true; when: string; emailed: boolean } | { ok: false; reason: "invalid" | "gone" | "past" };
+
+/**
+ * Cancels from a link: removes the appointment from the calendar (its time is
+ * offered again straight away) and emails both the client and the house.
+ * A "house" cancel can carry a short note for the client.
+ */
+export async function cancel(kind: LinkKind, reference: string, start: string, token: string, note = "", now = new Date(), origin = "https://sloanestreetauctions.com"): Promise<CancelResult> {
+  const check = await lookUpForCancel(kind, reference, start, token, now);
+  if (!check.ok) return check;
+  const calendarId = await appointmentsCalendarId();
+  const found = await findAppointment(calendarId, start);
+  if (!found || found.status === "cancelled" || found.reference !== reference) return { ok: false, reason: "gone" };
+  await removeAppointment(calendarId, start);
+
+  const sent = await sendCancellationEmails({
+    by: kind,
+    reference,
+    when: check.when,
+    name: found.clientName || "",
+    email: found.clientEmail || "",
+    note: kind === "house" ? note.trim().slice(0, 1000) : "",
+    specialist: jewelleryPage.specialist?.name || "our jewellery specialist",
+    notifyEmail: appointmentsPage.notifyEmail,
+    from: bookingSettings().from,
+    rebookLink: `${origin}/jewellery/appointments`,
+  });
+  if (!sent.client || !sent.house) console.error(`Cancellation ${reference}: email not sent (client ${sent.client}, house ${sent.house}).`);
+  return { ok: true, when: check.when, emailed: sent.client };
 }
 
 export { CalendarError };
