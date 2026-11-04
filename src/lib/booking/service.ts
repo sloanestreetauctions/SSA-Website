@@ -63,12 +63,29 @@ export async function appointmentsCalendarId(): Promise<string> {
   }
 }
 
-/** Shares the website's calendar with everyone in JEWELLERY_CALENDAR_SHARE_WITH not yet shared with (also picks up people added later). */
+/**
+ * Shares the website's calendar with everyone in JEWELLERY_CALENDAR_SHARE_WITH
+ * not yet shared with (also picks up people added later): "Make changes to
+ * events" if Google allows, otherwise "See all event details". A sharing problem
+ * never stops bookings (every booking is also emailed to the house): it is
+ * logged, and tried again next time.
+ */
 async function ensureShared(calendarId: string) {
   for (const email of bookingSettings().shareWith) {
     const flag = `booking:shared:${createHash("sha256").update(`${calendarId}|${email.toLowerCase()}`).digest("hex").slice(0, 32)}`;
     if (await load(flag)) continue;
-    await shareCalendar(calendarId, email);
+    try {
+      await shareCalendar(calendarId, email, "writer");
+    } catch (writerError) {
+      console.error(writerError instanceof Error ? writerError.message : writerError);
+      try {
+        await shareCalendar(calendarId, email, "reader");
+        console.log(`Shared the appointments calendar with ${email} as "See all event details" instead.`);
+      } catch (readerError) {
+        console.error(readerError instanceof Error ? readerError.message : readerError);
+        continue;
+      }
+    }
     await save(flag, "1");
   }
   return calendarId;

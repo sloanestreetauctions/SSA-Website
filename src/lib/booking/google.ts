@@ -141,13 +141,20 @@ export async function createCalendar(summary: string, description: string): Prom
 }
 
 /**
- * Shares a calendar with someone ("Make changes to events"). Google emails them
- * a link to add it to their own calendar list.
+ * Shares a calendar with someone. Google emails them a link to add it to their
+ * own calendar list. `writer` is "Make changes to events", `reader` is "See all
+ * event details".
  */
-export async function shareCalendar(calendarId: string, email: string) {
+export async function shareCalendar(calendarId: string, email: string, role: "writer" | "reader" = "writer") {
   const res = await call(`/calendars/${encodeURIComponent(calendarId)}/acl?sendNotifications=true`, {
     method: "POST",
-    body: JSON.stringify({ role: "writer", scope: { type: "user", value: email } }),
+    body: JSON.stringify({ role, scope: { type: "user", value: email } }),
   });
-  if (!res.ok && res.status !== 409) throw new CalendarError(`Google wouldn't share the appointments calendar with ${email} (${res.status}).`);
+  if (res.ok || res.status === 409) return;
+  // Google's own explanation (no secrets in it), so the log says exactly what to fix.
+  const reason = await res
+    .json()
+    .then((b: { error?: { message?: string; errors?: { reason?: string }[] } }) => b.error?.errors?.[0]?.reason || b.error?.message || "")
+    .catch(() => "");
+  throw new CalendarError(`Google wouldn't share the appointments calendar with ${email} as ${role} (${res.status}${reason ? `: ${reason}` : ""}).`);
 }
