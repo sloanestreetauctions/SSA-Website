@@ -5,6 +5,8 @@ import { auctionsPage as c, isShown } from "@/content";
 import { AuctionTabs } from "@/components/sales/AuctionTabs";
 import { CoversReel } from "@/components/sales/CoversReel";
 import { SaleCard } from "@/components/sales/SaleCard";
+import { PastAuctionsBrowser } from "@/components/sales/PastAuctionsBrowser";
+import type { Sale } from "@/lib/sales";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { pageTitle, serifText } from "@/components/ui/type";
 
@@ -38,14 +40,17 @@ export default async function PastAuctionsPage() {
       {c.past.text && <p className={`mt-8 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>{c.past.text}</p>}
 
       {isShown(c.past) && past.length > 0 ? (
-        /* The same cards as Upcoming auctions, without deadlines, viewing times or calendar buttons. */
-        <ul className="mt-8 grid gap-6 md:grid-cols-2">
-          {past.map((sale, i) => (
-            <li key={`${sale.title}-${sale.date}-${i}`}>
-              <SaleCard sale={sale} size="large" priority={i < 2} headingLevel={2} past />
-            </li>
+        /* The same cards as Upcoming auctions (no deadlines, viewing times or calendar buttons), 12 to a page, with search. */
+        <PastAuctionsBrowser
+          items={past.map((sale, i) => ({
+            key: `${sale.title}-${sale.date}-${i}`,
+            year: (sale.date ?? "").slice(0, 4),
+            text: searchText(sale),
+          }))}
+          cards={past.map((sale, i) => (
+            <SaleCard key={`${sale.title}-${sale.date}-${i}`} sale={sale} size="large" priority={i < 2} headingLevel={2} past />
           ))}
-        </ul>
+        />
       ) : (
         <p className={`mt-8 max-w-[44rem] ${serifText} text-[1.25rem] text-ink-soft`}>
           Past sales appear here automatically after they take place.
@@ -59,4 +64,17 @@ export default async function PastAuctionsPage() {
     </div>
     </>
   );
+}
+
+/** Everything a visitor might search a sale by: its name, descriptions, month and year. */
+function searchText(sale: Sale) {
+  const when = sale.date
+    ? new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${sale.date}T12:00:00Z`))
+    : "";
+  return [sale.title, sale.description, (sale as { longDescription?: string | null }).longDescription, when]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "");
 }

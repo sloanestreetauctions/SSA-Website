@@ -364,6 +364,194 @@
         "onWhite": false
       },
       "featuredLots": []
+    },
+    {
+      "title": "The Summer Fine Art Auction",
+      "kind": "live",
+      "date": "2024-06-12",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags, Estate Contents, and Islamic and Middle Eastern Collections",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/581fd5fb0e9f2ddf5afa9e072dd497cb/f696df3e52c0cf46109d4cecaabb248f/the-summer-fine-art-auction-old-masters-modern-british-an/",
+      "photo": {
+        "image": "/images/pages/calendar/sales/23/photo/image.jpg",
+        "alt": "A highlight from The Summer Fine Art Auction",
+        "onWhite": true
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Spring Fine Auction",
+      "kind": "live",
+      "date": "2024-04-18",
+      "time": "10:00",
+      "description": "",
+      "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags and Estate Contents",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/24ae98db9c0b85f57bcf1a5ab5180c16/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-auction-18th-april-sale-old-masters-modern/",
+      "photo": {
+        "image": "/images/pages/calendar/sales/24/photo/image.jpg",
+        "alt": "A highlight from The Spring Fine Auction",
+        "onWhite": true
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "Valentine's Day Auction",
+      "kind": "live",
+      "date": "2024-02-14",
+      "time": "11:00",
+      "description": "",
+      "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags and Estate Contents.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/febb8836865f024da63fd22b8af78cb5/f696df3e52c0cf46109d4cecaabb248f/valentines-day-auction-14th-february-2024-old-masters-mo/",
+      "photo": {
+        "image": "/images/pages/calendar/sales/25/photo/image.jpg",
+        "alt": "A highlight from Valentine's Day Auction",
+        "onWhite": true
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Winter Fine Sale",
+      "kind": "live",
+      "date": "2023-11-30",
+      "time": "11:00",
+      "description": "",
+      "longDescription": "Including Old Masters, Furniture, Jewellery, Islamic Art and Antiques, Including The Primary Collection of 15th and 16th Century Italian Gold Ground Paintings.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/a80048fff16f3c013b349e3143226c4b/f696df3e52c0cf46109d4cecaabb248f/the-winter-fine-sale-including-old-masters-furniture-jewe/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "Contemporary Day Sale",
+      "kind": "live",
+      "date": "2023-10-17",
+      "time": "16:00",
+      "description": "",
+      "longDescription": "Including Works From a Leading Contemporary Collection (The Majority Previously Exhibited at The Saatchi Gallery and Now To Be Sold With No Reserve).",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ea85ed4a46aad673d875c1c562cb6bd4/f696df3e52c0cf46109d4cecaabb248f/contemporary-day-sale-including-works-from-a-leading-contem/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The September Fine Sale",
+      "kind": "live",
+      "date": "2023-09-28",
+      "time": "14:00",
+      "description": "",
+      "longDescription": "Including Old Masters, Furniture, and The Primary Contents of Belgravia Residences.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/9c94802b3f45975e1c795ec205ea8fab/f696df3e52c0cf46109d4cecaabb248f/the-september-fine-sale-including-old-masters-furniture-a/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Important Summer Sale",
+      "kind": "live",
+      "date": "2023-06-29",
+      "time": "14:00",
+      "description": "",
+      "longDescription": "Including Old Master Drawings, Paintings, Silver and Ceramics",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/fb5154d2b69812e923f6c4819aa0d975/f696df3e52c0cf46109d4cecaabb248f/the-important-summer-sale-including-old-master-drawings-p/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Spring Fine Art and Antiques Sale",
+      "kind": "live",
+      "date": "2023-04-27",
+      "time": "14:00",
+      "description": "",
+      "longDescription": "Old Masters, Modern British, as well as Private Collections of Indian, Islamic, and Oriental Art and Antiquities.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d88ed3cceae0c297c976bb87970e9969/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-and-antiques-sale-old-masters-modern-b/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Spring Fine Art and Antiques Sale",
+      "kind": "live",
+      "date": "2023-03-01",
+      "time": "12:00",
+      "description": "",
+      "longDescription": "Including Old Masters and Russian Avant-Garde",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d57b12165a3628e58a7e6365f344c621/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-and-antiques-sale-1st-march-2023-i/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Winter Fine Art, Old Masters, Antiques, and Antiquarian Books Sale",
+      "kind": "live",
+      "date": "2022-11-30",
+      "time": "13:00",
+      "description": "",
+      "longDescription": "Including the Contents of the London Library of Sir Christopher Ondaatje OC, CBE, FRSL",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/582733d490d19add3f92b36cc7841854/f696df3e52c0cf46109d4cecaabb248f/the-winter-fine-art-old-masters-antiques-and-antiquarian/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "The Important Autumn Sale",
+      "kind": "live",
+      "date": "2022-09-28",
+      "time": "14:00",
+      "description": "",
+      "longDescription": "Including Selected Property Of A Distinguished Gentleman Of Title. Contents From His Belgravia Residence.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d82aa553c9a37fd94f5ff3795bbe0a43/f696df3e52c0cf46109d4cecaabb248f/september-28th-2pmthe-important-autumn-sale-including-se/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "Summer Sale",
+      "kind": "live",
+      "date": "2022-07-01",
+      "time": "14:00",
+      "description": "",
+      "longDescription": "Photographs, Old Master Paintings, Icons, Sculpture, Impressionism, and Mid-20th Century to Modern. From Chelsea, Belgravia, and International collections.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/b9fe77a47b665e191bf1d160dbe767a0/f696df3e52c0cf46109d4cecaabb248f/summer-sale-photographs-old-master-paintings-icons-sculp/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "Fine Art, Old Masters, Islamic Art, and Antiques",
+      "kind": "live",
+      "date": "2022-04-12",
+      "time": "12:00",
+      "description": "",
+      "longDescription": "Including items from Captain Cook’s Circumnavigation aboard HMS Resolution 1772-1775.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/30371fd44f65ff571f8c0bd68ced8556/f696df3e52c0cf46109d4cecaabb248f/fine-art-old-masters-islamic-art-and-antiques-including/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
+    },
+    {
+      "title": "An Extremely Fine Sale of Important Antiques and Fine Art",
+      "kind": "live",
+      "date": "2022-02-24",
+      "time": "12:00",
+      "description": "",
+      "longDescription": "To include the Condylis Collection.",
+      "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/27dee56d5e1beae137e4c8886008b106/f696df3e52c0cf46109d4cecaabb248f/an-extremely-fine-sale-of-important-antiques-and-fine-art-t/",
+      "photo": {
+        "onWhite": false
+      },
+      "featuredLots": []
     }
   ]
 }
