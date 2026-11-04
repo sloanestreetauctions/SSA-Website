@@ -172,7 +172,7 @@ export default config({
     brand: { name: "Sloane Street Auctions" },
     navigation: {
       "Sales and results": ["calendar", "covers", "highlights"],
-      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "jewellery", "about", "team", "contact", "valuation", "stories", "notFound"],
+      "Pages (in menu order)": ["home", "auctions", "howToBuy", "faq", "sell", "privateSales", "jewellery", "appointments", "about", "team", "contact", "valuation", "stories", "notFound"],
       "Contact details and menus": ["settings", "navigation", "mailingList", "instagram"],
       "Legal pages": ["terms", "privacy"],
     },
@@ -829,6 +829,83 @@ export default config({
         text: paragraph("Text"),
         buttonLabel: button("Button", "the valuation form"),
       }),
+    }),
+
+    /* ======================================== JEWELLERY APPOINTMENTS (booking) */
+    appointments: singlePage("Jewellery appointments (booking)", "jewellery-appointments", {
+      seo: seo({ title: "Book a jewellery appointment" }),
+      page: fields.object(
+        {
+          eyebrow: line("Small heading", "e.g. Jewellery"),
+          title: requiredLine("Headline"),
+          intro: richParagraph("Text under the headline"),
+          valuationNote: richParagraph("Note pointing to the valuation form"),
+          calendarTitle: line("Heading above the calendar", "e.g. Choose a day"),
+          timesTitle: line("Heading above the times", "e.g. Choose a time"),
+          noDates: paragraph("Shown when no appointments are free", "e.g. There are no appointments free at the moment. Please call us."),
+          formTitle: line("Heading above the form", "e.g. Your details"),
+          detailsLabel: line("Label of the optional details box", "e.g. About your jewellery (optional)"),
+          consentText: richParagraph("Privacy tick-box wording"),
+          buttonLabel: requiredLine("Booking button", "e.g. Confirm appointment"),
+          confirmationTitle: requiredLine("Heading once booked", "e.g. Your appointment is booked"),
+          confirmationText: richParagraph("Text once booked"),
+        },
+        { label: "1. Wording on the page" },
+      ),
+      rules: fields.object(
+        {
+          durationMinutes: fields.integer({ label: "Length of each appointment (minutes)", defaultValue: 30, validation: { min: 10, max: 240 } }),
+          gapMinutes: fields.integer({ label: "Gap between appointments (minutes)", defaultValue: 5, validation: { min: 0, max: 120 } }),
+          noticeHours: fields.integer({
+            label: "Minimum notice (hours)",
+            description: "How long before an appointment it can still be booked online.",
+            defaultValue: 24,
+            validation: { min: 0, max: 720 },
+          }),
+          weeksAhead: fields.integer({ label: "How far ahead people can book (weeks)", defaultValue: 8, validation: { min: 1, max: 52 } }),
+          days: fields.array(
+            fields.object({
+              day: fields.select({
+                label: "Day",
+                options: [
+                  { label: "Monday", value: "1" },
+                  { label: "Tuesday", value: "2" },
+                  { label: "Wednesday", value: "3" },
+                  { label: "Thursday", value: "4" },
+                  { label: "Friday", value: "5" },
+                  { label: "Saturday", value: "6" },
+                  { label: "Sunday", value: "0" },
+                ],
+                defaultValue: "3",
+              }),
+              start: requiredLine("First appointment starts", "24-hour clock, e.g. 09:30"),
+              end: requiredLine("Last appointment ends by", "24-hour clock, e.g. 17:30"),
+              breakStart: line("Lunch from", "e.g. 13:30. Leave empty for no break."),
+              breakEnd: line("Lunch until", "e.g. 14:00"),
+            }),
+            {
+              label: "Working days and hours",
+              description: "Times are London time; the clocks changing is handled automatically. Anything already in the specialist’s Google Calendar is also kept free.",
+              itemLabel: (props) =>
+                `${["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][Number(props.fields.day.value)]} ${props.fields.start.value}–${props.fields.end.value}`,
+            },
+          ),
+          closed: fields.array(
+            fields.object({
+              from: fields.date({ label: "From", validation: { isRequired: true } }),
+              to: fields.date({ label: "Until (leave empty for one day)" }),
+              note: line("Note for yourself", "e.g. Christmas, sale day. Not shown on the site."),
+            }),
+            {
+              label: "Days with no appointments (holidays, sale days)",
+              itemLabel: (props) => `${props.fields.from.value ?? ""}${props.fields.to.value ? ` – ${props.fields.to.value}` : ""} ${props.fields.note.value}`.trim(),
+            },
+          ),
+        },
+        { label: "2. When appointments can be booked" },
+      ),
+      location: paragraph("Where appointments take place", "Shown in the confirmation and the calendar entry. One line per row."),
+      notifyEmail: requiredLine("Booking emails are sent to", "e.g. info@sloanestreetauctions.com"),
     }),
 
     about: singlePage("About", "about", {

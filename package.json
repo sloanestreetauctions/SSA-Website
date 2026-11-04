@@ -8,11 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "node scripts/photo-sizes.mjs && next typegen && tsc --noEmit",
-    "check": "npm run content && npm run typecheck && npm run lint && npm run build",
+    "check": "npm run content && npm run test:booking && npm run typecheck && npm run lint && npm run build",
     "photos": "node scripts/optimise-photos.mjs && node scripts/photo-sizes.mjs",
     "predev": "node scripts/remove-old-files.mjs && node scripts/content-updates.mjs && node scripts/optimise-photos.mjs && node scripts/photo-sizes.mjs",
     "prebuild": "node scripts/remove-old-files.mjs && node scripts/content-updates.mjs && node scripts/optimise-photos.mjs && node scripts/photo-sizes.mjs",
-    "content": "node --experimental-strip-types --no-warnings scripts/check-content.mts"
+    "content": "node --experimental-strip-types --no-warnings scripts/check-content.mts",
+    "test:booking": "node --experimental-strip-types --no-warnings scripts/test-booking-slots.mts"
   },
   "dependencies": {
     "@keystatic/core": "^0.6.9",

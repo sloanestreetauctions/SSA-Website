@@ -1,0 +1,39 @@
+{
+  "page": {
+    "eyebrow": "Jewellery",
+    "title": "Book a jewellery appointment",
+    "intro": "Meet our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom. Bring your pieces along for a free valuation.",
+    "valuationNote": "Would you rather send photographs? Use our [valuation form](/valuation) instead.",
+    "calendarTitle": "Choose a day",
+    "timesTitle": "Choose a time",
+    "noDates": "There are no appointments free online at the moment. Please call us on {phone} or email {email}.",
+    "formTitle": "Your details",
+    "detailsLabel": "About your jewellery (optional)",
+    "consentText": "I agree to Sloane Street Auctions using these details to arrange my appointment, as set out in the [privacy policy](/privacy-policy).",
+    "buttonLabel": "Confirm appointment",
+    "confirmationTitle": "Your appointment is booked",
+    "confirmationText": "We’ve emailed you a confirmation with a calendar entry. If you need to change or cancel, please call us on {phone} or email {email}."
+  },
+  "rules": {
+    "durationMinutes": 30,
+    "gapMinutes": 5,
+    "noticeHours": 24,
+    "weeksAhead": 8,
+    "days": [
+      {
+        "day": "3",
+        "start": "09:30",
+        "end": "17:30",
+        "breakStart": "13:30",
+        "breakEnd": "14:00"
+      }
+    ],
+    "closed": []
+  },
+  "location": "Sloane Street Auctions\n158–164 Fulham Road\nLondon SW10 9PR",
+  "notifyEmail": "info@sloanestreetauctions.com",
+  "seo": {
+    "title": "Book a jewellery appointment",
+    "description": "Book a free appointment with our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom in Chelsea."
+  }
+}

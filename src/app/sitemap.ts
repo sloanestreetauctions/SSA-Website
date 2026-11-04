@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { isPageOn } from "@/content";
 import { siteUrl } from "@/lib/structured-data";
+import { JEWELLERY_APPOINTMENTS_PATH, jewelleryBookingLive } from "@/lib/booking/status";
 
 /**
  * /sitemap.xml — the list of pages Google is invited to visit. Pages switched
@@ -16,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sell",
     "/private-sales",
     "/jewellery",
+    ...(jewelleryBookingLive() ? [JEWELLERY_APPOINTMENTS_PATH] : []),
     "/valuation",
     "/about",
     "/about/team",
