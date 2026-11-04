@@ -18,7 +18,7 @@ export async function InstagramStrip() {
   const profile = settings.instagram;
 
   return (
-    <section aria-label={ig.title || "Instagram"} className="shell py-14 md:py-[4.5rem]">
+    <section aria-label={ig.title || "Instagram"} className="shell pt-6 pb-14 md:pt-8 md:pb-[4.5rem]">
       <div className="flex flex-wrap items-end justify-between gap-6">
         {ig.title && (
           <h2 className="font-serif text-[2.25rem] leading-tight font-[380] [font-variation-settings:'opsz'_60] md:text-[3.25rem]">{ig.title}</h2>

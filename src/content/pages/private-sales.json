@@ -14,7 +14,8 @@
     "title": "Speak to Private Sales",
     "address": "69 Lower Sloane Street\nLondon\nSW1W 8DA",
     "phone": "020 7259 0305",
-    "buttonLabel": "Email Private Sales"
+    "buttonLabel": "Discuss a Private Sale",
+    "text": "Private Sales are based on Lower Sloane Street, separate from our auction saleroom at 158–164 Fulham Road."
   },
   "steps": {
     "show": true,

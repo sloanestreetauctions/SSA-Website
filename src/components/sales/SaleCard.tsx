@@ -16,12 +16,15 @@ export function SaleCard({
   size = "compact",
   priority = false,
   headingLevel = 3,
+  past = false,
 }: {
   sale: Sale;
   size?: "compact" | "large";
   priority?: boolean;
   /** 2 where the cards sit directly under the page heading. */
   headingLevel?: 2 | 3;
+  /** On Past auctions: no deadline, viewing times, calendar or live button; nothing said if there's no catalogue link. */
+  past?: boolean;
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   const d = sale.date ? saleDateParts(sale.date) : null;
@@ -30,7 +33,13 @@ export function SaleCard({
   const timed = sale.kind === "timed";
   const closes = timed && sale.closingDate ? saleDateParts(sale.closingDate) : null;
   const words = calendar.timed;
-  const viewingLines = (sale.viewing ?? "")
+  const longParagraphs = large
+    ? ((sale as { longDescription?: string | null }).longDescription ?? "")
+        .split(/\n\s*\n/)
+        .map((p) => p.trim())
+        .filter(Boolean)
+    : [];
+  const viewingLines = (past ? "" : (sale.viewing ?? ""))
     .split("\n")
     .map((l) => l.trim())
     .filter(Boolean);
@@ -103,7 +112,16 @@ export function SaleCard({
           )}
         </Heading>
         {sale.description && <p className="mt-1.5 text-[1.1875rem] leading-snug text-ink-soft">{sale.description}</p>}
-        {sale.live && sale.liveLink && (
+        {longParagraphs.length > 0 && (
+          <div className="mt-3 space-y-3 text-[1.0625rem] leading-[1.55] text-ink">
+            {longParagraphs.map((p, i) => (
+              <p key={i} className="whitespace-pre-line">
+                {p}
+              </p>
+            ))}
+          </div>
+        )}
+        {!past && sale.live && sale.liveLink && (
           <a
             href={sale.liveLink}
             className="relative z-10 mt-4 inline-flex min-h-12 items-center gap-3 self-start bg-navy-deep px-6 font-serif text-[1.125rem] text-ivory hover:bg-navy-soft"
@@ -112,12 +130,12 @@ export function SaleCard({
             {calendar.live?.buttonLabel || "Bid live"} <Arrow />
           </a>
         )}
-        {sale.consigning && sale.consignmentDeadline && (
+        {!past && sale.consigning && sale.consignmentDeadline && (
           <p className="mt-3 inline-flex items-center gap-2 self-start border-l-2 border-gold pl-3 font-sans text-[0.9375rem] text-ink">
             {calendar.deadlines?.label || "Consign by"} {formatShortDate(sale.consignmentDeadline, sale.consignmentDeadline.slice(0, 4) !== sale.date?.slice(0, 4))}
           </p>
         )}
-        {large && sale.date && (
+        {!past && large && sale.date && (
           /* Add to calendar: Google, or a file that Apple Calendar and Outlook open. Above the card's link so it can be clicked. */
           <details className="group/cal relative z-30 mt-4 self-start">
             <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2.5 border border-ink/25 px-4 font-sans text-[0.9375rem] text-ink hover:border-navy [&::-webkit-details-marker]:hidden">
@@ -169,6 +187,7 @@ export function SaleCard({
             </ul>
           </details>
         )}
+        {(link || !past) && (
         <p
           className={`mt-auto inline-flex items-center gap-3 pt-4 text-[1.1875rem] ${link ? "text-ink-soft group-hover:text-navy" : "text-ink-soft italic"}`}
         >
@@ -180,6 +199,7 @@ export function SaleCard({
             "Catalogue coming soon"
           )}
         </p>
+        )}
       </div>
     </article>
   );

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
-import { contactPage, hasPhoto, isShown, mapsDirections, settings, telHref } from "@/content";
+import Link from "next/link";
+import { contactPage, hasPhoto, isPageOn, isShown, mapsDirections, privateSalesPage, settings, telHref } from "@/content";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { PhotoToCome } from "@/components/ui/PhotoToCome";
 import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
@@ -37,6 +38,7 @@ export default function ContactPage() {
 
           <ul className={`mt-9 space-y-6 ${serifText} text-[1.5rem] leading-snug`}>
             <Detail icon={<IconPin />}>
+              <span className="mb-1 block font-sans text-[0.8125rem] tracking-[0.14em] text-ink-soft uppercase">Saleroom</span>
               {settings.addressLines.map((l) => (
                 <span key={l} className="block">
                   {l}
@@ -107,6 +109,36 @@ export default function ContactPage() {
                     <li key={`${l}-${i}`}>{l}</li>
                   ))}
               </ul>
+            </div>
+          )}
+
+          {/* The Private Sales gallery is at a different address: shown separately so nobody goes to the wrong one. */}
+          {isPageOn("/private-sales") && privateSalesPage.contact.address && (
+            <div className="mt-8 max-w-[36rem] border-t border-line pt-6">
+              <h2 className="mb-2 font-serif text-[1.75rem] [font-variation-settings:'opsz'_36]">Private Sales</h2>
+              <p className={`${serifText} text-[1.25rem] leading-snug text-ink-soft`}>
+                Our Private Sales department has its own address, separate from the saleroom:
+              </p>
+              <address className={`mt-2 not-italic ${serifText} text-[1.25rem] leading-snug text-ink`}>
+                {privateSalesPage.contact.address.split("\n").map((l, i) => (
+                  <span key={`${l}-${i}`} className="block">
+                    {l}
+                  </span>
+                ))}
+              </address>
+              <p className={`mt-2 ${serifText} text-[1.25rem]`}>
+                {privateSalesPage.contact.phone && (
+                  <>
+                    <a href={telHref(privateSalesPage.contact.phone)} className={`whitespace-nowrap ${underline}`}>
+                      {privateSalesPage.contact.phone}
+                    </a>
+                    {" · "}
+                  </>
+                )}
+                <Link href="/private-sales" className={underline}>
+                  About Private Sales
+                </Link>
+              </p>
             </div>
           )}
       </SplitHeader>

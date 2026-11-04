@@ -80,7 +80,7 @@ export default function AboutPage() {
       {isShown(visit) && (
         <section
           aria-label={visit.title || "Visit us"}
-          className={`shell grid items-center gap-10 py-16 md:py-20 lg:gap-16 xl:gap-24 ${hasPhoto(visit.illustration) ? "lg:grid-cols-[1.35fr_1fr]" : ""}`}
+          className={`shell grid items-center gap-10 py-12 md:py-14 lg:gap-16 xl:gap-24 ${hasPhoto(visit.illustration) ? "lg:grid-cols-[1.35fr_1fr]" : ""}`}
         >
           <ObjectPhoto
             photo={visit.illustration}

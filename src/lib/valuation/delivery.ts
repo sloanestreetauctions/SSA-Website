@@ -32,10 +32,27 @@ export type DeliveryResult = { delivered: true } | { delivered: false; reason: "
 
 export class DeliveryError extends Error {}
 
+/**
+ * How requests are delivered. Forgiving about how the setting was typed
+ * (spaces, quotes, capitals). When it isn't set at all, the site sends through
+ * Resend on the live host if Resend is set up (RESEND_API_KEY and VALUATION_FROM),
+ * and sends nothing on your own computer.
+ */
 export function deliveryMode(): "none" | "resend" {
-  const mode = process.env.VALUATION_DELIVERY ?? "none";
-  if (mode === "none" || mode === "resend") return mode;
-  throw new DeliveryError(`VALUATION_DELIVERY="${mode}" is not recognised (use "none" or "resend").`);
+  const raw = (process.env.VALUATION_DELIVERY ?? "").trim().replace(/^["']|["']$/g, "").trim().toLowerCase();
+  if (raw === "none" || raw === "resend") return raw;
+  const resendReady = Boolean(process.env.RESEND_API_KEY?.trim() && process.env.VALUATION_FROM?.trim());
+  if (raw === "") return process.env.VERCEL && resendReady ? "resend" : "none";
+  throw new DeliveryError(`VALUATION_DELIVERY="${raw}" is not recognised (use "none" or "resend").`);
+}
+
+/** Whether requests will actually be sent (so the form can say so). Never throws. */
+export function valuationDeliveryReady() {
+  try {
+    return deliveryMode() === "resend" && Boolean(process.env.RESEND_API_KEY?.trim() && process.env.VALUATION_FROM?.trim());
+  } catch {
+    return false;
+  }
 }
 
 export async function deliverValuationRequest(request: ValuationRequest): Promise<DeliveryResult> {
@@ -50,8 +67,8 @@ export async function deliverValuationRequest(request: ValuationRequest): Promis
 }
 
 async function sendWithResend({ fields, photos, reference }: ValuationRequest) {
-  const key = process.env.RESEND_API_KEY;
-  const from = process.env.VALUATION_FROM;
+  const key = process.env.RESEND_API_KEY?.trim();
+  const from = process.env.VALUATION_FROM?.trim().replace(/^["']|["']$/g, "");
   const to = process.env.VALUATION_TO || settings.valuationInbox || settings.generalEmail;
   if (!key || !from) throw new DeliveryError("RESEND_API_KEY and VALUATION_FROM must both be set.");
 
