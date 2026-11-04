@@ -247,6 +247,19 @@
   }
 }
 
+/* Menu drop-downs: a quick, gentle fade down as they open (skipped for reduced motion). */
+@media (prefers-reduced-motion: no-preference) {
+  .menu-panel {
+    animation: menu-in 160ms ease-out both;
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
 /* Mailing-list panel: rises gently into view (skipped for reduced motion). */
 @keyframes ssa-rise {
   from {

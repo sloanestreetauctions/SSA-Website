@@ -4,7 +4,8 @@ import { SearchIcon } from "@/components/ui/Icons";
 import { LogoLockup } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { NavGroup, NavGroupLinks } from "./PrimaryNav";
-import { signInLabel } from "@/lib/site";
+import { signInLabel, siteMenu } from "@/lib/site";
+import { jewelleryBookingLive } from "@/lib/booking/status";
 import { easyLive } from "@/content";
 
 export type HeaderTone = "dark" | "light";
@@ -23,6 +24,7 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
   // Every other page: a solid deep-navy bar with a smaller logo and more breathing room.
   const overHero = tone === "dark";
   const soft = "text-ivory/80 hover:text-ivory";
+  const menu = siteMenu({ bookingLive: jewelleryBookingLive() });
 
   return (
     <header className={`theme-dark z-40 text-ivory ${overHero ? "absolute inset-x-0 top-0" : "relative bg-navy-deep"}`}>
@@ -56,9 +58,9 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
         }`}
       >
         <div className="@container flex min-h-12 min-w-0 items-center min-[860px]:justify-end xl:min-h-[4.5rem]">
-          <MobileMenu tone="dark" />
-          <Suspense fallback={<NavGroupLinks group="left" pathname={null} tone="dark" />}>
-            <NavGroup group="left" tone="dark" />
+          <MobileMenu tone="dark" menu={menu} />
+          <Suspense fallback={<NavGroupLinks entries={menu.left} label="Main" pathname={null} align="start" />}>
+            <NavGroup entries={menu.left} label="Main" align="start" />
           </Suspense>
         </div>
 
@@ -68,8 +70,8 @@ export function SiteHeader({ tone = "light" }: { tone?: HeaderTone }) {
         </Link>
 
         <div className="@container flex min-h-12 min-w-0 items-center justify-end gap-6 xl:min-h-[4.5rem] min-[860px]:justify-start">
-          <Suspense fallback={<NavGroupLinks group="right" pathname={null} tone="dark" />}>
-            <NavGroup group="right" tone="dark" />
+          <Suspense fallback={<NavGroupLinks entries={menu.right} label="More" pathname={null} align="end" />}>
+            <NavGroup entries={menu.right} label="More" align="end" />
           </Suspense>
           {easyLive.site && (
             <a

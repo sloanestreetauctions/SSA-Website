@@ -520,6 +520,8 @@ export default config({
         header: fields.object(
           {
             auctions: menuItem("Auctions"),
+            buyingLabel: line("“Buying” drop-down: its wording", "e.g. Buying. Opens How to Buy and Conditions of Sale."),
+            sellingLabel: line("“Selling” drop-down: its wording", "e.g. Selling. Opens Sell With Us, Request a Valuation and Jewellery Appointments."),
             howToBuy: menuItem("How to Buy"),
             sell: menuItem("Sell With Us"),
             stories: menuItem("Stories (phone menu and footer)"),
@@ -532,7 +534,11 @@ export default config({
               "e.g. Sign in / Register. Shown at the top right once the Easy Live sign-in page is set in the Auction calendar.",
             ),
           },
-          { label: "Main menu wording", description: "The pages themselves stay the same; only the wording changes." },
+          {
+            label: "Main menu wording",
+            description:
+              "The menu: Auctions (Upcoming, Past) · Buying (How to Buy, Conditions of Sale) · Selling (Sell With Us, Request a Valuation, Jewellery Appointments) · Private Sales · About (About Us, Meet the Team) · Contact. The pages stay the same; only the wording changes. Pages switched off are left out of the menu automatically.",
+          },
         ),
         footerColumns: fields.array(
           fields.object({
