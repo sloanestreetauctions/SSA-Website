@@ -25,6 +25,8 @@ export type BookingEmail = {
   from: string;
   /** The confirmation wording from the editor, with {phone} and {email} filled in. */
   closingNote: string;
+  /** The appointments calendar, so the house email can link straight to it. */
+  calendarId?: string;
 };
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -71,6 +73,8 @@ async function send(message: Record<string, unknown>) {
 
 /** Sends both emails. Returns which ones went, so a failure is never hidden. */
 export async function sendBookingEmails(b: BookingEmail) {
+  // Opens Google Calendar and offers to add the Jewellery appointments calendar (only works for whoever it's shared with).
+  const calendarLink = b.calendarId ? `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(b.calendarId)}` : "";
   const where = b.location.split("\n").map(esc).join("<br>");
   const client = send({
     from: b.from,
@@ -90,12 +94,14 @@ export async function sendBookingEmails(b: BookingEmail) {
     to: [b.notifyEmail],
     reply_to: b.email,
     subject: `New jewellery appointment: ${b.when} · ${b.name}`,
-    text: `A jewellery appointment has been booked on the website.\n\nWhen: ${b.when}\nName: ${b.name}\nEmail: ${b.email}\nTelephone: ${b.phone}\n\nAbout their jewellery:\n${b.details || "(nothing added)"}\n\nIt is in the Jewellery appointments calendar. Reference: ${b.reference}`,
+    text: `A jewellery appointment has been booked on the website.\n\nWhen: ${b.when}\nName: ${b.name}\nEmail: ${b.email}\nTelephone: ${b.phone}\n\nAbout their jewellery:\n${b.details || "(nothing added)"}\n\nIt is in the Jewellery appointments calendar${calendarLink ? ` (add it to your Google Calendar: ${calendarLink})` : ""}. To cancel, delete it there and reply to this email to let the client know. Reference: ${b.reference}`,
     html: page(
       `<p>A jewellery appointment has been booked on the website.</p>` +
         `<p><strong>When:</strong> ${esc(b.when)}<br><strong>Name:</strong> ${esc(b.name)}<br><strong>Email:</strong> ${esc(b.email)}<br><strong>Telephone:</strong> ${esc(b.phone)}</p>` +
         `<p><strong>About their jewellery:</strong><br>${b.details ? esc(b.details).replace(/\n/g, "<br>") : "(nothing added)"}</p>` +
-        `<p style="color:#5c5a5f;font-size:14px">It is in the Jewellery appointments calendar. Reference: ${esc(b.reference)}</p>`,
+        `<p style="color:#5c5a5f;font-size:14px">It is in the Jewellery appointments calendar` +
+        (calendarLink ? ` (<a href="${esc(calendarLink)}">add it to your Google Calendar</a>)` : "") +
+        `. To cancel, delete it there and reply to this email to let the client know. Reference: ${esc(b.reference)}</p>`,
     ),
   });
   const [toClient, toHouse] = await Promise.allSettled([client, house]);

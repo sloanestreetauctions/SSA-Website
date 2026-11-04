@@ -177,6 +177,7 @@ export async function book(input: BookingInput, now = new Date()): Promise<Booki
       notifyEmail: appointmentsPage.notifyEmail,
       from,
       closingNote: plainText(appointmentsPage.page.confirmationText ?? ""),
+      calendarId,
     });
     // The booking stands even if an email fails; the house is told in the logs (no personal details) and the visitor on screen.
     if (!emailed.client || !emailed.house) console.error(`Appointment ${reference}: email not sent (client ${emailed.client}, house ${emailed.house}).`);
