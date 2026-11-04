@@ -10,14 +10,22 @@ import type { Busy } from "./slots";
  *   GOOGLE_SERVICE_ACCOUNT_EMAIL   e.g. ssa-bookings@your-project.iam.gserviceaccount.com
  *   GOOGLE_PRIVATE_KEY             the "private_key" from the account's JSON key file
  *
- * Permissions used: create and update events on calendars shared with it, and
- * read free/busy times. Nothing else, and no access to anyone's email.
+ * Permissions used: create its own "Jewellery appointments" calendar and share
+ * it with Stephen, add appointments to it, and read free/busy times. Nothing
+ * else, and no access to anyone's email.
  * GOOGLE_OAUTH_TOKEN_URL and GOOGLE_CALENDAR_API_URL can point at a test
  * server; they default to Google.
  */
 
 const TOKEN_AUDIENCE = "https://oauth2.googleapis.com/token";
-const SCOPES = ["https://www.googleapis.com/auth/calendar.events", "https://www.googleapis.com/auth/calendar.freebusy"].join(" ");
+const SCOPES = [
+  // Create the "Jewellery appointments" calendar and manage only calendars it created itself.
+  "https://www.googleapis.com/auth/calendar.app.created",
+  // Add appointments to a calendar shared with it (if one is set instead).
+  "https://www.googleapis.com/auth/calendar.events",
+  // See when Stephen is busy (only free/busy, never what the appointments are).
+  "https://www.googleapis.com/auth/calendar.freebusy",
+].join(" ");
 const tokenUrl = () => process.env.GOOGLE_OAUTH_TOKEN_URL || TOKEN_AUDIENCE;
 const apiUrl = () => (process.env.GOOGLE_CALENDAR_API_URL || "https://www.googleapis.com/calendar/v3").replace(/\/$/, "");
 
@@ -123,4 +131,23 @@ export async function createAppointment(calendarId: string, event: NewEvent): Pr
   const revived = await call(`/calendars/${cal}/events/${id}`, { method: "PUT", body: JSON.stringify(body) });
   if (!revived.ok) throw new CalendarError(`Google wouldn't re-open a cancelled time (${revived.status}).`);
   return "created";
+}
+
+/** Creates a calendar owned by the service account (the "Jewellery appointments" calendar). Returns its ID. */
+export async function createCalendar(summary: string, description: string): Promise<string> {
+  const res = await call("/calendars", { method: "POST", body: JSON.stringify({ summary, description, timeZone: "Europe/London" }) });
+  if (!res.ok) throw new CalendarError(`Google wouldn't create the appointments calendar (${res.status}).`);
+  return ((await res.json()) as { id: string }).id;
+}
+
+/**
+ * Shares a calendar with someone ("Make changes to events"). Google emails them
+ * a link to add it to their own calendar list.
+ */
+export async function shareCalendar(calendarId: string, email: string) {
+  const res = await call(`/calendars/${encodeURIComponent(calendarId)}/acl?sendNotifications=true`, {
+    method: "POST",
+    body: JSON.stringify({ role: "writer", scope: { type: "user", value: email } }),
+  });
+  if (!res.ok && res.status !== 409) throw new CalendarError(`Google wouldn't share the appointments calendar with ${email} (${res.status}).`);
 }

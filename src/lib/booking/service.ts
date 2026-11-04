@@ -1,11 +1,11 @@
 import "server-only";
-import { randomBytes } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { appointmentsPage, jewelleryPage, tokens } from "@/content";
-import { busyTimes, CalendarError, createAppointment } from "./google";
+import { busyTimes, CalendarError, createAppointment, createCalendar, shareCalendar } from "./google";
 import { sendBookingEmails } from "./mail";
 import { bookingSettings } from "./status";
 import { bookingWindow, freeSlots, type BookingRules, type Slot } from "./slots";
-import { hold } from "./store";
+import { hold, load, save } from "./store";
 
 const TZ = "Europe/London";
 
@@ -22,17 +22,69 @@ export function bookingRules(): BookingRules {
   };
 }
 
-/** Every calendar whose busy times block a slot: the appointments calendar itself, and Stephen's own diary. */
-function calendarsToCheck() {
+const CALENDAR_KEY = "booking:appointments-calendar-id";
+
+/**
+ * The calendar appointments are booked into. Either the one named in the
+ * settings, or the website's own "Jewellery appointments" calendar: created the
+ * first time it's needed, shared with Stephen ("Make changes to events"; Google
+ * emails him a link to add it), and remembered from then on.
+ */
+export async function appointmentsCalendarId(): Promise<string> {
   const s = bookingSettings();
-  return [...new Set([s.calendarId, ...s.busyCalendarIds])];
+  if (s.calendarId) return s.calendarId;
+  const saved = await load(CALENDAR_KEY);
+  if (saved) return ensureShared(saved);
+
+  const release = await hold("booking:creating-calendar", 60);
+  if (!release) {
+    // Another request is creating it right now: wait for it.
+    for (let i = 0; i < 10; i++) {
+      await new Promise((r) => setTimeout(r, 1000));
+      const id = await load(CALENDAR_KEY);
+      if (id) return id;
+    }
+    throw new CalendarError("The appointments calendar is still being set up. Please try again in a moment.");
+  }
+  try {
+    const again = await load(CALENDAR_KEY);
+    if (again) return ensureShared(again);
+    const id = await createCalendar(
+      "Jewellery appointments",
+      "Appointments booked on sloanestreetauctions.com. Delete an appointment here to free its time again.",
+    );
+    // Remembered straight away, so a hiccup while sharing never leads to a second calendar.
+    await save(CALENDAR_KEY, id);
+    // The calendar's ID isn't personal: logged so it can be set as JEWELLERY_CALENDAR_ID if ever needed.
+    console.log(`Created the Jewellery appointments calendar: ${id}`);
+    return ensureShared(id);
+  } finally {
+    await release();
+  }
+}
+
+/** Shares the website's calendar with everyone in JEWELLERY_CALENDAR_SHARE_WITH not yet shared with (also picks up people added later). */
+async function ensureShared(calendarId: string) {
+  for (const email of bookingSettings().shareWith) {
+    const flag = `booking:shared:${createHash("sha256").update(`${calendarId}|${email.toLowerCase()}`).digest("hex").slice(0, 32)}`;
+    if (await load(flag)) continue;
+    await shareCalendar(calendarId, email);
+    await save(flag, "1");
+  }
+  return calendarId;
+}
+
+/** Every calendar whose busy times block a slot: the appointments calendar itself, and Stephen's own diary. */
+async function calendarsToCheck() {
+  const s = bookingSettings();
+  return [...new Set([await appointmentsCalendarId(), ...s.busyCalendarIds])];
 }
 
 /** The free appointments right now, straight from Google (never cached, so nothing already taken is offered). */
 export async function availableSlots(now = new Date()): Promise<Slot[]> {
   const rules = bookingRules();
   const { from, to } = bookingWindow(rules, now);
-  const busy = await busyTimes(calendarsToCheck(), from, to);
+  const busy = await busyTimes(await calendarsToCheck(), from, to);
   return freeSlots(rules, now, busy);
 }
 
@@ -67,7 +119,8 @@ export type BookingResult =
  *  4. send the two emails.
  */
 export async function book(input: BookingInput, now = new Date()): Promise<BookingResult> {
-  const { calendarId, from } = bookingSettings();
+  const { from } = bookingSettings();
+  const calendarId = await appointmentsCalendarId();
   const release = await hold(`appointment:${calendarId}:${input.start}`);
   if (!release) return { ok: false, reason: "busy" };
   try {

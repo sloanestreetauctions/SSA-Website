@@ -87,7 +87,8 @@ from the valuation form (`/valuation`, for valuations from photographs), which i
 **How it works.** Free times are worked out from the rules in the editor (Pages → Jewellery appointments (booking):
 days, hours, lunch, appointment length, gap, notice, how far ahead, closed dates), minus anything already in Stephen's
 Google Calendar. All times are London time; the clocks changing is handled. Booking holds the time for two minutes,
-checks Google again, then creates the appointment in a "Jewellery appointments" Google calendar; the same time can
+checks Google again, then creates the appointment in the website's own "Jewellery appointments" Google calendar
+(shared with info@); the same time can
 never be booked twice. The client gets a confirmation email with a calendar file; the inbox set in the editor gets the
 details (Reply goes to the client). If Stephen deletes an appointment in Google Calendar, that time becomes free again.
 Client details are kept only in that calendar entry and the two emails.
@@ -102,11 +103,11 @@ Client details are kept only in that calendar entry and the two emails.
    Accounts → Create service account ("website-bookings", no roles) → open it → Keys → Add key → JSON. The file holds
    `client_email` and `private_key`. If Google says key creation is disabled by an organisation policy, a Google admin
    can allow it for this project (constraint `iam.disableServiceAccountKeyCreation`), or ask for the keyless set-up.
-2. *Calendars* (Google Calendar): create a calendar **Jewellery appointments** and share it with the service account's
-   email as **Make changes to events**; copy its Calendar ID (Settings → Integrate calendar). Share **Stephen's own
-   calendar** with the service account as **See only free/busy (hide details)**; its ID is his email address.
-   If sharing outside the organisation is blocked, a Google Workspace super-admin allows it at admin.google.com →
-   Apps → Google Workspace → Calendar → Sharing settings → External sharing options.
+2. *Calendars*: nothing to create. The website makes its own **Jewellery appointments** calendar the first time it is
+   used and shares it ("Make changes to events") with the address in `JEWELLERY_CALENDAR_SHARE_WITH` (info@); Google
+   emails that inbox a link to add it. Appointments can be opened, moved or deleted there like any event. The only
+   sharing to do by hand: share **the calendar that holds Stephen's diary** with the service account's email as
+   **See only free/busy (hide details)**, so his other commitments are never offered as free.
 3. *Upstash Redis* (free): Vercel → your project → Storage → Upstash for Redis → free plan → connect. It adds its own
    settings.
 4. *Resend*: the same verified domain as the valuation form.
@@ -115,8 +116,8 @@ Client details are kept only in that calendar entry and the two emails.
 | Setting | Value |
 | --- | --- |
 | `JEWELLERY_BOOKING` | `on` |
-| `JEWELLERY_CALENDAR_ID` | the Jewellery appointments calendar's ID |
-| `JEWELLERY_BUSY_CALENDAR_IDS` | Stephen's calendar ID (his email); several can be separated by commas |
+| `JEWELLERY_BUSY_CALENDAR_IDS` | the ID of the calendar with Stephen's diary (for a person's main calendar, their email address); several can be separated by commas |
+| `JEWELLERY_CALENDAR_SHARE_WITH` | who sees the appointments, e.g. `info@sloanestreetauctions.com` |
 | `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` from the key file |
 | `GOOGLE_PRIVATE_KEY` | `private_key` from the key file (the whole block, including the BEGIN/END lines) |
 | `APPOINTMENTS_FROM` | e.g. `Sloane Street Auctions <appointments@sloanestreetauctions.com>` |

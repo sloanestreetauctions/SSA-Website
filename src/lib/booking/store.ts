@@ -3,13 +3,16 @@ import { createHash, randomUUID } from "node:crypto";
 
 /**
  * A tiny shared store (Upstash Redis, free plan, added from Vercel → Storage)
- * used for two things only:
+ * used for three things only:
  *  - a two-minute "hold" on a time while it is being booked, so two people
  *    pressing "Confirm" at the same moment can't both get it;
- *  - counting booking attempts, to slow down spam.
- * It never holds names, emails or phone numbers: only the appointment time and
- * a one-way scrambled form of the visitor's network address, which expire on
- * their own.
+ *  - counting booking attempts, to slow down spam;
+ *  - remembering the ID of the "Jewellery appointments" calendar the website
+ *    created for itself.
+ * It never holds clients' names, emails or phone numbers: only appointment
+ * times and a one-way scrambled form of a visitor's network address (both
+ * expire on their own), the calendar's ID, and scrambled notes of which
+ * addresses the calendar has been shared with.
  *
  * Settings (added automatically by Vercel's Upstash integration):
  *   UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN  (or KV_REST_API_URL / KV_REST_API_TOKEN)
@@ -54,4 +57,14 @@ export async function withinLimit(bucket: string, who: string, limit: number, se
   const count = await command<number>("INCR", key);
   if (count === 1) await command("EXPIRE", key, seconds);
   return count <= limit;
+}
+
+/** Reads a saved value (e.g. the appointments calendar's ID). */
+export async function load(key: string): Promise<string | null> {
+  return command<string | null>("GET", key);
+}
+
+/** Saves a value with no expiry. */
+export async function save(key: string, value: string) {
+  await command("SET", key, value);
 }

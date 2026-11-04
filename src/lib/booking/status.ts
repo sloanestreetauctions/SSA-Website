@@ -10,8 +10,12 @@ import "server-only";
  * Environment Variables), never in the code:
  *
  *   JEWELLERY_BOOKING              on
- *   JEWELLERY_CALENDAR_ID          the "Jewellery appointments" Google calendar (bookings are created here)
  *   JEWELLERY_BUSY_CALENDAR_IDS    Stephen's own Google calendar(s), comma-separated: his busy times are kept free
+ *   JEWELLERY_CALENDAR_SHARE_WITH  who the appointments calendar is shared with ("Make changes to events"),
+ *                                  comma-separated; defaults to the calendars above (Stephen)
+ *   JEWELLERY_CALENDAR_ID          optional: an existing calendar to book into. Leave it out and the website
+ *                                  creates its own "Jewellery appointments" calendar the first time it's used,
+ *                                  and shares it with the people above (no Google admin settings needed).
  *   GOOGLE_SERVICE_ACCOUNT_EMAIL   } the robot Google user the calendars are shared with
  *   GOOGLE_PRIVATE_KEY             }
  *   UPSTASH_REDIS_REST_URL/TOKEN   the hold-and-spam store (added by Vercel's Upstash integration)
@@ -26,13 +30,19 @@ export const JEWELLERY_APPOINTMENTS_PATH = "/jewellery/appointments";
 
 const env = (name: string) => process.env[name]?.trim() || "";
 
+const list = (name: string) =>
+  env(name)
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
 export function bookingSettings() {
+  const busyCalendarIds = list("JEWELLERY_BUSY_CALENDAR_IDS");
+  const shareWith = list("JEWELLERY_CALENDAR_SHARE_WITH");
   return {
     calendarId: env("JEWELLERY_CALENDAR_ID"),
-    busyCalendarIds: env("JEWELLERY_BUSY_CALENDAR_IDS")
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean),
+    busyCalendarIds,
+    shareWith: shareWith.length ? shareWith : busyCalendarIds.filter((id) => id.includes("@") && !id.endsWith("calendar.google.com")),
     from: env("APPOINTMENTS_FROM") || env("VALUATION_FROM"),
   };
 }
@@ -41,7 +51,8 @@ export function bookingSettings() {
 export function missingBookingSettings(): string[] {
   const missing: string[] = [];
   const s = bookingSettings();
-  if (!s.calendarId) missing.push("JEWELLERY_CALENDAR_ID");
+  // Either an existing calendar, or someone to share the website's own calendar with.
+  if (!s.calendarId && s.shareWith.length === 0) missing.push("JEWELLERY_BUSY_CALENDAR_IDS (Stephen's email)");
   if (!env("GOOGLE_SERVICE_ACCOUNT_EMAIL")) missing.push("GOOGLE_SERVICE_ACCOUNT_EMAIL");
   if (!env("GOOGLE_PRIVATE_KEY")) missing.push("GOOGLE_PRIVATE_KEY");
   if (!(env("UPSTASH_REDIS_REST_URL") || env("KV_REST_API_URL")) || !(env("UPSTASH_REDIS_REST_TOKEN") || env("KV_REST_API_TOKEN")))
