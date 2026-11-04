@@ -13,7 +13,7 @@ import { hold } from "./store";
  * STEPHEN'S DAY SHEET — at 6pm on Tuesday, a PDF of Wednesday's appointments
  * (everything in the Jewellery appointments calendar that day: website bookings
  * with the client's details, and anything added by hand in Google Calendar) is
- * emailed to the address set in the editor (Pages → Jewellery appointments →
+ * emailed to the address set in the editor (Pages → Jewellery valuations →
  * "Tomorrow's appointments are emailed to"). Run by the schedule in vercel.json.
  */
 
@@ -46,7 +46,7 @@ export function toItem(e: CalendarEntry): SheetItem {
     return {
       time,
       until,
-      title: field("Name") || e.summary.replace(/^Jewellery appointment: /, ""),
+      title: field("Name") || e.summary.replace(/^Jewellery (?:appointment|valuation): /, ""),
       lines: [
         { label: "Telephone", text: field("Telephone") },
         { label: "Email", text: field("Email") },
@@ -76,7 +76,7 @@ const LINE = rgb(0.85, 0.83, 0.8);
 
 export async function renderSheet(date: string, items: SheetItem[], printedAt: Date): Promise<Uint8Array> {
   const pdf = await PDFDocument.create();
-  pdf.setTitle(`Jewellery appointments · ${longDate(date)}`);
+  pdf.setTitle(`Jewellery valuations · ${longDate(date)}`);
   pdf.setAuthor("Sloane Street Auctions");
   const serif = await pdf.embedFont(StandardFonts.TimesRoman);
   const serifBold = await pdf.embedFont(StandardFonts.TimesRomanBold);
@@ -124,14 +124,14 @@ export async function renderSheet(date: string, items: SheetItem[], printedAt: D
   const lw = 150, lh = (lw * logo.height) / logo.width;
   page.drawImage(logo, { x: (W - lw) / 2, y: y - lh, width: lw, height: lh });
   y -= lh + 34;
-  const title = "Jewellery appointments";
+  const title = "Jewellery valuations";
   page.drawText(title, { x: (W - serif.widthOfTextAtSize(title, 26)) / 2, y, size: 26, font: serif, color: NAVY });
   y -= 26;
   const day = longDate(date);
   page.drawText(safe(serif, day), { x: (W - serif.widthOfTextAtSize(safe(serif, day), 16)) / 2, y, size: 16, font: serif, color: NAVY });
   y -= 20;
   const who = [jewelleryPage.specialist?.name, (appointmentsPage.location || "").split("\n").slice(1).join(", ")].filter(Boolean).join(" · ");
-  const count = items.length === 1 ? "1 appointment" : `${items.length} appointments`;
+  const count = items.length === 1 ? "1 valuation" : `${items.length} valuations`;
   const sub = safe(sans, [who, count].filter(Boolean).join(" · "));
   page.drawText(sub, { x: (W - sans.widthOfTextAtSize(sub, 9.5)) / 2, y, size: 9.5, font: sans, color: SOFT });
   y -= 26;
@@ -145,7 +145,7 @@ export async function renderSheet(date: string, items: SheetItem[], printedAt: D
     );
 
   if (items.length === 0) {
-    text("No appointments are booked for this day.", M, 14, serif, SOFT);
+    text("No valuations are booked for this day.", M, 14, serif, SOFT);
   }
 
   for (const item of items) {
@@ -232,19 +232,19 @@ export async function sendDaySheet(now = new Date(), date = tomorrowOf(now), aga
     const day = longDate(date);
     const summary = items.length
       ? items.map((i) => `${i.time}  ${i.title}`).join("\n")
-      : "No appointments are booked.";
+      : "No valuations are booked.";
     const pdf = await renderSheet(date, items, now);
     await send({
       from: bookingSettings().from,
       to,
       reply_to: appointmentsPage.notifyEmail,
-      subject: `Tomorrow's jewellery appointments: ${day} (${items.length})`,
+      subject: `Tomorrow's jewellery valuations: ${day} (${items.length})`,
       text: `${day}\n\n${summary}\n\nThe details are in the attached PDF, ready to print. Anything booked after 6pm won't be on it: check the Jewellery appointments calendar in the morning.\n\nSloane Street Auctions`,
       html: `<div style="font-family:Georgia,'Times New Roman',serif;color:#1f1e22;font-size:17px;line-height:1.55;max-width:560px"><p><strong>${day}</strong></p><p>${summary
         .split("\n")
         .map((l) => l.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!))
         .join("<br>")}</p><p style="color:#5c5a5f;font-size:15px">The details are in the attached PDF, ready to print. Anything booked after 6pm won't be on it: check the Jewellery appointments calendar in the morning.</p></div>`,
-      attachments: [{ filename: `jewellery-appointments-${date}.pdf`, content: Buffer.from(pdf).toString("base64"), content_type: "application/pdf" }],
+      attachments: [{ filename: `jewellery-valuations-${date}.pdf`, content: Buffer.from(pdf).toString("base64"), content_type: "application/pdf" }],
     });
     return { sent: true, date, count: items.length };
   } catch (error) {

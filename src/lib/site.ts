@@ -25,7 +25,7 @@ export type SiteMenu = { left: MenuEntry[]; right: MenuEntry[] };
  * The header menu, split either side of the logo:
  *   Auctions ▾ · Buying ▾ · Selling ▾  |  Private Sales · About ▾ · Contact
  * Built on the server. Pages switched off in the editor are left out, and a
- * drop-down with nothing left in it disappears. "Jewellery Appointments" only
+ * drop-down with nothing left in it disappears. "Book a Jewellery Valuation" only
  * appears once the booking page is switched on (`bookingLive`).
  */
 export function siteMenu({ bookingLive }: { bookingLive: boolean }): SiteMenu {
@@ -51,7 +51,7 @@ export function siteMenu({ bookingLive }: { bookingLive: boolean }): SiteMenu {
       group(h.sellingLabel || "Selling", h.sell.description, [
         { label: h.sell.label || "Sell With Us", href: "/sell" },
         { label: "Request a Valuation", href: "/valuation" },
-        bookingLive && { label: "Jewellery Appointments", href: "/jewellery/appointments" },
+        bookingLive && { label: "Book a Jewellery Valuation", href: "/jewellery/appointments" },
       ]),
     ]),
     right: keep([

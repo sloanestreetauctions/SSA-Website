@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     return Response.json(found);
   } catch (error) {
     console.error("Cancel link couldn't be checked:", error instanceof Error ? error.message : error);
-    return Response.json({ ok: false, message: `Sorry, we can’t look up the appointment just now. Please call us on ${settings.mainPhone}.` }, { status: 503 });
+    return Response.json({ ok: false, message: `Sorry, we can’t look up the valuation just now. Please call us on ${settings.mainPhone}.` }, { status: 503 });
   }
 }
 

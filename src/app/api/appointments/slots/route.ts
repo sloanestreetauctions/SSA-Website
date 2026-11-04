@@ -4,7 +4,7 @@ import { jewelleryBookingLive } from "@/lib/booking/status";
 import { availableSlots } from "@/lib/booking/service";
 
 /**
- * GET /api/appointments/slots — the free jewellery appointments, grouped by
+ * GET /api/appointments/slots — the free jewellery valuations, grouped by
  * day, read live from Google Calendar. Only times are returned; nothing about
  * anyone's other appointments.
  */

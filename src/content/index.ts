@@ -127,7 +127,8 @@ const PAGE_SWITCH: [prefix: string, key: "sell" | "privateSales" | "jewellery" |
   ["/faqs", "faq"],
   ["/sell", "sell"],
   ["/private-sales", "privateSales"],
-  ["/jewellery", "jewellery"],
+  // Only the Jewellery page itself: the booking page under it (/jewellery/appointments) has its own switch.
+  ["/jewellery", "jewellery", true],
   ["/how-to-buy", "howToBuy"],
   ["/about/team", "team"],
   ["/about", "about", true],

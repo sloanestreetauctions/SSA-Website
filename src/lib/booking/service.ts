@@ -152,7 +152,7 @@ export async function book(input: BookingInput, now = new Date(), origin = "http
       reference,
       clientName: input.name,
       clientEmail: input.email,
-      summary: `Jewellery appointment: ${input.name}`,
+      summary: `Jewellery valuation: ${input.name}`,
       description: [
         `Booked on the website. Reference ${reference}.`,
         "",

@@ -6,7 +6,7 @@ import { linkOrigin } from "@/lib/booking/links";
 import { withinLimit } from "@/lib/booking/store";
 
 /**
- * POST /api/appointments/book — books a jewellery appointment. Everything is
+ * POST /api/appointments/book — books a jewellery valuation. Everything is
  * checked here on the server; the page's own checks are only a convenience.
  * Spam protection: a hidden field people never see, a minimum time to fill in
  * the form, and a limit on attempts per visitor and per email address.
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   if (input.name.length < 2) errors.name = "Please tell us your name";
   if (!EMAIL.test(input.email)) errors.email = "Please enter a valid email address, like name@example.com";
   if ((input.phone.match(/\d/g) ?? []).length < 7) errors.phone = "Please enter a telephone number we can reach you on";
-  if (body.consent !== true) errors.consent = "Please tick to agree, so we can arrange your appointment";
+  if (body.consent !== true) errors.consent = "Please tick to agree, so we can arrange your valuation";
   if (Number.isNaN(Date.parse(input.start))) errors.start = "Please choose a time";
   if (Object.keys(errors).length) return Response.json({ ok: false, errors }, { status: 422 });
 

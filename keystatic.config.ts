@@ -504,7 +504,7 @@ export default config({
           {
             sell: pageSwitch("Sell With Us"),
             privateSales: pageSwitch("Private Sales"),
-            jewellery: pageSwitch("Jewellery"),
+            jewellery: pageSwitch("Jewellery (the booking page stays on either way)"),
             howToBuy: pageSwitch("How to Buy"),
             faq: pageSwitch("FAQs (shown once at least one question is added)"),
             about: pageSwitch("About"),
@@ -537,7 +537,7 @@ export default config({
           {
             label: "Main menu wording",
             description:
-              "The menu: Auctions (Upcoming, Past) · Buying (How to Buy, Conditions of Sale) · Selling (Sell With Us, Request a Valuation, Jewellery Appointments) · Private Sales · About (About Us, Meet the Team) · Contact. The pages stay the same; only the wording changes. Pages switched off are left out of the menu automatically.",
+              "The menu: Auctions (Upcoming, Past) · Buying (How to Buy, Conditions of Sale) · Selling (Sell With Us, Request a Valuation, Book a Jewellery Valuation) · Private Sales · About (About Us, Meet the Team) · Contact. The pages stay the same; only the wording changes. Pages switched off are left out of the menu automatically.",
           },
         ),
         footerColumns: fields.array(

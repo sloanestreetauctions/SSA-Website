@@ -199,7 +199,7 @@ export function AppointmentBooking({
         <div className={`mt-6 max-w-[38rem] ${serif} text-[1.1875rem] leading-[1.5] text-ink-soft`}>{confirmation}</div>
         {!result.emailed && (
           <p className="mt-6 max-w-[38rem] border-l-2 border-gold pl-4 text-ink">
-            Your appointment is booked, but we couldn’t send the confirmation email. Please make a note of the date and time; {fallback}
+            Your valuation is booked, but we couldn’t send the confirmation email. Please make a note of the date and time; {fallback}
           </p>
         )}
       </div>
@@ -210,7 +210,7 @@ export function AppointmentBooking({
   if (loadFailed) {
     return (
       <div role="alert" className={`border border-line bg-paper px-6 py-10 ${serif} text-[1.25rem] text-ink md:px-10`}>
-        Sorry, we can’t show the appointment calendar just now. To book, {fallback}
+        Sorry, we can’t show the valuation calendar just now. To book, {fallback}
       </div>
     );
   }

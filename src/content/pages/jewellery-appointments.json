@@ -1,18 +1,18 @@
 {
   "page": {
     "eyebrow": "Jewellery",
-    "title": "Book a jewellery appointment",
-    "intro": "Meet our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom. Bring your pieces along for a free valuation.",
+    "title": "Book a jewellery valuation",
+    "intro": "Meet our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom, and bring your pieces along for a free valuation.",
     "valuationNote": "Would you rather send photographs? Use our [valuation form](/valuation) instead.",
     "calendarTitle": "Choose a day",
     "timesTitle": "Choose a time",
-    "noDates": "There are no appointments free online at the moment. Please call us on {phone} or email {email}.",
+    "noDates": "There are no valuations free to book online at the moment. Please call us on {phone} or email {email}.",
     "formTitle": "Your details",
     "detailsLabel": "About your jewellery (optional)",
-    "consentText": "I agree to Sloane Street Auctions using these details to arrange my appointment, as set out in the [privacy policy](/privacy-policy).",
-    "buttonLabel": "Confirm appointment",
-    "confirmationTitle": "Your appointment is booked",
-    "confirmationText": "We’ve emailed you a confirmation with a calendar entry. If you need to change or cancel, please call us on {phone} or email {email}."
+    "consentText": "I agree to Sloane Street Auctions using these details to arrange my valuation, as set out in the [privacy policy](/privacy-policy).",
+    "buttonLabel": "Confirm valuation",
+    "confirmationTitle": "Your valuation is booked",
+    "confirmationText": "We’ve emailed you a confirmation with a calendar entry, and a link to cancel if your plans change. To change the time, please call us on {phone} or email {email}."
   },
   "rules": {
     "durationMinutes": 30,
@@ -34,7 +34,7 @@
   "notifyEmail": "info@sloanestreetauctions.com",
   "daySheetEmail": "sgiles80@yahoo.com, info@sloanestreetauctions.com",
   "seo": {
-    "title": "Book a jewellery appointment",
-    "description": "Book a free appointment with our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom in Chelsea."
+    "title": "Book a jewellery valuation",
+    "description": "Book a free jewellery valuation with our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom in Chelsea."
   }
 }

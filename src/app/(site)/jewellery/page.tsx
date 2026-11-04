@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { ObjectPhoto, PhotoToCome } from "@/components/ui/PhotoToCome";
@@ -25,7 +25,11 @@ const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:d
  * (Pages → Jewellery).
  */
 export default function JewelleryPage() {
-  if (!isPageOn("/jewellery")) notFound();
+  if (!isPageOn("/jewellery")) {
+    // Switched off: anyone arriving here (an old link, a shortened address) goes to the booking page instead.
+    if (jewelleryBookingLive()) redirect(JEWELLERY_APPOINTMENTS_PATH);
+    notFound();
+  }
   const { hero, specialist, gallery, valuation } = c;
   const photos = (gallery.items ?? []).filter((item) => hasPhoto(item.photo));
   // The specialist's card on Meet the Team (same name), if that page is on and they're on it.

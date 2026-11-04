@@ -34,9 +34,9 @@ export function CancelAppointment({ phone, rebook }: { phone: string; rebook: st
         if (res.ok && body.ok) {
           setLink(l);
           setFound(body);
-        } else setProblem(body.message || `Sorry, we can’t look up the appointment just now. Please call us on ${phone}.`);
+        } else setProblem(body.message || `Sorry, we can’t look up the valuation just now. Please call us on ${phone}.`);
       })
-      .catch(() => setProblem(`Sorry, we can’t look up the appointment just now. Please call us on ${phone}.`));
+      .catch(() => setProblem(`Sorry, we can’t look up the valuation just now. Please call us on ${phone}.`));
   }, [phone]);
 
   async function submit(e: FormEvent) {
@@ -65,7 +65,7 @@ export function CancelAppointment({ phone, rebook }: { phone: string; rebook: st
   if (done) {
     return (
       <div role="status" className={box}>
-        <h2 className="font-serif text-[2rem] leading-tight font-[380] text-navy [font-variation-settings:'opsz'_60]">Appointment cancelled</h2>
+        <h2 className="font-serif text-[2rem] leading-tight font-[380] text-navy [font-variation-settings:'opsz'_60]">Valuation cancelled</h2>
         <p className={`mt-5 ${serif} text-[1.25rem] leading-snug text-ink`}>{done.when}</p>
         <p className={`mt-5 ${serif} text-[1.125rem] leading-[1.5] text-ink-soft`}>
           {house
@@ -93,14 +93,14 @@ export function CancelAppointment({ phone, rebook }: { phone: string; rebook: st
         <p>{problem}</p>
         <p className="mt-5">
           <Link href={rebook} className="text-navy underline decoration-gold underline-offset-4">
-            Book an appointment
+            Book a valuation
           </Link>
         </p>
       </div>
     );
   }
 
-  if (!found) return <p className={`${serif} text-[1.1875rem] text-ink-soft`}>Looking up the appointment…</p>;
+  if (!found) return <p className={`${serif} text-[1.1875rem] text-ink-soft`}>Looking up the valuation…</p>;
 
   return (
     <form onSubmit={submit} className={box}>
@@ -112,7 +112,7 @@ export function CancelAppointment({ phone, rebook }: { phone: string; rebook: st
       <p className={`mt-4 ${serif} text-[1.125rem] leading-[1.5] text-ink-soft`}>
         {house
           ? "Cancelling removes it from the Jewellery appointments calendar, frees the time and emails the client to tell them."
-          : "Would you like to cancel this jewellery appointment? We’ll email you to confirm."}
+          : "Would you like to cancel this jewellery valuation? We’ll email you to confirm."}
       </p>
       {house && (
         <div className="mt-6">
@@ -139,7 +139,7 @@ export function CancelAppointment({ phone, rebook }: { phone: string; rebook: st
         disabled={sending}
         className={`mt-8 inline-flex min-h-14 w-full items-center justify-center bg-navy-deep px-10 ${serif} text-[1.1875rem] text-ivory transition-colors hover:bg-navy-soft disabled:opacity-60 sm:w-auto`}
       >
-        {sending ? "Cancelling…" : house ? "Cancel and tell the client" : "Cancel this appointment"}
+        {sending ? "Cancelling…" : house ? "Cancel and tell the client" : "Cancel this valuation"}
       </button>
       {!house && (
         <p className={`mt-5 ${serif} text-[1.0625rem] text-ink-soft`}>

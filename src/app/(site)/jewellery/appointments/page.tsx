@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/ui/Editorial";
 import { PhotoToCome } from "@/components/ui/PhotoToCome";
 import { RichText } from "@/components/ui/RichText";
 import { pageTitle, serifText } from "@/components/ui/type";
-import { appointmentsPage as c, hasPhoto, jewelleryPage, settings, telHref } from "@/content";
+import { appointmentsPage as c, hasPhoto, isPageOn, jewelleryPage, settings, telHref } from "@/content";
 import { jewelleryBookingLive } from "@/lib/booking/status";
 import { pageMetadata } from "@/lib/page-metadata";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata("/jewellery/appointments", c.seo)
 const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink";
 
 /**
- * BOOK A JEWELLERY APPOINTMENT — Stephen's bookable appointments, a separate
+ * BOOK A JEWELLERY VALUATION — Stephen's bookable valuations, a separate
  * service from the valuation form (which stays at /valuation for valuations
  * from photographs). Free times come live from Google Calendar. Hidden ("not
  * found") until booking is switched on and set up: see src/lib/booking/status.ts.
@@ -39,7 +39,9 @@ export default function JewelleryAppointmentsPage() {
 
   return (
     <div className="shell pt-8 pb-20 md:pb-24">
-      <Breadcrumbs items={[{ label: jewelleryPage.hero.title || "Jewellery", href: "/jewellery" }, { label: page.title }]} />
+      <Breadcrumbs
+        items={[...(isPageOn("/jewellery") ? [{ label: jewelleryPage.hero.title || "Jewellery", href: "/jewellery" }] : []), { label: page.title }]}
+      />
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end lg:gap-16">
         <div>
@@ -58,7 +60,7 @@ export default function JewelleryAppointmentsPage() {
         </div>
 
         {/* Who and where, at a glance */}
-        <aside aria-label="About the appointment" className="flex items-start gap-5 border-t border-line pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+        <aside aria-label="About the valuation" className="flex items-start gap-5 border-t border-line pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
           {hasPhoto(specialist.photo) && (
             <PhotoToCome photo={{ ...specialist.photo, alt: "" }} className="aspect-[4/5] w-24 shrink-0" sizes="96px" />
           )}
@@ -66,7 +68,7 @@ export default function JewelleryAppointmentsPage() {
             {specialist.name && <p className="text-[1.25rem] text-ink [font-variation-settings:'opsz'_36]">{specialist.name}</p>}
             {specialist.role && <p className="text-ink-soft">{specialist.role}</p>}
             <ul className="mt-3 space-y-1 text-ink-soft">
-              <li>{rules.durationMinutes ?? 30}-minute appointments</li>
+              <li>{rules.durationMinutes ?? 30}-minute valuations</li>
               {c.location && <li>{c.location.split("\n").filter(Boolean).slice(-2).join(", ")}</li>}
             </ul>
           </div>
