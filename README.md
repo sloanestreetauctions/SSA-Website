@@ -79,6 +79,55 @@ Sending is switched on by settings on the live host (never in the code), using R
 Resend asks you to verify the domain by adding a few DNS records; this doesn't affect your existing email. On your
 own computer sending stays off (`none`), so testing never sends real email; the form says so.
 
+## Jewellery appointments (booking with Stephen)
+
+`/jewellery/appointments` lets clients book a 30-minute appointment with the Head of Jewellery. It is a separate service
+from the valuation form (`/valuation`, for valuations from photographs), which is unchanged.
+
+**How it works.** Free times are worked out from the rules in the editor (Pages → Jewellery appointments (booking):
+days, hours, lunch, appointment length, gap, notice, how far ahead, closed dates), minus anything already in Stephen's
+Google Calendar. All times are London time; the clocks changing is handled. Booking holds the time for two minutes,
+checks Google again, then creates the appointment in a "Jewellery appointments" Google calendar; the same time can
+never be booked twice. The client gets a confirmation email with a calendar file; the inbox set in the editor gets the
+details (Reply goes to the client). If Stephen deletes an appointment in Google Calendar, that time becomes free again.
+Client details are kept only in that calendar entry and the two emails.
+
+**Off until set up.** Nothing appears on the site (no menu item, no buttons, the page says "not found") until
+`JEWELLERY_BOOKING=on` *and* all the settings below are added on the host. Changing the settings needs a redeploy.
+
+**Setting it up (once).**
+
+1. *Google Cloud* (free; signed in as an SSA Google account, e.g. info@): console.cloud.google.com → create a project
+   ("SSA website bookings") → APIs & Services → Library → **Google Calendar API** → Enable → IAM & Admin → Service
+   Accounts → Create service account ("website-bookings", no roles) → open it → Keys → Add key → JSON. The file holds
+   `client_email` and `private_key`. If Google says key creation is disabled by an organisation policy, a Google admin
+   can allow it for this project (constraint `iam.disableServiceAccountKeyCreation`), or ask for the keyless set-up.
+2. *Calendars* (Google Calendar): create a calendar **Jewellery appointments** and share it with the service account's
+   email as **Make changes to events**; copy its Calendar ID (Settings → Integrate calendar). Share **Stephen's own
+   calendar** with the service account as **See only free/busy (hide details)**; its ID is his email address.
+   If sharing outside the organisation is blocked, a Google Workspace super-admin allows it at admin.google.com →
+   Apps → Google Workspace → Calendar → Sharing settings → External sharing options.
+3. *Upstash Redis* (free): Vercel → your project → Storage → Upstash for Redis → free plan → connect. It adds its own
+   settings.
+4. *Resend*: the same verified domain as the valuation form.
+5. *Vercel → Settings → Environment Variables* (tick Sensitive for the key):
+
+| Setting | Value |
+| --- | --- |
+| `JEWELLERY_BOOKING` | `on` |
+| `JEWELLERY_CALENDAR_ID` | the Jewellery appointments calendar's ID |
+| `JEWELLERY_BUSY_CALENDAR_IDS` | Stephen's calendar ID (his email); several can be separated by commas |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` from the key file |
+| `GOOGLE_PRIVATE_KEY` | `private_key` from the key file (the whole block, including the BEGIN/END lines) |
+| `APPOINTMENTS_FROM` | e.g. `Sloane Street Auctions <appointments@sloanestreetauctions.com>` |
+| `RESEND_API_KEY` | as for the valuation form |
+| Upstash settings | added automatically in step 3 |
+
+Then redeploy, book a test appointment, check the calendar and both emails, and delete the test entry. Delete the
+downloaded key file once it is in Vercel.
+
+**Checks.** `npm run test:booking` checks the time rules (including both clock changes); it also runs in `npm run check`.
+
 ## Keeping the site private before launch
 
 Add a setting called `SITE_PASSWORD` on the host (Vercel → Settings → Environment Variables), then redeploy. Every
