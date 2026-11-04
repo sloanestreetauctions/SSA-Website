@@ -906,6 +906,10 @@ export default config({
       ),
       location: paragraph("Where appointments take place", "Shown in the confirmation and the calendar entry. One line per row."),
       notifyEmail: requiredLine("Booking emails are sent to", "e.g. info@sloanestreetauctions.com"),
+      daySheetEmail: line(
+        "Next day's appointments are emailed to",
+        "At 6pm every Tuesday, a printable PDF of Wednesday's appointments goes to this address (e.g. Stephen's email). Several addresses can be separated by commas. Leave empty to send none.",
+      ),
     }),
 
     about: singlePage("About", "about", {

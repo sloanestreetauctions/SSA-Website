@@ -65,7 +65,7 @@ function calendarFile(b: BookingEmail) {
 const page = (inner: string) =>
   `<div style="font-family:Georgia,'Times New Roman',serif;color:#1f1e22;font-size:17px;line-height:1.55;max-width:560px">${inner}<p style="margin-top:28px;color:#5c5a5f;font-size:14px">Sloane Street Auctions · ${esc(settings.addressLines.join(", "))} · ${esc(settings.mainPhone)}</p></div>`;
 
-async function send(message: Record<string, unknown>) {
+export async function send(message: Record<string, unknown>) {
   const res = await fetch(process.env.RESEND_API_URL || "https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },

@@ -505,6 +505,7 @@ const newFiles = {
     },
     location: "Sloane Street Auctions\n158–164 Fulham Road\nLondon SW10 9PR",
     notifyEmail: "info@sloanestreetauctions.com",
+    daySheetEmail: "",
     seo: {
       title: "Book a jewellery appointment",
       description: "Book a free appointment with our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom in Chelsea.",

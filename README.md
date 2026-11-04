@@ -97,6 +97,17 @@ details (Reply goes to the client). If Stephen deletes an appointment in Google 
 from the calendar, frees the time and emails both sides. Each link is signed by the website, works only for its own
 booking (never for a later booking at the same time) and only before the appointment. Deleting the entry in Google
 Calendar still works too, but then nobody is emailed.
+
+**Stephen's day sheet.** At 6pm every Tuesday (London time), a printable PDF of Wednesday's appointments is emailed to
+the address in **Pages → Jewellery appointments → Next day's appointments are emailed to**. It lists everything in the
+Jewellery appointments calendar that day: website bookings with the client's details, and anything added by hand. It
+runs on Vercel's schedule (`vercel.json`) and needs one setting, `CRON_SECRET` (any long random text), so only Vercel
+can run it. On Vercel's free plan it may arrive any time between 6:00 and 6:59pm.
+
+**Booking for a client yourself.** Book on the website with the client's details: it checks the time is free, sends
+them the confirmation and cancel link, and it's on the day sheet. For a client with no email, use the bookings inbox
+address (it has no daily limit). Within 24 hours of the appointment the website won't offer the time: add it in the
+Jewellery appointments calendar instead.
 Client details are kept only in that calendar entry and the two emails.
 
 **Off until set up.** Nothing appears on the site (no menu item, no buttons, the page says "not found") until

@@ -231,3 +231,46 @@ export async function removeAppointment(calendarId: string, start: string) {
   const res = await call(`/calendars/${encodeURIComponent(calendarId)}/events/${eventIdFor(calendarId, start)}`, { method: "DELETE" });
   if (!res.ok && res.status !== 404 && res.status !== 410) throw new CalendarError(`Google wouldn't remove the appointment (${res.status}).`);
 }
+
+export type CalendarEntry = {
+  summary: string;
+  description: string;
+  start: string;
+  end: string;
+  allDay: boolean;
+  /** Booked on the website (as opposed to added by hand in Google Calendar). */
+  fromWebsite: boolean;
+  reference?: string;
+};
+
+/** Everything in a calendar between two times, in time order (cancelled entries left out). */
+export async function listEntries(calendarId: string, from: Date, to: Date): Promise<CalendarEntry[]> {
+  const q = new URLSearchParams({ timeMin: from.toISOString(), timeMax: to.toISOString(), singleEvents: "true", orderBy: "startTime", maxResults: "250" });
+  const res = await call(`/calendars/${encodeURIComponent(calendarId)}/events?${q}`);
+  if (!res.ok) throw new CalendarError(`Google couldn't list the appointments (${res.status}).`);
+  const body = (await res.json()) as {
+    items?: {
+      status?: string;
+      summary?: string;
+      description?: string;
+      start?: { dateTime?: string; date?: string };
+      end?: { dateTime?: string; date?: string };
+      extendedProperties?: { private?: Record<string, string> };
+    }[];
+  };
+  return (body.items ?? [])
+    .filter((e) => e.status !== "cancelled")
+    .map((e) => {
+      const p = e.extendedProperties?.private ?? {};
+      const allDay = !e.start?.dateTime;
+      return {
+        summary: e.summary ?? "",
+        description: e.description ?? "",
+        start: e.start?.dateTime ? new Date(e.start.dateTime).toISOString() : `${e.start?.date}T00:00:00.000Z`,
+        end: e.end?.dateTime ? new Date(e.end.dateTime).toISOString() : `${e.end?.date}T00:00:00.000Z`,
+        allDay,
+        fromWebsite: p.bookedOn === "sloanestreetauctions.com",
+        reference: p.reference,
+      };
+    });
+}

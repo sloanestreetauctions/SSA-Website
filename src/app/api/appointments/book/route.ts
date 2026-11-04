@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { settings } from "@/content";
+import { appointmentsPage, settings } from "@/content";
 import { jewelleryBookingLive } from "@/lib/booking/status";
 import { book } from "@/lib/booking/service";
 import { linkOrigin } from "@/lib/booking/links";
@@ -45,7 +45,8 @@ export async function POST(request: Request) {
 
   try {
     const ip = (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
-    const allowed = (await withinLimit("book-ip", ip, 6, 3600)) && (await withinLimit("book-email", input.email.toLowerCase(), 3, 86_400));
+    const allowed = (await withinLimit("book-ip", ip, 6, 3600)) && // The house's own address is exempt: staff booking for clients with no email use it.
+      (input.email.toLowerCase() === appointmentsPage.notifyEmail.trim().toLowerCase() || (await withinLimit("book-email", input.email.toLowerCase(), 3, 86_400)));
     if (!allowed) {
       return Response.json(
         { ok: false, message: `You’ve tried to book several times. Please call us on ${settings.mainPhone} and we’ll help.` },
