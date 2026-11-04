@@ -67,15 +67,14 @@
       "closingDate": "2026-10-22",
       "time": "10:30",
       "consignmentDeadline": "2026-10-22",
-      "description": "",
+      "longDescription": "The Indian and Islamic Sale including Dr M Farsi Collection of Arms and Armour, British and European including the Extraordinary Property of a Lady and Fine Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/33edc71ea8a0cd1c07270635d82ab632/f696df3e52c0cf46109d4cecaabb248f/the-october-estates-auction-the-indian-and-islamic-sale-inc/",
       "photo": {
         "image": "/images/pages/calendar/sales/3/photo/image.JPG",
         "alt": "Huggins, Jaguar",
         "onWhite": true
       },
-      "featuredLots": [],
-      "longDescription": "The Indian and Islamic Sale including Dr M Farsi Collection of Arms and Armour, British and European including the Extraordinary Property of a Lady and Fine Jewellery"
+      "featuredLots": []
     },
     {
       "title": "The September Auction",
@@ -84,14 +83,13 @@
       "closingDate": "2026-09-24",
       "time": "10:30",
       "consignmentDeadline": "2026-09-24",
-      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d3b8e975b4a6f13a735e4646c0322705/f696df3e52c0cf46109d4cecaabb248f/the-september-auction-to-include-noble-estates-old-and-mod/",
       "photo": {
         "image": "/images/pages/calendar/sales/4/photo/image.JPG",
         "onWhite": false
       },
-      "featuredLots": [],
-      "longDescription": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery"
+      "featuredLots": []
     },
     {
       "title": "The Summer Auction",
@@ -100,14 +98,13 @@
       "closingDate": "2026-07-10",
       "time": "10:30",
       "consignmentDeadline": "2026-07-10",
-      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/35f794b69c868c92f5b92548b46dab8e/f696df3e52c0cf46109d4cecaabb248f/the-summer-auction-to-include-noble-estates-old-and-modern/",
       "photo": {
         "image": "/images/pages/calendar/sales/5/photo/image.JPG",
         "onWhite": false
       },
-      "featuredLots": [],
-      "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery"
+      "featuredLots": []
     },
     {
       "title": "The June Auction",
@@ -116,21 +113,19 @@
       "closingDate": "2026-06-19",
       "time": "10:30",
       "consignmentDeadline": "2026-06-19",
-      "description": "",
+      "longDescription": "To include Noble Estates, Old and Modern Masters and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/c1d242fbd8eebed3e8150d13505b64b9/f696df3e52c0cf46109d4cecaabb248f/the-june-auction-to-include-noble-estates-old-and-modern-m/",
       "photo": {
         "image": "/images/pages/calendar/sales/6/photo/image.JPG",
         "onWhite": false
       },
-      "featuredLots": [],
-      "longDescription": "To include Noble Estates, Old and Modern Masters and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP"
+      "featuredLots": []
     },
     {
       "title": "The Early Summer Auction",
       "kind": "live",
       "date": "2026-05-21",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ffac61d59acf648b62d03663c3f40013/f696df3e52c0cf46109d4cecaabb248f/the-early-summer-auction-to-include-noble-estates-old-and/",
       "photo": {
@@ -145,7 +140,6 @@
       "kind": "live",
       "date": "2026-04-16",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Old and Modern Masters, Jewellery and the Estate of Nicholas Colquhoun-Denvers, Former Chairman of the HPA (Hurlingham Polo Association) and President of FIP",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/56a93412a897ee7375068ac7544e8fbb/f696df3e52c0cf46109d4cecaabb248f/the-spring-auction-to-include-old-and-modern-masters-jewel/",
       "photo": {
@@ -160,7 +154,6 @@
       "kind": "live",
       "date": "2026-03-12",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/165cc5c974071ff2e2d59ff428abd049/f696df3e52c0cf46109d4cecaabb248f/the-march-auction-to-include-noble-estates-old-and-modern/",
       "photo": {
@@ -175,7 +168,6 @@
       "kind": "live",
       "date": "2026-02-05",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/cbf71e38dc560794c2f902d3c1e382b2/f696df3e52c0cf46109d4cecaabb248f/the-february-valentines-fine-art-auction-to-include-noble/",
       "photo": {
@@ -190,7 +182,6 @@
       "kind": "live",
       "date": "2025-12-05",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture, Jewellery and Fine Wines",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/a273c97948f1c5bf9b07726176169085/f696df3e52c0cf46109d4cecaabb248f/the-christmas-fine-art-auction-to-include-noble-estates-ol/",
       "photo": {
@@ -205,7 +196,6 @@
       "kind": "live",
       "date": "2025-10-29",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/0591ac7b2104792fb2ae7e2404193276/f696df3e52c0cf46109d4cecaabb248f/the-baroness-margaret-thatcher-lg-om-dstj-pc-frs-honfrs/",
       "photo": {
@@ -220,7 +210,6 @@
       "kind": "live",
       "date": "2025-09-26",
       "time": "10:00",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/4c7d1fb227ca35481f12a68399e790e6/f696df3e52c0cf46109d4cecaabb248f/the-september-fine-art-auction-to-include-noble-estates-ol/",
       "photo": {
@@ -235,7 +224,6 @@
       "kind": "live",
       "date": "2025-07-08",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old and Modern Masters, Photography, Sculpture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/76c754e2672fec5fd41ef9d64c3a3ff2/f696df3e52c0cf46109d4cecaabb248f/the-summer-fine-art-auction-to-include-noble-estates-old-a/",
       "photo": {
@@ -250,7 +238,6 @@
       "kind": "live",
       "date": "2025-06-12",
       "time": "10:00",
-      "description": "",
       "longDescription": "To include Noble Estates, Old Masters, Jewellery, Modern British and Sculpture",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/fc966e783c9874b8dbecec2b27b5569e/f696df3e52c0cf46109d4cecaabb248f/the-june-auction-to-include-noble-estates-old-masters-jew/",
       "photo": {
@@ -265,7 +252,6 @@
       "kind": "live",
       "date": "2025-05-02",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Noble Estates, Old Masters, Jewellery, Modern British, Sculpture and Arts of the Islamic World",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/7ed06a13b6087e481ece1a1c151f2e4b/f696df3e52c0cf46109d4cecaabb248f/the-early-summer-auction-to-include-noble-estates-old-mast/",
       "photo": {
@@ -280,7 +266,6 @@
       "kind": "live",
       "date": "2025-03-28",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Old Masters, Jewellery, Modern British, Sculpture and Fine Estate Contents",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/eb4c9d5758952201f2babcaa2577f7fd/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-auction-to-include-old-masters-jewelle/",
       "photo": {
@@ -295,7 +280,6 @@
       "kind": "live",
       "date": "2025-02-06",
       "time": "10:30",
-      "description": "",
       "longDescription": "To include Old and Modern Masters, Jewellery and other Estate Contents including The Late Baroness Thatcher",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/8ef4ee0d32eded79d43f2acda335e82b/f696df3e52c0cf46109d4cecaabb248f/the-valentines-auction-to-include-old-and-modern-masters/",
       "photo": {
@@ -310,7 +294,6 @@
       "kind": "live",
       "date": "2024-11-29",
       "time": "11:00",
-      "description": "",
       "longDescription": "Personal Property of the Late Baroness Margaret Thatcher and the Antiquarian Peter Roe and other Fine Estate Contents, Old and Modern Masters, Fine Furniture and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/2f613f169db00ca69af6865cd639c7ca/f696df3e52c0cf46109d4cecaabb248f/the-winter-auction-personal-property-of-the-late-baroness-m/",
       "photo": {
@@ -325,7 +308,6 @@
       "kind": "live",
       "date": "2024-10-23",
       "time": "10:00",
-      "description": "",
       "longDescription": "To include 20th Century, Modern and Old Masters, Islamic and Asian Art and Jewellery",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ae18e34f77daf91e2e2dc35f715886bd/f696df3e52c0cf46109d4cecaabb248f/the-23rd-october-sale-to-include-20th-century-modern-and-o/",
       "photo": {
@@ -340,7 +322,6 @@
       "kind": "live",
       "date": "2024-09-19",
       "time": "10:00",
-      "description": "",
       "longDescription": "To include Old Master and Sporting Paintings, Jewellery, Furniture and Estate Contents",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/57ba55fd804cde525292cbce45eef0e2/f696df3e52c0cf46109d4cecaabb248f/the-19th-september-sale-to-include-old-master-and-sporting/",
       "photo": {
@@ -355,7 +336,6 @@
       "kind": "live",
       "date": "2024-07-03",
       "time": "10:00",
-      "description": "",
       "longDescription": "Jewellery, Paintings, Furniture and Estate Contents",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/2461b6c809c06ce0225a8811d432ff6e/f696df3e52c0cf46109d4cecaabb248f/the-old-master-sale-jewellery-paintings-furniture-and-est/",
       "photo": {
@@ -370,7 +350,6 @@
       "kind": "live",
       "date": "2024-06-12",
       "time": "10:00",
-      "description": "",
       "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags, Estate Contents, and Islamic and Middle Eastern Collections",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/581fd5fb0e9f2ddf5afa9e072dd497cb/f696df3e52c0cf46109d4cecaabb248f/the-summer-fine-art-auction-old-masters-modern-british-an/",
       "photo": {
@@ -385,7 +364,6 @@
       "kind": "live",
       "date": "2024-04-18",
       "time": "10:00",
-      "description": "",
       "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags and Estate Contents",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/24ae98db9c0b85f57bcf1a5ab5180c16/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-auction-18th-april-sale-old-masters-modern/",
       "photo": {
@@ -400,7 +378,6 @@
       "kind": "live",
       "date": "2024-02-14",
       "time": "11:00",
-      "description": "",
       "longDescription": "Old Masters, Modern British, Antique and Modern Furniture, Jewellery, Bags and Estate Contents.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/febb8836865f024da63fd22b8af78cb5/f696df3e52c0cf46109d4cecaabb248f/valentines-day-auction-14th-february-2024-old-masters-mo/",
       "photo": {
@@ -415,7 +392,6 @@
       "kind": "live",
       "date": "2023-11-30",
       "time": "11:00",
-      "description": "",
       "longDescription": "Including Old Masters, Furniture, Jewellery, Islamic Art and Antiques, Including The Primary Collection of 15th and 16th Century Italian Gold Ground Paintings.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/a80048fff16f3c013b349e3143226c4b/f696df3e52c0cf46109d4cecaabb248f/the-winter-fine-sale-including-old-masters-furniture-jewe/",
       "photo": {
@@ -430,7 +406,6 @@
       "kind": "live",
       "date": "2023-10-17",
       "time": "16:00",
-      "description": "",
       "longDescription": "Including Works From a Leading Contemporary Collection (The Majority Previously Exhibited at The Saatchi Gallery and Now To Be Sold With No Reserve).",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/ea85ed4a46aad673d875c1c562cb6bd4/f696df3e52c0cf46109d4cecaabb248f/contemporary-day-sale-including-works-from-a-leading-contem/",
       "photo": {
@@ -445,7 +420,6 @@
       "kind": "live",
       "date": "2023-09-28",
       "time": "14:00",
-      "description": "",
       "longDescription": "Including Old Masters, Furniture, and The Primary Contents of Belgravia Residences.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/9c94802b3f45975e1c795ec205ea8fab/f696df3e52c0cf46109d4cecaabb248f/the-september-fine-sale-including-old-masters-furniture-a/",
       "photo": {
@@ -460,7 +434,6 @@
       "kind": "live",
       "date": "2023-06-29",
       "time": "14:00",
-      "description": "",
       "longDescription": "Including Old Master Drawings, Paintings, Silver and Ceramics",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/fb5154d2b69812e923f6c4819aa0d975/f696df3e52c0cf46109d4cecaabb248f/the-important-summer-sale-including-old-master-drawings-p/",
       "photo": {
@@ -475,7 +448,6 @@
       "kind": "live",
       "date": "2023-04-27",
       "time": "14:00",
-      "description": "",
       "longDescription": "Old Masters, Modern British, as well as Private Collections of Indian, Islamic, and Oriental Art and Antiquities.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d88ed3cceae0c297c976bb87970e9969/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-and-antiques-sale-old-masters-modern-b/",
       "photo": {
@@ -490,7 +462,6 @@
       "kind": "live",
       "date": "2023-03-01",
       "time": "12:00",
-      "description": "",
       "longDescription": "Including Old Masters and Russian Avant-Garde",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d57b12165a3628e58a7e6365f344c621/f696df3e52c0cf46109d4cecaabb248f/the-spring-fine-art-and-antiques-sale-1st-march-2023-i/",
       "photo": {
@@ -505,7 +476,6 @@
       "kind": "live",
       "date": "2022-11-30",
       "time": "13:00",
-      "description": "",
       "longDescription": "Including the Contents of the London Library of Sir Christopher Ondaatje OC, CBE, FRSL",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/582733d490d19add3f92b36cc7841854/f696df3e52c0cf46109d4cecaabb248f/the-winter-fine-art-old-masters-antiques-and-antiquarian/",
       "photo": {
@@ -520,7 +490,6 @@
       "kind": "live",
       "date": "2022-09-28",
       "time": "14:00",
-      "description": "",
       "longDescription": "Including Selected Property Of A Distinguished Gentleman Of Title. Contents From His Belgravia Residence.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/d82aa553c9a37fd94f5ff3795bbe0a43/f696df3e52c0cf46109d4cecaabb248f/september-28th-2pmthe-important-autumn-sale-including-se/",
       "photo": {
@@ -535,7 +504,6 @@
       "kind": "live",
       "date": "2022-07-01",
       "time": "14:00",
-      "description": "",
       "longDescription": "Photographs, Old Master Paintings, Icons, Sculpture, Impressionism, and Mid-20th Century to Modern. From Chelsea, Belgravia, and International collections.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/b9fe77a47b665e191bf1d160dbe767a0/f696df3e52c0cf46109d4cecaabb248f/summer-sale-photographs-old-master-paintings-icons-sculp/",
       "photo": {
@@ -550,7 +518,6 @@
       "kind": "live",
       "date": "2022-04-12",
       "time": "12:00",
-      "description": "",
       "longDescription": "Including items from Captain Cook’s Circumnavigation aboard HMS Resolution 1772-1775.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/30371fd44f65ff571f8c0bd68ced8556/f696df3e52c0cf46109d4cecaabb248f/fine-art-old-masters-islamic-art-and-antiques-including/",
       "photo": {
@@ -565,7 +532,6 @@
       "kind": "live",
       "date": "2022-02-24",
       "time": "12:00",
-      "description": "",
       "longDescription": "To include the Condylis Collection.",
       "catalogueLink": "https://www.sloanestreetauctions.com/catalogue/27dee56d5e1beae137e4c8886008b106/f696df3e52c0cf46109d4cecaabb248f/an-extremely-fine-sale-of-important-antiques-and-fine-art-t/",
       "photo": {
