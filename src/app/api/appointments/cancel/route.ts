@@ -3,6 +3,7 @@ import { connection } from "next/server";
 import { settings } from "@/content";
 import { jewelleryBookingLive } from "@/lib/booking/status";
 import { cancel, lookUpForCancel } from "@/lib/booking/service";
+import { linkOrigin } from "@/lib/booking/links";
 import { withinLimit } from "@/lib/booking/store";
 
 /**
@@ -47,7 +48,7 @@ export async function POST(request: Request) {
     if (!(await withinLimit("cancel-ip", ip, 20, 3600)))
       return Response.json({ ok: false, message: `Please call us on ${settings.mainPhone} and we’ll help.` }, { status: 429 });
     const kind = kindOf(body.by);
-    const result = await cancel(kind, s(body.ref), s(body.start), s(body.t), kind === "house" ? s(body.note, 1000) : "", new Date(), new URL(request.url).origin);
+    const result = await cancel(kind, s(body.ref), s(body.start), s(body.t), kind === "house" ? s(body.note, 1000) : "", new Date(), linkOrigin(request));
     if (!result.ok) return Response.json({ ok: false, reason: result.reason, message: messages[result.reason] }, { status: 404 });
     return Response.json(result);
   } catch (error) {

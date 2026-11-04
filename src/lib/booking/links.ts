@@ -37,3 +37,16 @@ export function cancelLink(origin: string, kind: LinkKind, reference: string, st
   const q = new URLSearchParams({ ref: reference, start, t: sign(kind, reference, start), ...(kind === "house" ? { by: "house" } : {}) });
   return `${origin}/jewellery/appointments/cancel?${q.toString()}`;
 }
+
+/**
+ * Which site the links in emails point to. On the live site, always its proper
+ * address (never a one-off deployment address); on a Preview, that Preview, so
+ * testing never touches the live site.
+ */
+export function linkOrigin(request: Request) {
+  if (process.env.VERCEL_ENV === "production") {
+    const site = process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "");
+    if (site) return site.replace(/\/$/, "");
+  }
+  return new URL(request.url).origin;
+}

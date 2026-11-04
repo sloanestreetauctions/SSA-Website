@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { settings } from "@/content";
 import { jewelleryBookingLive } from "@/lib/booking/status";
 import { book } from "@/lib/booking/service";
+import { linkOrigin } from "@/lib/booking/links";
 import { withinLimit } from "@/lib/booking/store";
 
 /**
@@ -51,7 +52,7 @@ export async function POST(request: Request) {
         { status: 429 },
       );
     }
-    const result = await book(input, new Date(), new URL(request.url).origin);
+    const result = await book(input, new Date(), linkOrigin(request));
     if (!result.ok) {
       return Response.json(
         { ok: false, taken: true, message: "Sorry, that time has just been booked by someone else. Please choose another." },
