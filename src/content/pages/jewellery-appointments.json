@@ -2,7 +2,7 @@
   "page": {
     "eyebrow": "Jewellery",
     "title": "Book a jewellery valuation",
-    "intro": "Meet our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom, and bring your pieces along for a free valuation.",
+    "intro": "Meet our Head of Jewellery, Stephen Giles, at our Chelsea saleroom, and bring your pieces along for a free valuation.",
     "valuationNote": "Would you rather send photographs? Use our [valuation form](/valuation) instead.",
     "calendarTitle": "Choose a day",
     "timesTitle": "Choose a time",
@@ -35,6 +35,6 @@
   "daySheetEmail": "sgiles80@yahoo.com, info@sloanestreetauctions.com",
   "seo": {
     "title": "Book a jewellery valuation",
-    "description": "Book a free jewellery valuation with our Head of Jewellery, Stephen Giles, at our Fulham Road saleroom in Chelsea."
+    "description": "Book a free jewellery valuation with our Head of Jewellery, Stephen Giles, at our Chelsea saleroom."
   }
 }
