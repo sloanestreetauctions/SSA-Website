@@ -18,16 +18,10 @@ import type { Busy } from "./slots";
  */
 
 const TOKEN_AUDIENCE = "https://oauth2.googleapis.com/token";
-const SCOPES = [
-  // Create the "Jewellery appointments" calendar and manage only calendars it created itself.
-  "https://www.googleapis.com/auth/calendar.app.created",
-  // Share that calendar with the house (info@).
-  "https://www.googleapis.com/auth/calendar.acls",
-  // Add appointments to a calendar shared with it (if one is set instead).
-  "https://www.googleapis.com/auth/calendar.events",
-  // See when Stephen is busy (only free/busy, never what the appointments are).
-  "https://www.googleapis.com/auth/calendar.freebusy",
-].join(" ");
+// Google's standard Calendar permission. A service account has no calendar of its
+// own and no access to anyone else's: with this it can only manage the calendar it
+// creates itself and see what has been shared with it (Stephen's free/busy).
+const SCOPES = "https://www.googleapis.com/auth/calendar";
 const tokenUrl = () => process.env.GOOGLE_OAUTH_TOKEN_URL || TOKEN_AUDIENCE;
 const apiUrl = () => (process.env.GOOGLE_CALENDAR_API_URL || "https://www.googleapis.com/calendar/v3").replace(/\/$/, "");
 
@@ -56,7 +50,14 @@ async function accessToken(): Promise<string> {
     body: new URLSearchParams({ grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer", assertion: `${unsigned}.${base64url(signature)}` }),
     signal: AbortSignal.timeout(10_000),
   });
-  if (!res.ok) throw new CalendarError(`Google sign-in failed (${res.status}).`);
+  if (!res.ok) {
+    // Google's own reason (e.g. invalid_grant: the key was pasted incompletely). Never includes the key itself.
+    const reason = await res
+      .json()
+      .then((b: { error?: string; error_description?: string }) => [b.error, b.error_description].filter(Boolean).join(": "))
+      .catch(() => "");
+    throw new CalendarError(`Google sign-in failed (${res.status}${reason ? `: ${reason}` : ""}).`);
+  }
   const body = (await res.json()) as { access_token: string; expires_in: number };
   cached = { token: body.access_token, expires: Date.now() + body.expires_in * 1000 };
   return cached.token;
