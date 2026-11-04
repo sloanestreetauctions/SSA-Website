@@ -1,7 +1,10 @@
+import type { Metadata } from "next";
 import { SiteEnd } from "@/components/layout/SiteEnd";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { LiveBar } from "@/components/sales/LiveBar";
 import { NotFoundContent } from "@/components/ui/NotFoundContent";
+
+export const metadata: Metadata = { title: "Page not found", robots: { index: false } };
 
 /** Addresses that don't exist anywhere on the site: the full page, with header and footer. */
 export default function NotFound() {

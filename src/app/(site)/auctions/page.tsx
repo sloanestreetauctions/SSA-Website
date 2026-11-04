@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { routes } from "@/lib/routes";
 import { getSales } from "@/lib/sales";
@@ -14,7 +15,7 @@ import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { pageTitle, serifText } from "@/components/ui/type";
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/auctions", c.seo, "Upcoming auctions at Sloane Street Auctions in Chelsea, London: sale dates, viewing times and catalogues.");
 
 /**
  * AUCTIONS — the sales listed in the editor's Auction calendar. Each links to

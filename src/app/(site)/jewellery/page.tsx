@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow } from "@/components/ui/Button";
@@ -12,7 +13,7 @@ import { hasPhoto, isPageOn, isShown, jewelleryPage as c, paragraphs, personAnch
 import { JEWELLERY_APPOINTMENTS_PATH, jewelleryBookingLive } from "@/lib/booking/status";
 import { routes } from "@/lib/routes";
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/jewellery", c.seo);
 
 const serif = "font-serif [font-variation-settings:'opsz'_18]";
 const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink";

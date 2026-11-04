@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { formatSaleDate } from "@/lib/format";
 import { getSales } from "@/lib/sales";
 import { auctionsPage as c, calendar, isShown } from "@/content";
@@ -8,10 +9,11 @@ import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { pageTitle, serifText } from "@/components/ui/type";
 
-export const metadata: Metadata = {
-  title: c.past.title || "Past auctions",
-  description: c.past.text || "Catalogues and results from previous sales at Sloane Street Auctions.",
-};
+export const metadata: Metadata = pageMetadata(
+  "/auctions/past",
+  { title: c.past.title || "Past auctions", description: c.past.text },
+  "Catalogues and results from previous sales at Sloane Street Auctions.",
+);
 
 /**
  * PAST AUCTIONS — every sale from the Auction calendar whose date has passed,

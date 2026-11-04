@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { RichText } from "@/components/ui/RichText";
@@ -6,7 +7,7 @@ import { faqPage as c, isPageOn, paragraphs } from "@/content";
 import { pageTitle, serifText } from "@/components/ui/type";
 import { jsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/faqs", c.seo);
 
 const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink";
 

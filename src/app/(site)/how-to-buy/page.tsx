@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { isPageOn, policyLinks } from "@/content";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { easyLive, hasPhoto, howToBuyPage, isShown } from "@/content";
 import { routes } from "@/lib/routes";
@@ -13,7 +14,7 @@ import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
 
 const c = howToBuyPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/how-to-buy", c.seo);
 
 const serif = "font-serif [font-variation-settings:'opsz'_18]";
 const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink";

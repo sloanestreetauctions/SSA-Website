@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getSales } from "@/lib/sales";
 import { jsonLd, organisationData, salesData } from "@/lib/structured-data";
@@ -32,6 +33,9 @@ const HERO_POSITION: Record<string, string> = {
   lower: "object-[55%_75%]",
   bottom: "object-[55%_100%]",
 };
+
+/** The homepage keeps the site's own title and description; this only names its canonical address. */
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default async function HomePage() {
   const upcoming = (await getSales()).upcoming.slice(0, 3);

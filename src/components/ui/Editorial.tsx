@@ -49,7 +49,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     <nav aria-label="Breadcrumb">
       <ol className="type-label flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-soft">
         <li>
-          <Link href="/" className="hover:text-navy">
+          <Link href="/" className="-my-3 inline-block py-3 hover:text-navy">
             Home
           </Link>
         </li>
@@ -59,7 +59,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
               /
             </span>
             {item.href ? (
-              <Link href={item.href} className="hover:text-navy">
+              <Link href={item.href} className="-my-3 inline-block py-3 hover:text-navy">
                 {item.label}
               </Link>
             ) : (

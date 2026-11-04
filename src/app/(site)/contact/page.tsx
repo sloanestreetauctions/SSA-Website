@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { contactPage, hasPhoto, isShown, mapsDirections, settings, telHref } from "@/content";
@@ -13,7 +14,7 @@ import { jsonLd, organisationData } from "@/lib/structured-data";
 
 const c = contactPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/contact", c.seo);
 
 const underline = "underline decoration-ink/30 underline-offset-4 hover:decoration-ink";
 

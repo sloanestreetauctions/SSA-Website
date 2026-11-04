@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { isPageOn } from "@/content";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
@@ -12,7 +13,7 @@ import { serifText } from "@/components/ui/type";
 
 const c = aboutPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/about", c.seo);
 
 /**
  * ABOUT — split opening, a wide showroom photograph, a navy band of short

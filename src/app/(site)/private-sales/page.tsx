@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/ui/Editorial";
 import { ObjectPhoto, PhotoToCome } from "@/components/ui/PhotoToCome";
@@ -8,7 +9,7 @@ import { hasPhoto, isPageOn, isShown, paragraphs, privateSalesPage, settings, te
 
 const c = privateSalesPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/private-sales", c.seo);
 
 const serif = "font-serif [font-variation-settings:'opsz'_18]";
 const inkLink = "text-ink underline decoration-ink/40 underline-offset-4 hover:decoration-ink";

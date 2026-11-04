@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import { valuationPage } from "@/content";
 import { RichText } from "@/components/ui/RichText";
 import { Breadcrumbs, Eyebrow } from "@/components/ui/Editorial";
@@ -7,7 +8,7 @@ import { ValuationForm } from "@/components/valuation/ValuationForm";
 
 const c = valuationPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/valuation", c.seo);
 
 const link = "text-navy underline decoration-gold underline-offset-4";
 

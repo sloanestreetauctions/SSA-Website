@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { isPageOn, policyLinks } from "@/content";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { calendar, hasPhoto, isShown, sellPage, settings } from "@/content";
 import { formatShortDate } from "@/lib/format";
@@ -15,7 +16,7 @@ import { SplitHeader, splitMedia } from "@/components/ui/SplitHeader";
 
 const c = sellPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/sell", c.seo);
 
 const serif = "font-serif [font-variation-settings:'opsz'_18]";
 const appointmentMail = `mailto:${settings.generalEmail}${c.showroom.appointmentSubject ? `?subject=${encodeURIComponent(c.showroom.appointmentSubject)}` : ""}`;

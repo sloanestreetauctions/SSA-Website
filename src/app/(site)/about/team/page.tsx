@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { isPageOn } from "@/content";
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/Button";
 import { Breadcrumbs } from "@/components/ui/Editorial";
@@ -11,7 +12,7 @@ import { JEWELLERY_APPOINTMENTS_PATH, jewelleryBookingLive } from "@/lib/booking
 
 const c = teamPage;
 
-export const metadata: Metadata = { title: c.seo.title, description: c.seo.description };
+export const metadata: Metadata = pageMetadata("/about/team", c.seo, "Meet the specialists and staff of Sloane Street Auctions, the Chelsea auction house.");
 
 /**
  * MEET THE TEAM — built to the approved Direction C mockup.

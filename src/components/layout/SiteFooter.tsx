@@ -26,7 +26,7 @@ export function SiteFooter() {
             {settings.addressLines[0]}
             <br />
             {settings.addressLines.slice(1).join(", ")}
-            <a href={telHref(settings.mainPhone)} className="mt-1 block hover:text-ivory">
+            <a href={telHref(settings.mainPhone)} className="mt-1 -mb-2.5 block w-fit pb-2.5 hover:text-ivory">
               {settings.mainPhone}
             </a>
           </address>
