@@ -16,8 +16,9 @@ import "server-only";
  *   JEWELLERY_CALENDAR_ID          optional: an existing calendar to book into. Leave it out and the website
  *                                  creates its own "Jewellery appointments" calendar the first time it's used,
  *                                  and shares it with the people above (no Google admin settings needed).
- *   GOOGLE_SERVICE_ACCOUNT_EMAIL   } the robot Google user the calendars are shared with
- *   GOOGLE_PRIVATE_KEY             }
+ *   GOOGLE_SERVICE_ACCOUNT_KEY     the robot Google user's whole JSON key file (or the two below)
+ *   GOOGLE_SERVICE_ACCOUNT_EMAIL   } instead of the whole file: its client_email
+ *   GOOGLE_PRIVATE_KEY             } and its private_key
  *   UPSTASH_REDIS_REST_URL/TOKEN   the hold-and-spam store (added by Vercel's Upstash integration)
  *   RESEND_API_KEY                 } confirmation emails (as for the valuation form)
  *   APPOINTMENTS_FROM              e.g. Sloane Street Auctions <appointments@sloanestreetauctions.com> (falls back to VALUATION_FROM)
@@ -53,8 +54,10 @@ export function missingBookingSettings(): string[] {
   const s = bookingSettings();
   // Either an existing calendar, or someone to share the website's own calendar with.
   if (!s.calendarId && s.shareWith.length === 0) missing.push("JEWELLERY_BUSY_CALENDAR_IDS (Stephen's email)");
-  if (!env("GOOGLE_SERVICE_ACCOUNT_EMAIL")) missing.push("GOOGLE_SERVICE_ACCOUNT_EMAIL");
-  if (!env("GOOGLE_PRIVATE_KEY")) missing.push("GOOGLE_PRIVATE_KEY");
+  if (!env("GOOGLE_SERVICE_ACCOUNT_KEY")) {
+    if (!env("GOOGLE_SERVICE_ACCOUNT_EMAIL")) missing.push("GOOGLE_SERVICE_ACCOUNT_KEY (or GOOGLE_SERVICE_ACCOUNT_EMAIL)");
+    if (!env("GOOGLE_PRIVATE_KEY")) missing.push("GOOGLE_SERVICE_ACCOUNT_KEY (or GOOGLE_PRIVATE_KEY)");
+  }
   if (!(env("UPSTASH_REDIS_REST_URL") || env("KV_REST_API_URL")) || !(env("UPSTASH_REDIS_REST_TOKEN") || env("KV_REST_API_TOKEN")))
     missing.push("UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN");
   if (!env("RESEND_API_KEY")) missing.push("RESEND_API_KEY");

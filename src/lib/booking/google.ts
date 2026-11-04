@@ -7,6 +7,7 @@ import type { Busy } from "./slots";
  * account" (a robot Google user) that the jewellery calendars have been
  * shared with. Its key lives only in the host's settings:
  *
+ *   GOOGLE_SERVICE_ACCOUNT_KEY     the whole JSON key file, pasted in (simplest), or instead:
  *   GOOGLE_SERVICE_ACCOUNT_EMAIL   e.g. ssa-bookings@your-project.iam.gserviceaccount.com
  *   GOOGLE_PRIVATE_KEY             the "private_key" from the account's JSON key file
  *
@@ -29,14 +30,34 @@ export class CalendarError extends Error {}
 
 let cached: { token: string; expires: number } | null = null;
 
+/**
+ * The service account's email and private key. Easiest: paste the whole JSON key
+ * file into GOOGLE_SERVICE_ACCOUNT_KEY. Otherwise GOOGLE_SERVICE_ACCOUNT_EMAIL and
+ * GOOGLE_PRIVATE_KEY separately.
+ */
+export function serviceAccount(): { email?: string; key?: string } {
+  const json = process.env.GOOGLE_SERVICE_ACCOUNT_KEY?.trim();
+  if (json) {
+    try {
+      const file = JSON.parse(json) as { client_email?: string; private_key?: string };
+      return { email: file.client_email?.replace(/[\s\u00a0\u200b-\u200d\ufeff]/g, ""), key: file.private_key };
+    } catch {
+      throw new CalendarError("GOOGLE_SERVICE_ACCOUNT_KEY isn't a complete key file (paste the whole file, from { to }).");
+    }
+  }
+  // Keys pasted into a settings box often arrive with "\n" instead of real line breaks, or wrapped in quotes.
+  const strip = (v?: string) => v?.trim().replace(/^"|"$/g, "");
+  // Invisible characters (non-breaking or zero-width spaces) sometimes come along when copying an address.
+  const cleanEmail = (v?: string) => strip(v)?.replace(/[\s\u00a0\u200b-\u200d\ufeff]/g, "");
+  return { email: cleanEmail(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL), key: strip(process.env.GOOGLE_PRIVATE_KEY)?.replace(/\\n/g, "\n") };
+}
+
 const base64url = (value: string | Buffer) => Buffer.from(value).toString("base64url");
 
 /** A short-lived access token, signed with the service account's key (reused until shortly before it expires). */
 async function accessToken(): Promise<string> {
   if (cached && cached.expires > Date.now() + 60_000) return cached.token;
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  // Keys pasted into a settings box often arrive with "\n" instead of real line breaks.
-  const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const { email, key } = serviceAccount();
   if (!email || !key) throw new CalendarError("Google Calendar is not connected (service account settings missing).");
 
   const now = Math.floor(Date.now() / 1000);

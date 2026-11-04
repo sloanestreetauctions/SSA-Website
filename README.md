@@ -118,8 +118,7 @@ Client details are kept only in that calendar entry and the two emails.
 | `JEWELLERY_BOOKING` | `on` |
 | `JEWELLERY_BUSY_CALENDAR_IDS` | the ID of the calendar with Stephen's diary (for a person's main calendar, their email address); several can be separated by commas |
 | `JEWELLERY_CALENDAR_SHARE_WITH` | who sees the appointments, e.g. `info@sloanestreetauctions.com` |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` from the key file |
-| `GOOGLE_PRIVATE_KEY` | `private_key` from the key file (the whole block, including the BEGIN/END lines) |
+| `GOOGLE_SERVICE_ACCOUNT_KEY` | the **whole** JSON key file, opened in a text editor and pasted in, from `{` to `}` (Secret). Instead of this you can give `GOOGLE_SERVICE_ACCOUNT_EMAIL` and `GOOGLE_PRIVATE_KEY` separately. |
 | `APPOINTMENTS_FROM` | e.g. `Sloane Street Auctions <appointments@sloanestreetauctions.com>` |
 | `RESEND_API_KEY` | as for the valuation form |
 | Upstash settings | added automatically in step 3 |
