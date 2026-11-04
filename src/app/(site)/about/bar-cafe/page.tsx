@@ -35,7 +35,7 @@ export default function BarCafePage() {
         media={
           hasPhoto(hero.illustration) && (
             <div className="flex h-full items-center lg:absolute lg:inset-0">
-              <ObjectPhoto photo={hero.illustration} priority sizes="(min-width: 1024px) 50vw, 100vw" frameClassName="w-full aspect-[1.6]" />
+              <ObjectPhoto photo={hero.illustration} priority sizes="(min-width: 1024px) 50vw, 100vw" frameClassName="w-full aspect-square" />
             </div>
           )
         }
