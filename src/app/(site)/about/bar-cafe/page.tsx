@@ -98,6 +98,7 @@ export default function BarCafePage() {
               {sections.map((section, si) => (
                 <div key={`${section.title}-${si}`}>
                   <h3 className="type-label text-gold-ink">{section.title}</h3>
+                  {section.description && <p className={`mt-3 ${serifText} text-[1.0625rem] leading-[1.55] text-ink-soft`}>{section.description}</p>}
                   <ul className={`mt-4 divide-y divide-line ${serifText}`}>
                     {(section.items ?? []).map((item, ii) => (
                       <li key={`${item.name}-${ii}`} className="grid grid-cols-[1fr_auto] gap-x-6 py-3">
@@ -108,6 +109,13 @@ export default function BarCafePage() {
                     ))}
                   </ul>
                 </div>
+              ))}
+            </div>
+          )}
+          {menu.note && (
+            <div className={`mt-12 max-w-[46rem] space-y-2 border-t border-line pt-6 ${serifText} text-[1rem] leading-[1.55] text-ink-soft`}>
+              {paragraphs(menu.note).map((p) => (
+                <p key={p}>{p}</p>
               ))}
             </div>
           )}

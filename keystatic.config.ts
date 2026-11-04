@@ -957,6 +957,7 @@ export default config({
           sections: fields.array(
             fields.object({
               title: requiredLine("Section", "e.g. Breakfast, Coffee, Wine"),
+              description: paragraph("Text under the section heading (optional)", "e.g. where the charcuterie comes from"),
               items: fields.array(
                 fields.object({
                   name: requiredLine("Dish or drink"),
@@ -972,6 +973,7 @@ export default config({
               itemLabel: (props) => props.fields.title.value || "New section",
             },
           ),
+          note: paragraph("Note under the menu", "e.g. (V) Vegetarian (VG) Vegan, and allergen information."),
         },
         { label: "3. Menu" },
       ),
